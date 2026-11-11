@@ -69,3 +69,12 @@
 - [ ] Add floor, ceiling and wall finish quantities to the estimate and enter rates.
 - [ ] Save, refresh and reopen the project; verify room measurements and line items persist.
 - [ ] Confirm the drawing preview requires re-upload after reopening (it is not stored remotely in this release).
+
+
+## V6.0 drawing measurement upgrade
+
+- [ ] Run the complete updated `supabase/professional_studio.sql` in Supabase SQL Editor. The V6.0 `ALTER TABLE` statements add `drawing_annotations` and `drawing_calibration` without deleting existing project data.
+- [ ] Replace repository files with the V6.0 ZIP contents and push to GitHub. `package.json` now includes `pdfjs-dist`; Vercel must install the updated dependency.
+- [ ] Test a PNG/JPG drawing: calibrate using a known dimension, measure a line, trace a room polygon, add a measurement to the estimate, save, refresh and reopen.
+- [ ] Test a PDF drawing: confirm the first page renders and can be calibrated/measured. Only page one is currently supported for on-plan measurement.
+- [ ] Confirm existing Student Studio, Professional projects, drawing storage, company details and quotations still work.

@@ -82,3 +82,9 @@ drop policy if exists "Professionals can delete their own drawings" on storage.o
 create policy "Professionals can delete their own drawings"
   on storage.objects for delete to authenticated
   using (bucket_id = 'professional-drawings' and (storage.foldername(name))[1] = auth.uid()::text);
+
+
+-- V6.0: persist calibrated drawing scale and on-plan measurements.
+alter table public.professional_projects
+  add column if not exists drawing_annotations jsonb not null default '[]'::jsonb,
+  add column if not exists drawing_calibration jsonb;

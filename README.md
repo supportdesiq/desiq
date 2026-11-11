@@ -260,3 +260,8 @@ The drawing upload now persists in a private Supabase Storage bucket and is link
 Run the complete updated `supabase/professional_studio.sql` in Supabase → SQL Editor. This adds the drawing metadata columns, creates/configures the private bucket and installs user-scoped Storage policies. It is safe to rerun. No new environment variables are required.
 
 **Important:** drawings uploaded before V5.9 were only browser previews and were never stored in Supabase. Those files cannot be recovered from the project record; upload each required drawing again after deploying V5.9, then save the project. New uploads will persist and reload with the project.
+
+
+## V6.0 — Drawing measurement tools
+
+Professional Studio now supports manual scale calibration and on-plan measurement for uploaded image plans (PNG/JPG/WebP) and PDF drawings. PDF preview and measurement render the first page. Calibrate by selecting two points with a known real-world distance; then use Measure line for distances or Measure room area to trace a polygon. Measurements and calibration are stored in `professional_projects.drawing_annotations` and `drawing_calibration`. Run the updated `supabase/professional_studio.sql` migration before deploying. PDF rendering uses `pdfjs-dist` and its matching worker hosted by cdnjs. This is manual tracing, not automatic CAD/BIM recognition; check all measurements against source drawings and site conditions.
