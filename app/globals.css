@@ -247,3 +247,38 @@
 .builder-back-button{display:flex;align-items:center;gap:8px;background:#192844;color:white;border-radius:6px;padding:12px 15px;font:600 10px 'DM Sans',sans-serif}
 @media(max-width:900px){.builder-page{padding:0 4% 60px}.settings-grid{grid-template-columns:repeat(2,1fr)}.studio-grid{grid-template-columns:210px 1fr}.project-metrics{grid-template-columns:repeat(2,1fr)}.builder-hero{gap:3%}}
 @media(max-width:650px){.builder-hero{grid-template-columns:1fr;padding:45px 0;gap:25px}.builder-hero h1{font-size:53px}.builder-hero-art{height:210px}.builder-section{padding:40px 0}.builder-section-head{align-items:flex-start;flex-direction:column}.settings-grid{grid-template-columns:1fr 1fr;gap:8px}.settings-grid>label{padding:11px}.settings-grid>label b{font-size:15px}.studio-grid{grid-template-columns:1fr}.studio-catalogue{max-height:none}.plan-stage{min-height:270px;padding:27px 14px 18px 25px}.floor-canvas{width:100%}.room-editor{gap:9px}.room-editor>div{width:100%}.estimate-panel{grid-template-columns:1fr;padding:17px}.estimate-breakdown{border-left:0;border-top:1px solid #40516b;padding:12px 0 0}.reflection-options{grid-template-columns:1fr}.score-panel{align-items:flex-start;flex-direction:column;gap:8px}.builder-footer{align-items:flex-start;flex-direction:column}.builder-top>span{font-size:7px}}
+
+
+/* DESIQ expanded architectural design studio */
+.floor-tabs{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:-5px 0 14px}
+.floor-tabs button{display:flex;align-items:center;gap:6px;border:1px solid #dce3ec;background:#fff;border-radius:6px;padding:9px 11px;color:#63738c;font:600 9px 'DM Sans',sans-serif;cursor:pointer}
+.floor-tabs button.active{background:#eaf1ff;border-color:#a9c0e8;color:#315fc2}
+.floor-tabs .add-floor{border-style:dashed;color:#416fe1}
+.floor-tabs .delete-floor{margin-left:auto;color:#b65f56}
+.catalogue-category{width:100%;display:flex;align-items:center;justify-content:space-between;border:0;border-bottom:1px solid #edf0f4;background:#fff;padding:11px 4px;color:#52627c;font:650 10px 'DM Sans',sans-serif;cursor:pointer}
+.extra-row{display:flex;align-items:center;gap:6px;padding:8px 6px}
+.extra-row>span{display:flex;flex:1;flex-direction:column;gap:3px}
+.extra-row small{font-size:8px;color:#9aa5b5}
+.extra-row>svg{color:#5377bd;flex-shrink:0}
+.placed-item{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:1.5px dashed #725f4d;color:#443b33;cursor:grab;touch-action:none;user-select:none;overflow:hidden;padding:2px;z-index:4;box-shadow:0 1px 3px #172b401c}
+.placed-item:active{cursor:grabbing}
+.placed-item b{font:700 clamp(6px,.75vw,9px) Manrope;text-align:center;line-height:1.1}
+.placed-item small{font:7px 'DM Mono',monospace}
+.placed-item.item-active{outline:3px solid #e19a46;outline-offset:1px;z-index:6}
+.item-live-price{font:700 9px 'DM Mono',monospace;color:#4267a9}
+.real3d-canvas{height:540px;position:relative;overflow:hidden;border-radius:8px;border:1px solid #dce5f1;background:#e9eff7}
+.real3d-canvas canvas{display:block;width:100%;height:100%;touch-action:none}
+.real3d-hint{position:absolute;z-index:2;left:12px;bottom:10px;background:#ffffffd9;border:1px solid #d7e0ec;border-radius:5px;padding:7px 9px;font:8px 'DM Mono',monospace;letter-spacing:.7px;color:#60738f;pointer-events:none}
+.design-thinking-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.thinking-card{display:flex;align-items:flex-start;gap:11px;padding:14px;border:1px solid #dfe5ec;background:#fff;border-radius:8px;cursor:pointer;transition:background .15s,border .15s}
+.thinking-card input{position:absolute;opacity:0;pointer-events:none}
+.thinking-card.thinking-checked{background:#eff5ff;border-color:#a8bee6}
+.thinking-check{width:27px;height:27px;flex-shrink:0;display:grid;place-items:center;border:1px solid #d4deeb;border-radius:6px;color:#7890b4;font:700 9px 'DM Mono',monospace}
+.thinking-checked .thinking-check{background:#416fe1;border-color:#416fe1;color:#fff}
+.thinking-card>span:last-child{display:flex;flex-direction:column;gap:5px}
+.thinking-card b{font:700 11px Manrope;color:#30425f}
+.thinking-card small{font:9px/1.55 'DM Sans',sans-serif;color:#8290a4}
+.estimate-disclaimer{font:9px/1.6 'DM Sans',sans-serif;color:#8b97a8;margin:10px 0 0}
+.floor-cost-row{font-size:9px!important;color:#9aabc1!important}
+@media(max-width:850px){.real3d-canvas{height:430px}}
+@media(max-width:600px){.design-thinking-grid{grid-template-columns:1fr}.real3d-canvas{height:350px}.floor-tabs .delete-floor{margin-left:0}.floor-tabs button{padding:8px}}

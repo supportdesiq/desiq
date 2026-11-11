@@ -1,3 +1,3 @@
 import DreamHouseChallenge from "@/components/DreamHouseChallenge";
-export const metadata = { title: "Dream House Challenge | DESIQ Architecture", description: "Design a dream house within a ₹10 lakh learning challenge budget." };
+export const metadata = { title: "Dream House Design Studio | DESIQ Architecture", description: "Build and furnish a multi-floor house plan with live dimensional cost estimates." };
 export default function ChallengePage(){ return <DreamHouseChallenge />; }

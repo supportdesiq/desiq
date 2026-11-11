@@ -90,3 +90,17 @@ The Dream House challenge now includes:
 - A conceptual isometric 3D-style preview (not a detailed CAD/BIM model).
 
 Cost values are educational estimates only, not construction quotations. Room placement is a simple visual planning exercise; it does not yet validate wall connections, building codes, structural feasibility or exact quantities. The design is currently held in browser state and is not saved to an account or cloud.
+
+
+## Architecture Studio — expanded MVP
+
+The Architecture challenge now supports:
+- Non-overlapping room placement within a plot, with drag-to-reposition and resize controls.
+- Fixtures and furniture placed as separate movable objects inside the floor plan; multiple copies can be added.
+- Parametric catalogue pricing: kitchen counters and wardrobes by running metre, finishes by square metre, and individual fittings/furniture by item.
+- Up to four floors. Each added floor adds another floor's built-up area to the construction estimate.
+- Live budget estimate using plot area × illustrative construction rate × number of floors, plus selected catalogue items.
+- Ten design-thinking checks covering daylight, ventilation, privacy, circulation, accessibility, safety, plumbing, storage, climate and future flexibility.
+- Three-dimensional interactive preview using Three.js with orbit and zoom controls, room walls and placed furnishing volumes.
+
+Important limitations: this is a learning prototype, not CAD/BIM software. The 3D preview is a generated conceptual model; it does not yet model accurate wall openings, structural systems, stairs, services, code compliance or construction-ready details. The price list and construction rates are illustrative and should be calibrated by region and specification before being presented as real quotations. Projects are not yet saved to user accounts.
