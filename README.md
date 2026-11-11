@@ -230,3 +230,19 @@ Run the updated `supabase/professional_studio.sql` in the Supabase SQL Editor. I
 
 ### Quotation notes
 The tax percentage is user-entered and is applied as a simple estimate line. Professionals must confirm the correct tax treatment, rates, GST compliance, quotation terms and commercial details before sending a quotation. Logo is currently supplied as an image URL; direct logo upload and reusable organisation-wide branding settings are planned enhancements.
+
+
+## V5.8 — Drawing reference & room quantity estimator
+
+Professional Studio adds a drawing-led measurement workflow:
+- Upload and preview PDF, PNG, JPG or WebP floor plans up to 15 MB. The preview is held in the current browser session and is not uploaded to Supabase; re-upload it when reopening a saved project.
+- Add rooms and enter verified length, width, wall height and total door/window opening area in metres.
+- Automatically calculate total floor/ceiling area and estimated wall finish area.
+- Apply a configurable wastage percentage and add floor, ceiling or wall quantities directly to project line items.
+- Save room measurements with the project in `professional_projects.rooms`; existing projects remain intact.
+
+### Apply the V5.8 database update
+Run the updated `supabase/professional_studio.sql` in Supabase SQL Editor. It safely adds the `rooms` JSONB column if it does not exist. No environment variables or new Supabase storage bucket are required.
+
+### Measurement limitation
+V5.8 does not yet read dimensions or recognise walls automatically from a PDF/image. Users must enter dimensions verified from a drawing scale or site measurement. Wall area is perimeter × wall height minus the room's entered total openings area; it does not account for wall segmentation, columns, complex geometry or finish-specific deductions. Quantities are indicative and must be professionally checked.

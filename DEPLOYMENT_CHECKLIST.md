@@ -58,3 +58,14 @@
 - [ ] Add at least one line item and a client name.
 - [ ] Generate a client quotation and use Print → Save as PDF.
 - [ ] Verify the quotation uses the professional's company identity and does not display DESIQ branding.
+
+
+## V5.8 drawing & quantity estimator
+- [ ] Run the updated `supabase/professional_studio.sql` migration in Supabase (adds `rooms`; safe to rerun).
+- [ ] Deploy the V5.8 files through GitHub Desktop and Vercel.
+- [ ] Open Professional Studio and upload a test PDF or image floor plan.
+- [ ] Add two rooms with known dimensions and verify floor area totals.
+- [ ] Enter wall height and opening deductions; verify estimated wall area.
+- [ ] Add floor, ceiling and wall finish quantities to the estimate and enter rates.
+- [ ] Save, refresh and reopen the project; verify room measurements and line items persist.
+- [ ] Confirm the drawing preview requires re-upload after reopening (it is not stored remotely in this release).

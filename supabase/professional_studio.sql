@@ -38,3 +38,7 @@ grant select, insert, update, delete on public.professional_projects to authenti
 -- V5.7: persist each professional's own quotation identity with their project.
 alter table public.professional_projects
   add column if not exists company_profile jsonb not null default '{}'::jsonb;
+
+-- V5.8: persist verified room measurements with each professional project.
+alter table public.professional_projects
+  add column if not exists rooms jsonb not null default '[]'::jsonb;

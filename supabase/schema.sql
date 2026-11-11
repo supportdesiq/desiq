@@ -79,3 +79,6 @@ create policy "Professionals can delete their own projects"
   on public.professional_projects for delete to authenticated using (auth.uid() = user_id);
 
 grant select, insert, update, delete on public.professional_projects to authenticated;
+
+-- V5.8 professional room measurement data
+alter table public.professional_projects add column if not exists rooms jsonb not null default '[]'::jsonb;
