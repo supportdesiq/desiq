@@ -400,3 +400,37 @@
 .architecture-discovery-note{margin:26px 0 42px;padding:25px;border:1px solid #dfe6ec;border-radius:10px;background:linear-gradient(120deg,#f1f5ed,#fbfcf8)}
 .architecture-discovery-note h3{font:750 19px Manrope;color:#263c56;margin:0 0 7px}
 .architecture-discovery-note p{font:11px/1.7 'DM Sans',sans-serif;color:#718098;margin:0}
+
+/* Broader Architecture & Spatial Design challenge identities */
+.builder-page.theme-bridge{background:linear-gradient(180deg,#eaf0f4 0%,#f6f8f7 48%,#f7f8f5 100%)}
+.builder-page.theme-auditorium{background:linear-gradient(180deg,#f1edf5 0%,#faf7fb 48%,#f7f8f5 100%)}
+.builder-page.theme-park{background:linear-gradient(180deg,#eaf4e7 0%,#f6faf3 48%,#f7f8f5 100%)}
+.builder-page.theme-plaza{background:linear-gradient(180deg,#edf1f2 0%,#f8f9f7 48%,#f7f8f5 100%)}
+.builder-page.theme-bridge .builder-kicker,.builder-page.theme-bridge .builder-step{color:#4f718a}
+.builder-page.theme-auditorium .builder-kicker,.builder-page.theme-auditorium .builder-step{color:#81618c}
+.builder-page.theme-park .builder-kicker,.builder-page.theme-park .builder-step{color:#5e8759}
+.builder-page.theme-plaza .builder-kicker,.builder-page.theme-plaza .builder-step{color:#607e85}
+.builder-page.theme-bridge .builder-hero-art{background:linear-gradient(135deg,#dbe6ed,#f8fbfc);border-color:#cbd9e2;color:#547a91}
+.builder-page.theme-auditorium .builder-hero-art{background:linear-gradient(135deg,#e8dff0,#fcf9ff);border-color:#d9cce2;color:#80628e}
+.builder-page.theme-park .builder-hero-art{background:linear-gradient(135deg,#dcebd6,#f9fff5);border-color:#d0e0c9;color:#5f8759}
+.builder-page.theme-plaza .builder-hero-art{background:linear-gradient(135deg,#dfe9e9,#fbfdfc);border-color:#d0dfdf;color:#587c80}
+.builder-page.theme-bridge .hero-blueprint{border-color:#64839a;background-color:#f8fbfc;background-image:linear-gradient(#cbd9e2 1px,transparent 1px),linear-gradient(90deg,#cbd9e2 1px,transparent 1px)}
+.builder-page.theme-auditorium .hero-blueprint{border-color:#8a6d95;background-color:#fcf9ff;background-image:linear-gradient(#ddd0e4 1px,transparent 1px),linear-gradient(90deg,#ddd0e4 1px,transparent 1px)}
+.builder-page.theme-park .hero-blueprint{border-color:#72936a;background-color:#f9fff6;background-image:linear-gradient(#d2e2cc 1px,transparent 1px),linear-gradient(90deg,#d2e2cc 1px,transparent 1px)}
+.builder-page.theme-plaza .hero-blueprint{border-color:#68878a;background-color:#fbfdfc;background-image:linear-gradient(#d3e1e1 1px,transparent 1px),linear-gradient(90deg,#d3e1e1 1px,transparent 1px)}
+.builder-page.theme-bridge .challenge-brief-panel{background:linear-gradient(120deg,#e2ebf0,#f9fcfd);border-color:#d0dfe6}
+.builder-page.theme-auditorium .challenge-brief-panel{background:linear-gradient(120deg,#eee6f2,#fcf9fd);border-color:#dfd3e5}
+.builder-page.theme-park .challenge-brief-panel{background:linear-gradient(120deg,#e3efde,#fbfff8);border-color:#d2e2ca}
+.builder-page.theme-plaza .challenge-brief-panel{background:linear-gradient(120deg,#e5eeee,#fbfdfc);border-color:#d4e1e1}
+.builder-page.theme-bridge .challenge-goal{background:#3f5e73}
+.builder-page.theme-auditorium .challenge-goal{background:#614a6b}
+.builder-page.theme-park .challenge-goal{background:#486744}
+.builder-page.theme-plaza .challenge-goal{background:#49686d}
+.builder-page.theme-bridge .floor-canvas{background-color:#f9fbfc;background-image:linear-gradient(#dbe4e9 1px,transparent 1px),linear-gradient(90deg,#dbe4e9 1px,transparent 1px);border-color:#64839a}
+.builder-page.theme-auditorium .floor-canvas{background-color:#fcfaff;background-image:linear-gradient(#e5dce9 1px,transparent 1px),linear-gradient(90deg,#e5dce9 1px,transparent 1px);border-color:#8a6d95}
+.builder-page.theme-park .floor-canvas{background-color:#fbfff8;background-image:linear-gradient(#dce9d7 1px,transparent 1px),linear-gradient(90deg,#dce9d7 1px,transparent 1px);border-color:#72936a}
+.builder-page.theme-plaza .floor-canvas{background-color:#fbfdfc;background-image:linear-gradient(#dce7e7 1px,transparent 1px),linear-gradient(90deg,#dce7e7 1px,transparent 1px);border-color:#68878a}
+.challenge-card-icon.scene-traffic-bridge{background:linear-gradient(135deg,#dce8ef,#f7fbff)}
+.challenge-card-icon.scene-community-auditorium{background:linear-gradient(135deg,#e8def0,#fcf8ff)}
+.challenge-card-icon.scene-public-park{background:linear-gradient(135deg,#dcebd5,#f8fff3)}
+.challenge-card-icon.scene-pedestrian-plaza{background:linear-gradient(135deg,#dce9e8,#f9fdfc)}

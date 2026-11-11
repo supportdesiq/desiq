@@ -5,26 +5,26 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 export type ModelRoom={id:number;name:string;x:number;y:number;w:number;h:number;kind:string};
 export type ModelItem={id:number;name:string;x:number;y:number;w:number;h:number;kind:string;color:string};
 export type ModelOpening={id:number;kind:"door"|"window";wall:string;offset:number;width:number};
-export default function RealisticHouse3D({length,width,rooms,items,openings=[],wallHeight=2.8,roof="flat",material="warm",showStairs=false}:{length:number;width:number;rooms:ModelRoom[];items:ModelItem[];openings?:ModelOpening[];wallHeight?:number;roof?:string;material?:string;showStairs?:boolean}){
+export default function RealisticHouse3D({length,width,rooms,items,openings=[],wallHeight=2.8,roof="flat",material="warm",showStairs=false,outdoor=false}:{length:number;width:number;rooms:ModelRoom[];items:ModelItem[];openings?:ModelOpening[];wallHeight?:number;roof?:string;material?:string;showStairs?:boolean;outdoor?:boolean}){
  const host=useRef<HTMLDivElement>(null);
  useEffect(()=>{
   const el=host.current;if(!el)return;
-  const scene=new THREE.Scene();scene.background=new THREE.Color("#e8edf4");scene.fog=new THREE.Fog("#e8edf4",35,75);
+  const scene=new THREE.Scene();scene.background=new THREE.Color(outdoor?"#e5eee8":"#e8edf4");scene.fog=new THREE.Fog(outdoor?"#e5eee8":"#e8edf4",35,75);
   const camera=new THREE.PerspectiveCamera(38,el.clientWidth/el.clientHeight,.1,150);camera.position.set(length*1.35,width*1.5,Math.max(length,width)*1.55);
   const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.setSize(el.clientWidth,el.clientHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;el.appendChild(renderer.domElement);
   scene.add(new THREE.HemisphereLight(0xfff7e9,0x7789a2,2.1));
   const sun=new THREE.DirectionalLight(0xffe5bf,3.1);sun.position.set(-length,width*1.7,length);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
   const fill=new THREE.PointLight(0xffffff,.45,50);fill.position.set(length/2,wallHeight+5,width/2);scene.add(fill);
   const mat=(color:string,roughness=.78)=>new THREE.MeshStandardMaterial({color,roughness});
-  const floorMat=mat(material==="dark"?"#827c73":material==="cool"?"#b7c5ce":"#d5c8b5");
-  const ground=new THREE.Mesh(new THREE.PlaneGeometry(length+12,width+12),mat("#dce3eb",1));ground.rotation.x=-Math.PI/2;ground.position.set(length/2,-.2,width/2);ground.receiveShadow=true;scene.add(ground);
+  const floorMat=mat(outdoor?"#aeb9ad":material==="dark"?"#827c73":material==="cool"?"#b7c5ce":"#d5c8b5");
+  const ground=new THREE.Mesh(new THREE.PlaneGeometry(length+12,width+12),mat(outdoor?"#cbd9c7":"#dce3eb",1));ground.rotation.x=-Math.PI/2;ground.position.set(length/2,-.2,width/2);ground.receiveShadow=true;scene.add(ground);
   const base=new THREE.Mesh(new THREE.BoxGeometry(length,.2,width),floorMat);base.position.set(length/2,0,width/2);base.receiveShadow=true;scene.add(base);
   const wallColor=material==="dark"?"#d7d0c5":material==="cool"?"#e7f0f2":"#f4f0e7";const wallMat=mat(wallColor);const trim=mat("#b8a995");const glass= new THREE.MeshPhysicalMaterial({color:"#8fc8e5",metalness:.05,roughness:.12,transparent:true,opacity:.78});
   const wallT=.16;
   function box(w:number,h:number,d:number,x:number,y:number,z:number,m:THREE.Material,cast=true){const o=new THREE.Mesh(new THREE.BoxGeometry(Math.max(.03,w),Math.max(.03,h),Math.max(.03,d)),m);o.position.set(x,y,z);o.castShadow=cast;o.receiveShadow=true;scene.add(o);return o;}
   // Perimeter walls are split where openings are requested.
   const perimeter=[{side:"North",x:length/2,z:0,w:length,h:wallT,axis:"x"},{side:"South",x:length/2,z:width,w:length,h:wallT,axis:"x"},{side:"West",x:0,z:width/2,w:wallT,h:width,axis:"z"},{side:"East",x:length,z:width/2,w:wallT,h:width,axis:"z"}];
-  perimeter.forEach(p=>{
+  if(!outdoor) perimeter.forEach(p=>{
    const opening=openings.find(o=>o.wall===`Outer ${p.side}`);const span=p.axis==="x"?length:width;
    if(!opening){box(p.w,wallHeight,p.h,p.x,wallHeight/2,p.z,wallMat);return;}
    const start=Math.max(.3,Math.min(span-opening.width-.3,opening.offset));
@@ -35,7 +35,7 @@ export default function RealisticHouse3D({length,width,rooms,items,openings=[],w
    else {box(opening.width,wallHeight-2.1,wallT,p.axis==="x"?start+opening.width/2:p.x,2.1+(wallHeight-2.1)/2,p.axis==="x"?p.z:start+opening.width/2,wallMat);const doorMat=mat("#9a704f",.6);if(p.axis==="x"){box(opening.width-.08,2.02,.055,start+opening.width/2,1.02,p.z+.035,doorMat);const knob=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),mat("#c8a45c",.3));knob.position.set(start+opening.width-.16,1.02,p.z+.08);scene.add(knob);}else{box(.055,2.02,opening.width-.08,p.x+.035,1.02,start+opening.width/2,doorMat);const knob=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),mat("#c8a45c",.3));knob.position.set(p.x+.08,1.02,start+opening.width-.16);scene.add(knob);}}
   });
   // Room partitions, with warm skirting and subtle room rugs.
-  rooms.forEach(r=>{
+  if(!outdoor) rooms.forEach(r=>{
    const c=mat("#e4eaf0");
    const buildPartition=(side:"North"|"South"|"East"|"West")=>{
     const horizontal=side==="North"||side==="South";const span=horizontal?r.w:r.h;
@@ -57,6 +57,10 @@ export default function RealisticHouse3D({length,width,rooms,items,openings=[],w
    };
    (["North","South","West","East"] as const).forEach(buildPartition);
    const rug=mat(r.kind==="bedroom"?"#d9c4b8":r.kind==="living"?"#c9d9df":"#d8d2bd");box(Math.max(.7,r.w*.7),.025,Math.max(.7,r.h*.68),r.x+r.w/2,.12,r.y+r.h/2,rug,false);
+  });
+  if(outdoor) rooms.forEach(r=>{
+   const zoneColor=r.kind.includes("road")||r.kind.includes("vehicle")||r.kind.includes("shared-street")?"#aeb7bd":r.kind.includes("walk")||r.kind.includes("pedestrian")||r.kind.includes("plaza")?"#d9d2c4":r.kind.includes("lawn")||r.kind.includes("garden")||r.kind.includes("play")?"#a9c99d":r.kind.includes("cycle")?"#88b9a6":r.kind.includes("river")||r.kind.includes("water")?"#8fc4d5":"#cbd7ca";
+   box(r.w,.055,r.h,r.x+r.w/2,.14,r.y+r.h/2,mat(zoneColor),false);
   });
   // Distinct furniture silhouettes, coloured upholstery and recognisable forms.
   items.forEach(it=>{
@@ -105,6 +109,43 @@ export default function RealisticHouse3D({length,width,rooms,items,openings=[],w
     add(w,.18,d,x+w/2,.25,z+d/2,wood);add(w*.95,.16,d*.9,x+w/2,.42,z+d*.5,white);add(w,.9,.1,x+w/2,.55,z+.04,upholstery);
    }else if(k==="fold-table"||k==="storage-wall"){
     add(w,k==="storage-wall"?2:.1,d,x+w/2,k==="storage-wall"?1:.8,z+d/2,wood);
+   }else if(k==="bridge-deck"){
+    add(w,.18,d,x+w/2,.16,z+d/2,upholstery);
+   }else if(k==="road-lane"||k==="crosswalk"){
+    add(w,.025,d,x+w/2,.13,z+d/2,white);
+    if(k==="road-lane"){for(let n=0;n<4;n++)add(.32,.025,.05,x+w*(.12+n*.24),.15,z+d/2,mat("#f1d45b"));}
+   }else if(k==="lane-divider"||k==="guardrail"){
+    add(w,.55,d,x+w/2,.4,z+d/2,metal);
+    for(let n=0;n<Math.max(2,Math.floor(w/.45));n++)add(.06,.7,.06,x+w*(n/Math.max(1,Math.floor(w/.45))),.38,z+d/2,metal);
+   }else if(k==="bridge-pier"){
+    add(w,2.4,d,x+w/2,-1.1,z+d/2,mat("#89949c"));
+    add(w*1.7,.2,d*1.7,x+w/2,.12,z+d/2,metal);
+   }else if(k==="footpath"||k==="cycle-lane"||k==="pathway"){
+    add(w,.08,d,x+w/2,.08,z+d/2,k==="cycle-lane"?mat("#78a995"):mat("#c8bda9"));
+   }else if(k==="car-marker"||k==="bus-marker"){
+    const vehicleLength=k==="bus-marker"?w:w*.82,vehicleHeight=k==="bus-marker"?.9:.55;
+    add(vehicleLength*.94,vehicleHeight*.52,d*.88,x+w/2,.38,z+d/2,upholstery);
+    add(vehicleLength*.5,vehicleHeight*.4,d*.72,x+w/2,.68,z+d/2,glass);
+    for(const dx of [x+w*.22,x+w*.78])for(const dz of [z+d*.08,z+d*.92])add(.16,.16,.1,dx,.18,dz,dark);
+   }else if(k==="traffic-signal"){
+    add(.08,2.3,.08,x+w/2,1.15,z+d/2,metal);add(.35,.7,.25,x+w/2,2.35,z+d/2,dark);
+    for(let n=0;n<3;n++){const bulb=mat(n===0?"#d64f46":n===1?"#e6b94f":"#54a76b");add(.14,.14,.04,x+w/2,2.55-n*.2,z+d/2+.14,bulb);}
+   }else if(k==="street-light"||k==="park-light"){
+    add(.07,3,.07,x+w/2,1.5,z+d/2,metal);add(.55,.1,.18,x+w/2,2.95,z+d/2,white);
+   }else if(k==="auditorium-seat"){
+    add(w,.12,d,x+w/2,.48,z+d/2,upholstery);add(w,.55,.08,x+w/2,.78,z+.05,upholstery);for(const dx of [.08,w-.08])add(.05,.42,.05,x+dx,.22,z+d/2,metal);
+   }else if(k==="stage-platform"){
+    add(w,.35,d,x+w/2,.2,z+d/2,wood);
+   }else if(k==="screen"||k==="acoustic-panel"||k==="exit-sign"){
+    add(w,.8,.08,x+w/2,1.5,z+d/2,k==="screen"?white:upholstery);
+   }else if(k==="speaker"){
+    add(w,.7,d,x+w/2,.55,z+d/2,dark);
+   }else if(k==="lectern"||k==="ticket-counter"||k==="vendor-kiosk"||k==="bus-shelter"||k==="pergola"){
+    add(w,.85,d,x+w/2,.45,z+d/2,wood);if(k==="pergola"){for(const dx of [.1,w-.1])for(const dz of [.1,d-.1])add(.08,2,.08,x+dx,1,z+dz,wood);add(w,.1,d,x+w/2,2,z+d/2,wood);}
+   }else if(k==="playground"||k==="swing"){
+    add(w,.12,d,x+w/2,.1,z+d/2,wood);add(.08,1.6,.08,x+w/2,.85,z+d/2,metal);add(w*.8,.08,.08,x+w/2,1.6,z+d/2,upholstery);
+   }else if(k==="bollard"||k==="waste-bin"||k==="drinking-fountain"||k==="cycle-rack"||k==="wheelchair-space"){
+    add(w,.7,d,x+w/2,.35,z+d/2,metal);
    }else if(k==="shade"){
     add(w,.08,d,x+w/2,wallHeight-.4,z+d/2,upholstery);
    }else if(k==="sink"||k==="vanity"){add(w,.72,d,x+w/2,.38,z+d/2,white);add(w*.65,.08,d*.65,x+w/2,.78,z+d/2,metal);add(.06,.35,.06,x+w/2,.98,z+d*.2,metal);}
@@ -118,8 +159,8 @@ export default function RealisticHouse3D({length,width,rooms,items,openings=[],w
   // Stair flight for multi-level concepts.
   if(showStairs){for(let i=0;i<12;i++){box(1.05,.13,.28,length*.78,.18+i*.13,width*.18+i*.28,trim);}}
   // Optional pitched roof as two visible sloping panels; transparent enough to read the model.
-  if(roof==="flat"){const slab=mat("#aeb9c7",.8);const cap=box(length,.16,width,length/2,wallHeight+.08,width/2,slab);cap.material= new THREE.MeshStandardMaterial({color:"#aeb9c7",roughness:.8,transparent:true,opacity:.2,side:THREE.DoubleSide});}
-  if(roof==="pitched"){const roofMat=new THREE.MeshStandardMaterial({color:"#6e829a",roughness:.62,side:THREE.DoubleSide,transparent:true,opacity:.82});const left=new THREE.Mesh(new THREE.BoxGeometry(length*.56,.16,width+1),roofMat);left.position.set(length*.25,wallHeight+.55,width/2);left.rotation.z=-.24;scene.add(left);const right=new THREE.Mesh(new THREE.BoxGeometry(length*.56,.16,width+1),roofMat);right.position.set(length*.75,wallHeight+.55,width/2);right.rotation.z=.24;scene.add(right);}
+  if(!outdoor&&roof==="flat"){const slab=mat("#aeb9c7",.8);const cap=box(length,.16,width,length/2,wallHeight+.08,width/2,slab);cap.material= new THREE.MeshStandardMaterial({color:"#aeb9c7",roughness:.8,transparent:true,opacity:.2,side:THREE.DoubleSide});}
+  if(!outdoor&&roof==="pitched"){const roofMat=new THREE.MeshStandardMaterial({color:"#6e829a",roughness:.62,side:THREE.DoubleSide,transparent:true,opacity:.82});const left=new THREE.Mesh(new THREE.BoxGeometry(length*.56,.16,width+1),roofMat);left.position.set(length*.25,wallHeight+.55,width/2);left.rotation.z=-.24;scene.add(left);const right=new THREE.Mesh(new THREE.BoxGeometry(length*.56,.16,width+1),roofMat);right.position.set(length*.75,wallHeight+.55,width/2);right.rotation.z=.24;scene.add(right);}
   const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(length/2,wallHeight*.35,width/2);controls.enableDamping=true;controls.dampingFactor=.065;controls.maxPolarAngle=Math.PI*.48;controls.minDistance=4;controls.maxDistance=55;
   const resize=()=>{camera.aspect=el.clientWidth/el.clientHeight;camera.updateProjectionMatrix();renderer.setSize(el.clientWidth,el.clientHeight);};const observer=new ResizeObserver(resize);observer.observe(el);
   let frame=0;const animate=()=>{frame=requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);};animate();

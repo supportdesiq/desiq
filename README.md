@@ -131,3 +131,26 @@ Each Architecture challenge now opens a tailored workspace rather than reusing o
 - Apartment renovation: apartment spaces, kitchenette, furniture, storage, finishes and lighting.
 
 The Architecture landing feature now invites visitors to choose a design brief rather than presenting the dream-house challenge as the only entry point. The challenge library has a neutral Architecture-wide headline, differentiated challenge cards and distinct visual treatments. The studio page and 2D plan use a challenge-specific colour atmosphere. Café estimating switches to a fit-out allowance for its selected equipment, furniture and finishes rather than presenting a house-materials list.
+
+
+## Architecture & Spatial Design Studio V5
+
+The challenge library has been broadened beyond residential architecture. The seven active briefs now cover:
+1. Dream house — residential architecture.
+2. Neighbourhood café — hospitality design.
+3. Bridge for smoother traffic — transport infrastructure, bridge deck, vehicle lanes, pedestrian/cycle paths, supports, guardrails, signals, crossings and vehicle movement markers.
+4. Community auditorium — public/cultural building planning, stage, audience seating, lobby, backstage, accessible seating and AV/acoustic elements.
+5. Neighbourhood park — landscape architecture, lawns, paths, play, seating, shade and park amenities.
+6. Reimagine a busy street — urban design, pedestrian priority, crossings, bus stop, cycle parking, vendor bays and street furniture.
+7. Apartment renovation — interior design.
+
+Outdoor challenges use an open-site 3D environment with site zones and movable site elements rather than perimeter room walls, wall openings, roof or floor-count controls. The challenge evaluation checklist changes to match the selected discipline. Site cost summaries use site development and selected site elements; café cost summaries use fit-out items. These are indicative educational estimates, not engineering calculations, code checks, structural validation or contractor quotations.
+
+
+## V5 challenge range and interaction notes
+
+The active challenge catalogue has been deliberately diversified: one residential home brief, one hospitality brief, one transport-infrastructure brief, one public-building brief, one landscape brief, one urban-street brief and one apartment-interior brief.
+
+Outdoor bridge, park and street briefs use an open-site scene. Their 2D/3D workspace uses site zones, paths, road elements, street furniture and movable layout markers. The bridge brief includes vehicle markers, bridge supports, pedestrian/cycle routes, lane separators, signals and crossings. The auditorium brief has stage, lobby, backstage and audience seating elements. Evaluation criteria are specific to each challenge.
+
+All cost rates and visual models are educational planning approximations. The bridge activity is a conceptual site-layout exercise, not structural engineering design, traffic simulation, code compliance checking or safety certification. The public-space activities are conceptual layouts, not construction documents.
