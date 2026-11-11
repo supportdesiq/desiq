@@ -246,3 +246,17 @@ Run the updated `supabase/professional_studio.sql` in Supabase SQL Editor. It sa
 
 ### Measurement limitation
 V5.8 does not yet read dimensions or recognise walls automatically from a PDF/image. Users must enter dimensions verified from a drawing scale or site measurement. Wall area is perimeter × wall height minus the room's entered total openings area; it does not account for wall segmentation, columns, complex geometry or finish-specific deductions. Quantities are indicative and must be professionally checked.
+
+
+## V5.9 — Persistent floor-plan attachments
+
+The drawing upload now persists in a private Supabase Storage bucket and is linked to its professional project:
+- PDF, PNG, JPG and WebP floor plans (up to 15 MB) upload to the private `professional-drawings` bucket.
+- Storage paths are scoped to the signed-in user's UUID; Storage RLS policies prevent users from reading or changing another user's files.
+- The project record stores the file path, original name and type. Reopening a project creates a temporary signed URL and restores the drawing preview.
+- Existing V5.8 room measurements and all project/quotation data are retained.
+
+### Apply the V5.9 database and Storage migration
+Run the complete updated `supabase/professional_studio.sql` in Supabase → SQL Editor. This adds the drawing metadata columns, creates/configures the private bucket and installs user-scoped Storage policies. It is safe to rerun. No new environment variables are required.
+
+**Important:** drawings uploaded before V5.9 were only browser previews and were never stored in Supabase. Those files cannot be recovered from the project record; upload each required drawing again after deploying V5.9, then save the project. New uploads will persist and reload with the project.

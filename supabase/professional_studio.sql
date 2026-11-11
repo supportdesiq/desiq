@@ -42,3 +42,43 @@ alter table public.professional_projects
 -- V5.8: persist verified room measurements with each professional project.
 alter table public.professional_projects
   add column if not exists rooms jsonb not null default '[]'::jsonb;
+
+-- V5.9: persist floor-plan files in a private Supabase Storage bucket.
+alter table public.professional_projects
+  add column if not exists drawing_path text,
+  add column if not exists drawing_name text,
+  add column if not exists drawing_type text;
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'professional-drawings',
+  'professional-drawings',
+  false,
+  15728640,
+  array['application/pdf', 'image/png', 'image/jpeg', 'image/webp']
+)
+on conflict (id) do update set
+  public = false,
+  file_size_limit = 15728640,
+  allowed_mime_types = array['application/pdf', 'image/png', 'image/jpeg', 'image/webp'];
+
+drop policy if exists "Professionals can view their own drawings" on storage.objects;
+create policy "Professionals can view their own drawings"
+  on storage.objects for select to authenticated
+  using (bucket_id = 'professional-drawings' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "Professionals can upload their own drawings" on storage.objects;
+create policy "Professionals can upload their own drawings"
+  on storage.objects for insert to authenticated
+  with check (bucket_id = 'professional-drawings' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "Professionals can update their own drawings" on storage.objects;
+create policy "Professionals can update their own drawings"
+  on storage.objects for update to authenticated
+  using (bucket_id = 'professional-drawings' and (storage.foldername(name))[1] = auth.uid()::text)
+  with check (bucket_id = 'professional-drawings' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "Professionals can delete their own drawings" on storage.objects;
+create policy "Professionals can delete their own drawings"
+  on storage.objects for delete to authenticated
+  using (bucket_id = 'professional-drawings' and (storage.foldername(name))[1] = auth.uid()::text);
