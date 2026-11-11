@@ -67,7 +67,7 @@ Before launch, connect a backend/database and authentication provider; integrate
 - Visual styling: `app/globals.css`
 - Header/footer: `components/Header.tsx` and `components/Footer.tsx`
 
-The challenge ideas and planned tools are illustrative placeholders to refine before launch. The email address `hello@desiq.com` is a placeholder; replace it with an inbox you control.
+The challenge ideas and planned tools are illustrative placeholders to refine before launch. The email address `supportdesiq@gmail.com` is a placeholder; replace it with an inbox you control.
 
 
 ## Architecture MVP
@@ -154,3 +154,8 @@ The active challenge catalogue has been deliberately diversified: one residentia
 Outdoor bridge, park and street briefs use an open-site scene. Their 2D/3D workspace uses site zones, paths, road elements, street furniture and movable layout markers. The bridge brief includes vehicle markers, bridge supports, pedestrian/cycle routes, lane separators, signals and crossings. The auditorium brief has stage, lobby, backstage and audience seating elements. Evaluation criteria are specific to each challenge.
 
 All cost rates and visual models are educational planning approximations. The bridge activity is a conceptual site-layout exercise, not structural engineering design, traffic simulation, code compliance checking or safety certification. The public-space activities are conceptual layouts, not construction documents.
+
+
+## Support contact
+
+Use **supportdesiq@gmail.com** for support and general enquiries. The published support availability is 24/7, with a response target of within 30 minutes.

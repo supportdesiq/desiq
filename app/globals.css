@@ -434,3 +434,78 @@
 .challenge-card-icon.scene-community-auditorium{background:linear-gradient(135deg,#e8def0,#fcf8ff)}
 .challenge-card-icon.scene-public-park{background:linear-gradient(135deg,#dcebd5,#f8fff3)}
 .challenge-card-icon.scene-pedestrian-plaza{background:linear-gradient(135deg,#dce9e8,#f9fdfc)}
+
+/* DESIQ homepage: show the full range of learning worlds, not only architecture */
+.hero-art-worlds .world-collage{
+ position:absolute;inset:58px 24px 55px;z-index:2;
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));
+ gap:10px;align-items:stretch
+}
+.world-art-card{
+ position:relative;overflow:hidden;min-width:0;border:1px solid #e2e7ee;border-radius:13px;
+ background:rgba(255,255,255,.94);padding:12px 11px;display:flex;flex-direction:column;
+ box-shadow:0 8px 22px rgba(38,67,112,.07);color:#1c2746
+}
+.world-art-card b{font:800 10px Manrope,sans-serif;letter-spacing:-.2px;position:relative;z-index:2}
+.world-art-card small{font:8px 'DM Mono',monospace;color:#77839a;margin-top:3px;position:relative;z-index:2}
+.world-art-icon{font:28px Manrope,sans-serif;line-height:1;margin-bottom:10px;color:#4168ed;position:relative;z-index:2}
+.art-architecture{grid-column:1;grid-row:1;background:#f0f5ff}
+.art-it{grid-column:2;grid-row:1;background:#f1f8ff}
+.art-hardware{grid-column:3;grid-row:1;background:#fff5e9}
+.art-code{grid-column:1;grid-row:2;background:#f5f0ff}
+.world-art-center{
+ grid-column:2;grid-row:2;align-self:center;justify-self:center;width:100%;height:100%;
+ border:1px solid #d9e1f0;border-radius:16px;background:linear-gradient(145deg,#1b274b,#344d82);
+ color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ box-shadow:0 12px 28px rgba(34,55,99,.18);position:relative
+}
+.world-art-center span{font:900 24px Manrope;letter-spacing:-1.6px}
+.world-art-center b{font:700 7px 'DM Mono';letter-spacing:1.5px;color:#c9d6f5;margin-top:4px}
+.world-art-center i{position:absolute;right:12px;top:8px;color:#d4fa70;font-size:16px;font-style:normal}
+.art-green{grid-column:3;grid-row:2;background:#f0f8ee}
+.art-language{grid-column:1;grid-row:3;background:#fff7ed}
+.art-drawing{grid-column:2;grid-row:3;background:#fff1f4}
+.arch-mini{position:absolute;right:10px;bottom:10px;width:48px;height:30px;border:2px solid #6b91d5;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;transform:rotate(-5deg);opacity:.75}
+.arch-mini span{background:#c9dcff}
+.it-mini{position:absolute;right:11px;bottom:10px;display:flex;gap:4px;align-items:end;height:29px}
+.it-mini span{width:8px;border-radius:4px 4px 1px 1px;background:#83b8ed}.it-mini span:nth-child(1){height:13px}.it-mini span:nth-child(2){height:23px}.it-mini span:nth-child(3){height:18px}
+.hardware-mini{position:absolute;right:10px;bottom:10px;width:42px;height:30px;border:3px solid #d49b5d;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:4px}
+.hardware-mini span{width:9px;height:9px;background:#f0c88d;border-radius:2px}
+.code-mini{position:absolute;right:10px;bottom:7px;font:900 19px monospace;color:#a28adf;opacity:.8}.code-mini span{font:8px 'DM Mono';margin-left:4px}
+.green-mini{position:absolute;right:9px;bottom:7px;display:flex;gap:4px;align-items:end}
+.green-mini span{display:block;width:11px;height:20px;background:#85c18a;border-radius:90% 0 90% 0;transform:rotate(-25deg)}
+.green-mini span:nth-child(2){height:27px;background:#69a976}.green-mini span:nth-child(3){height:15px}
+.language-mini{position:absolute;right:9px;bottom:5px;font:900 17px Georgia;color:#e3a75c;opacity:.8}.language-mini span{font-size:12px;margin-left:3px}
+.drawing-mini{position:absolute;right:9px;bottom:9px;width:44px;height:25px;border-bottom:2px solid #dc8298;transform:rotate(-10deg)}
+.drawing-mini span{position:absolute;bottom:0;width:2px;background:#e29bad;transform-origin:bottom}
+.drawing-mini span:nth-child(1){height:21px;left:9px;transform:rotate(35deg)}
+.drawing-mini span:nth-child(2){height:17px;left:22px;transform:rotate(-20deg)}
+.drawing-mini span:nth-child(3){height:23px;left:34px;transform:rotate(14deg)}
+.support-promise{display:flex;flex-direction:column;gap:4px;margin-top:11px;padding:10px 12px;border:1px solid rgba(255,255,255,.16);border-radius:9px;background:rgba(255,255,255,.055);max-width:220px}
+.support-promise b{font:800 10px Manrope;color:#d5fa70;letter-spacing:.3px}
+.support-promise small{font:9px 'DM Mono';color:rgba(255,255,255,.72)}
+@media(max-width:1000px){
+ .hero-art-worlds .world-collage{inset:55px 18px 53px;gap:8px}
+ .world-art-card{padding:10px 8px}
+ .world-art-icon{font-size:24px;margin-bottom:8px}
+ .world-art-card b{font-size:9px}
+ .world-art-card small{font-size:7px}
+}
+@media(max-width:700px){
+ .hero-art-worlds{height:370px!important}
+ .hero-art-worlds .world-collage{inset:48px 12px 48px;gap:6px}
+ .world-art-card{padding:8px 6px;border-radius:9px}
+ .world-art-icon{font-size:20px;margin-bottom:6px}
+ .world-art-card b{font-size:7.5px;letter-spacing:-.35px}
+ .world-art-card small{font-size:6px}
+ .world-art-center span{font-size:19px}
+ .world-art-center b{font-size:6px}
+ .world-art-center i{right:7px;top:5px;font-size:12px}
+ .arch-mini{width:32px;height:20px;right:6px;bottom:6px}
+ .it-mini{right:7px;bottom:6px;transform:scale(.8);transform-origin:bottom right}
+ .hardware-mini{right:6px;bottom:6px;transform:scale(.8);transform-origin:bottom right}
+ .code-mini{right:6px;bottom:4px;font-size:15px}
+ .green-mini{right:6px;bottom:4px;transform:scale(.8);transform-origin:bottom right}
+ .language-mini{right:6px;bottom:4px;font-size:14px}
+ .drawing-mini{right:6px;bottom:6px;transform:scale(.8) rotate(-10deg);transform-origin:bottom right}
+}

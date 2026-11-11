@@ -1,7 +1,7 @@
 # DESIQ launch checklist
 
 ## Before first public preview
-- [ ] Replace `hello@desiq.com` with a working contact address.
+- [ ] Replace `supportdesiq@gmail.com` with a working contact address.
 - [ ] Confirm the final domain and connect it in Vercel.
 - [ ] Check every subject description and challenge for accuracy.
 - [ ] Confirm exact inclusions, taxes, renewals and cancellation terms for each plan.
