@@ -26,3 +26,15 @@
 4. Add accounts, progress and portfolio.
 5. Add payment/subscription infrastructure.
 6. Add other subject experiences based on validated demand.
+
+
+## V5.5 student accounts / saved designs / certificates
+- [ ] Create a Supabase project and run `supabase/schema.sql` in its SQL Editor.
+- [ ] Configure Supabase Auth Site URL and redirect URLs for production and localhost.
+- [ ] Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` to Vercel Production and Preview environments.
+- [ ] Add the same values to local `.env.local` (never commit this file).
+- [ ] Redeploy and test email sign-up, email confirmation, sign-in and sign-out.
+- [ ] Save a design, refresh the challenge, and verify it restores.
+- [ ] Open the dashboard and verify the saved design is listed.
+- [ ] Evaluate a challenge, complete it, open its certificate and use Print → Save as PDF.
+- [ ] Verify a second student account cannot view the first student's saved designs or completion records.

@@ -166,3 +166,28 @@ Use **supportdesiq@gmail.com** for support and general enquiries. The published 
 The seven existing architecture briefs now have individual CSS-built scene illustrations, distinct colour identities, visible difficulty/time/budget information, category filters, and an interactive brief preview dialog. Preview dialogs explain the challenge mission, design goals and available studio toolkit before the learner opens the existing challenge workspace.
 
 The listed budget is the challenge allowance/brief budget. The in-studio estimate is a separate educational estimate that changes as learners add and adjust design elements. Cost and quantities are planning approximations, not contractor quotations or engineering specifications.
+
+
+## V5.5 — Student accounts, saved work and certificates
+
+### Student features
+- Email/password sign-up and sign-in at `/account`.
+- Student dashboard at `/dashboard` with saved projects and completed challenges.
+- Save/restore a challenge design to the signed-in student's account.
+- Record a challenge completion and issue a printable certificate at `/certificate/<completion-id>`.
+- Certificate page supports browser Print → Save as PDF.
+
+### Required Supabase setup (cloud persistence/authentication)
+1. Create a Supabase project.
+2. Open the Supabase SQL Editor and run `supabase/schema.sql`.
+3. In Supabase Authentication → URL Configuration, set the Site URL to your deployed DESIQ domain and add the local development URL (`http://localhost:3000`) to Redirect URLs.
+4. Copy the Project URL and publishable/anon key from Supabase Project Settings → API.
+5. Add these environment variables in Vercel → Project → Settings → Environment Variables, for Production and Preview:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+6. Add the same values to a local `.env.local` file for local development, then redeploy.
+
+The application intentionally does not include a Supabase service-role key in the browser. Row Level Security policies restrict each student to their own designs and completion records. Supabase email confirmation settings determine whether a new student must confirm their email before signing in.
+
+### Important learning-record note
+The current completion button records the in-studio self-evaluation score. It is a participation/completion certificate, not a professional qualification or externally moderated assessment. A future teacher-review workflow can be added before presenting certificates as independently assessed credentials.
