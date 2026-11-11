@@ -1,12 +1,17 @@
 import Link from "next/link";
-import { ArrowUpRight, Clock3, Sparkles } from "lucide-react";
-const challenges=[
- {slug:"dream-house",emoji:"🏡",n:"01",name:"Design your dream house",level:"Beginner",time:"30–45 min",budget:"₹30 lakh",desc:"Plan a family home with rooms, furniture, wall openings and a live cost estimate.",tags:["Residential","Floor planning","Budget"],discipline:"RESIDENTIAL"},
- {slug:"community-cafe",emoji:"☕",n:"02",name:"Design a neighbourhood café",level:"Intermediate",time:"35–50 min",budget:"₹28 lakh",desc:"Create a welcoming café with seating, service counter, prep kitchen and customer circulation.",tags:["Hospitality","Interiors","Service flow"],discipline:"HOSPITALITY"},
- {slug:"traffic-bridge",emoji:"🌉",n:"03",name:"Build a bridge for smoother traffic",level:"Advanced",time:"45–60 min",budget:"₹1.2 crore",desc:"Plan vehicle lanes, pedestrian paths, cycle access, bridge supports, ramps and traffic safety.",tags:["Infrastructure","Mobility","Engineering"],discipline:"INFRASTRUCTURE"},
- {slug:"community-auditorium",emoji:"🎭",n:"04",name:"Design a community auditorium",level:"Advanced",time:"45–60 min",budget:"₹1.6 crore",desc:"Arrange the stage, audience seating, lobby, backstage, accessible aisles and AV facilities.",tags:["Public buildings","Acoustics","Accessibility"],discipline:"PUBLIC BUILDINGS"},
- {slug:"public-park",emoji:"🌳",n:"05",name:"Create a neighbourhood park",level:"Intermediate",time:"35–50 min",budget:"₹55 lakh",desc:"Shape a public landscape with lawns, play areas, paths, shaded seating and green spaces.",tags:["Landscape","Recreation","Public realm"],discipline:"LANDSCAPE"},
- {slug:"pedestrian-plaza",emoji:"🚶",n:"06",name:"Reimagine a busy street",level:"Intermediate",time:"35–50 min",budget:"₹50 lakh",desc:"Transform a congested street into a safer people-first space with crossings, cycle parking and public seating.",tags:["Urban design","Street safety","Mobility"],discipline:"URBAN DESIGN"},
- {slug:"studio-renovation",emoji:"🛋️",n:"07",name:"Renovate a compact apartment",level:"Beginner",time:"25–40 min",budget:"₹15 lakh",desc:"Refresh an existing apartment with smarter furniture, storage, lighting and finishes.",tags:["Interiors","Renovation","Furniture"],discipline:"INTERIORS"}
-];
-export default function ArchitectureChallengesPage(){return <main className="challenge-library"><div className="challenge-library-top"><Link href="/subjects/architecture">← Architecture world</Link><span>DESIQ · DESIGN CHALLENGE LIBRARY</span></div><header><div className="builder-kicker"><Sparkles size={14}/> LEARN BY MAKING</div><h1>Architecture,<br/><em>designed by you.</em></h1><p>Explore residential design, hospitality, transport infrastructure, public buildings, landscape architecture and urban planning. Every brief has its own spaces, tools, catalogue and creative direction.</p><div className="challenge-library-stats"><span><b>07</b> DESIGN BRIEFS</span><span><b>3</b> DIFFICULTY LEVELS</span><span><b>LIVE</b> COST ESTIMATES</span></div></header><div className="challenge-library-grid">{challenges.map(c=><article className="challenge-library-card" key={c.slug}><div className="challenge-card-top"><span>{c.n} / {c.discipline}</span><span>{c.level}</span></div><div className={`challenge-card-icon scene-${c.slug}`}><span>{c.emoji}</span></div><h2>{c.name}</h2><p>{c.desc}</p><div className="challenge-card-tags">{c.tags.map(t=><span key={t}>{t}</span>)}</div><div className="challenge-card-meta"><span><Clock3 size={13}/>{c.time}</span><span>{c.budget}</span></div><Link href={`/architecture/challenges/${c.slug}`}>Start challenge <ArrowUpRight size={16}/></Link></article>)}</div><footer>SEVEN DISTINCT DESIGN DISCIPLINES · ONE PLACE TO THINK, PLAN AND CREATE.</footer></main>}
+import { Sparkles } from "lucide-react";
+import ChallengeLibrary from "@/components/ChallengeLibrary";
+
+export default function ArchitectureChallengesPage(){
+ return <main className="challenge-library">
+  <div className="challenge-library-top"><Link href="/subjects/architecture">← Architecture world</Link><span>DESIQ · DESIGN CHALLENGE LIBRARY</span></div>
+  <header>
+   <div className="builder-kicker"><Sparkles size={14}/> LEARN BY MAKING</div>
+   <h1>Architecture,<br/><em>designed by you.</em></h1>
+   <p>Choose a real-world brief and explore its own design environment. Preview the goal, discover the tools and then bring your idea to life in the 2D and 3D studio.</p>
+   <div className="challenge-library-stats"><span><b>07</b> DISTINCT BRIEFS</span><span><b>03</b> PROJECT TYPES</span><span><b>LIVE</b> COST ESTIMATES</span></div>
+  </header>
+  <ChallengeLibrary/>
+  <footer>SEVEN DISTINCT DESIGN DISCIPLINES · ONE PLACE TO THINK, PLAN AND CREATE.</footer>
+ </main>;
+}

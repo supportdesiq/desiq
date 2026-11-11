@@ -159,3 +159,10 @@ All cost rates and visual models are educational planning approximations. The br
 ## Support contact
 
 Use **supportdesiq@gmail.com** for support and general enquiries. The published support availability is 24/7, with a response target of within 30 minutes.
+
+
+## V5.4 — interactive architecture challenge library
+
+The seven existing architecture briefs now have individual CSS-built scene illustrations, distinct colour identities, visible difficulty/time/budget information, category filters, and an interactive brief preview dialog. Preview dialogs explain the challenge mission, design goals and available studio toolkit before the learner opens the existing challenge workspace.
+
+The listed budget is the challenge allowance/brief budget. The in-studio estimate is a separate educational estimate that changes as learners add and adjust design elements. Cost and quantities are planning approximations, not contractor quotations or engineering specifications.

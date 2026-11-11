@@ -623,3 +623,170 @@
  .discipline-chip-grid span{padding:9px 8px;gap:7px}
  .discipline-chip-grid b{font-size:9px}
 }
+
+
+/* V5.4 — seven distinct challenge scenes, filters and interactive brief previews */
+.challenge-filter-bar{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;padding:28px 0 5px}
+.challenge-filter-bar>.eyebrow,.challenge-filter-bar .eyebrow{font:8px 'DM Mono',monospace;letter-spacing:1.2px;color:#829078}
+.challenge-filter-bar p{font:700 17px Manrope;color:#253651;margin:7px 0 0}
+.challenge-filter-options{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.challenge-filter-options button{border:1px solid #dfe5eb;border-radius:99px;background:#fff;color:#68788e;padding:9px 13px;font:600 9px 'DM Sans',sans-serif;cursor:pointer;transition:.18s}
+.challenge-filter-options button:hover{border-color:#9eb1d1;color:#273d60}
+.challenge-filter-options button.active{background:#1e3150;color:#fff;border-color:#1e3150}
+.challenge-library-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:22px 0 30px;align-items:stretch}
+.challenge-library-card{
+ --scene-accent:#4c72d8;--scene-soft:#eaf0ff;
+ padding:14px;min-height:0;border-radius:15px;overflow:hidden;
+ box-shadow:0 7px 22px rgba(28,45,73,.045);transition:transform .22s,box-shadow .22s,border-color .22s
+}
+.challenge-library-card:hover{transform:translateY(-5px);border-color:var(--scene-accent);box-shadow:0 16px 34px rgba(28,45,73,.1)}
+.challenge-card-top{align-items:center;min-height:22px}
+.challenge-card-top>span:first-child{font-size:7px;letter-spacing:.9px}
+.difficulty{display:inline-flex;align-items:center;border-radius:99px;padding:5px 8px;font:700 7px 'DM Mono',monospace;letter-spacing:.4px}
+.difficulty-beginner{background:#e8f4e8;color:#47784c}
+.difficulty-intermediate{background:#fff2d9;color:#9a6a1e}
+.difficulty-advanced{background:#fbe8e7;color:#a34f4b}
+.challenge-scene{
+ height:178px;position:relative;overflow:hidden;border-radius:10px;margin:11px 0 15px;
+ background:linear-gradient(145deg,var(--scene-soft),#fff);isolation:isolate
+}
+.challenge-scene:before{content:"";position:absolute;inset:0;opacity:.22;background-image:linear-gradient(rgba(42,67,105,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(42,67,105,.15) 1px,transparent 1px);background-size:22px 22px;z-index:-1}
+.scene-sky{position:absolute;inset:0 0 35%;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent)}
+.scene-sun{position:absolute;width:28px;height:28px;right:23px;top:20px;border-radius:50%;background:var(--scene-sun,#f4d68c);opacity:.85}
+.scene-label{position:absolute;left:12px;bottom:9px;font:7px 'DM Mono',monospace;letter-spacing:1px;color:var(--scene-label,#526887);opacity:.9}
+.challenge-card-dream-house{--scene-accent:#5479d8;--scene-soft:#e7efff;--scene-sun:#f5d98a;--scene-label:#48659d}
+.challenge-card-community-cafe{--scene-accent:#b7794b;--scene-soft:#f8eadb;--scene-sun:#f4c77e;--scene-label:#93603c}
+.challenge-card-traffic-bridge{--scene-accent:#527f9c;--scene-soft:#e2eef3;--scene-sun:#f5d88e;--scene-label:#4b7186}
+.challenge-card-community-auditorium{--scene-accent:#80649a;--scene-soft:#eee5f3;--scene-sun:#f3d4a0;--scene-label:#725883}
+.challenge-card-public-park{--scene-accent:#638e62;--scene-soft:#e5f1df;--scene-sun:#f6d987;--scene-label:#557e53}
+.challenge-card-pedestrian-plaza{--scene-accent:#668a91;--scene-soft:#e6eff0;--scene-sun:#f3d58e;--scene-label:#55787e}
+.challenge-card-studio-renovation{--scene-accent:#ba8877;--scene-soft:#f4e8e2;--scene-sun:#f1d1a5;--scene-label:#966b60}
+
+/* House scene */
+.house-plan{position:absolute;left:8%;bottom:14px;width:36%;height:48%;background:rgba(255,255,255,.86);border:3px solid #486ba8;transform:rotate(-5deg);box-shadow:8px 8px 0 rgba(56,86,145,.12);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;padding:4px}
+.house-plan i{background:#c9daf8;border:1px solid #8da9d8}
+.house-plan i:nth-child(2){background:#e9d9c6}.house-plan i:nth-child(3){background:#d8e9d1}
+.house-body{position:absolute;right:13%;bottom:27px;width:31%;height:48%;background:#fff4dc;border:2px solid #c68f51;box-shadow:0 8px 0 rgba(48,65,88,.1)}
+.house-roof{position:absolute;right:10%;bottom:calc(27px + 48%);width:37%;height:33%;background:#5279c9;clip-path:polygon(50% 0,100% 100%,88% 100%,50% 28%,12% 100%,0 100%)}
+.house-window{position:absolute;left:15%;top:24%;width:22%;height:28%;background:#a8d5eb;border:3px solid white;box-shadow:0 0 0 1px #6c92c2}
+.house-door{position:absolute;right:15%;bottom:0;width:22%;height:42%;background:#5476b9;border-radius:7px 7px 0 0}
+.scene-ground{position:absolute;bottom:0;left:0;right:0;height:22%;background:#c9dfba}
+
+/* Cafe scene */
+.cafe-building{position:absolute;left:20%;right:18%;bottom:18px;height:58%;background:#fff6e9;border:2px solid #bd8b62;box-shadow:0 8px 0 rgba(121,84,57,.1)}
+.cafe-awning{position:absolute;left:-2px;right:-2px;top:0;height:24%;background:repeating-linear-gradient(90deg,#c47d53 0 18px,#f5d4ae 18px 36px);border-bottom:2px solid #a86e49}
+.cafe-window{position:absolute;left:10%;top:35%;width:43%;height:48%;background:#b7d5d9;border:4px solid #fff;box-shadow:0 0 0 1px #c9a17c}
+.cafe-door{position:absolute;right:8%;bottom:0;width:23%;height:58%;background:#8a5c45;border:3px solid #f6dfc7}
+.cafe-sign{position:absolute;top:20px;left:26%;padding:5px 13px;border-radius:4px;background:#fff8e9;color:#9d6945;font:800 9px Manrope;letter-spacing:2px;box-shadow:0 3px 9px #8d634222}
+.cafe-table{position:absolute;bottom:25px;width:24px;height:7px;border-radius:50%;background:#a66f4b;box-shadow:0 12px 0 -2px #78533f}
+.table-a{left:8%}.table-b{right:8%;bottom:34px}
+.cafe-chair{position:absolute;bottom:17px;width:9px;height:15px;border:2px solid #8b6047;border-bottom:0;border-radius:5px 5px 0 0}
+.chair-a{left:15%}.chair-b{right:15%;bottom:26px}
+
+/* Bridge scene */
+.bridge-water{position:absolute;left:0;right:0;bottom:0;height:39%;background:repeating-linear-gradient(170deg,#a8d3dc 0 8px,#bfe0e3 8px 16px)}
+.bridge-deck{position:absolute;left:4%;right:4%;top:49%;height:12px;background:#657e8b;border:2px solid #fff;box-shadow:0 5px 0 #b0c2c6;transform:skewY(-5deg)}
+.bridge-arch{position:absolute;left:17%;right:17%;top:32%;height:43%;border:5px solid #7f9eaa;border-bottom:0;border-radius:90% 90% 0 0;transform:perspective(80px) rotateX(8deg)}
+.bridge-pier{position:absolute;top:51%;height:41%;width:9px;background:#839ba5;z-index:2}
+.pier-a{left:30%}.pier-b{right:30%}
+.bridge-car{position:absolute;top:39%;width:28px;height:12px;border-radius:5px 6px 2px 2px;background:#e3a45d;z-index:3;box-shadow:4px 8px 0 -3px #40515a,-5px 8px 0 -3px #40515a}
+.car-a{left:31%}.car-b{right:25%;background:#6f8bc1}
+.bridge-lane{position:absolute;top:54%;left:7%;right:7%;border-top:1px dashed #f6e6b7;z-index:4}
+
+/* Auditorium scene */
+.auditorium-wall{position:absolute;inset:20px 9% 16px;background:#302b48;border:7px solid #514568;border-radius:5px;box-shadow:0 8px 0 rgba(52,42,72,.12)}
+.auditorium-stage{position:absolute;left:29%;right:29%;top:30%;height:31%;background:linear-gradient(180deg,#b27c9d,#805a7e);border:3px solid #d5a7bd;box-shadow:0 5px 0 #211f37}
+.auditorium-curtain{position:absolute;left:24%;right:24%;top:23%;height:41%;border-left:10px solid #8e5579;border-right:10px solid #8e5579;opacity:.9}
+.auditorium-seats{position:absolute;left:18%;right:18%;bottom:24px;display:grid;grid-template-columns:repeat(6,1fr);gap:5px 7px;z-index:3}
+.auditorium-seats i{height:9px;border-radius:5px 5px 2px 2px;background:#d18a9b;box-shadow:0 3px 0 #8a536e}
+.auditorium-spotlight{position:absolute;left:42%;top:0;width:18%;height:68%;background:linear-gradient(180deg,#f8e6ad66,transparent);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)}
+
+/* Park scene */
+.park-lawn{position:absolute;inset:34% 0 0;background:linear-gradient(145deg,#a9cf91,#d6e8bb)}
+.park-path{position:absolute;left:38%;bottom:-12%;width:25%;height:92%;background:#e7d7b9;transform:rotate(23deg);border-radius:50%}
+.park-pond{position:absolute;right:8%;bottom:22%;width:25%;height:23%;border-radius:50%;background:#8fc9d0;border:3px solid #e7f1dc}
+.park-tree{position:absolute;bottom:31%;width:34px;height:43px;border-radius:50% 50% 45% 45%;background:#639a63;box-shadow:0 18px 0 -14px #765b45}
+.park-tree:after{content:"";position:absolute;left:15px;bottom:-15px;width:5px;height:20px;background:#896b4d}
+.tree-a{left:12%}.tree-b{left:48%;bottom:47%;transform:scale(.8)}.tree-c{right:12%;bottom:43%;transform:scale(1.1)}
+.park-bench{position:absolute;left:28%;bottom:23%;width:38px;height:5px;background:#936d4b;box-shadow:0 5px 0 -1px #936d4b,4px 10px 0 -2px #725b48,-4px 10px 0 -2px #725b48}
+
+/* Pedestrian plaza scene */
+.street-road{position:absolute;left:0;right:0;bottom:0;height:44%;background:#66747b}
+.street-crossing{position:absolute;left:32%;right:32%;bottom:8%;height:31%;background:repeating-linear-gradient(90deg,#f7f4e8 0 8px,transparent 8px 15px);transform:skewY(-4deg)}
+.street-cycle{position:absolute;left:8%;bottom:24%;width:35px;height:20px;border:2px solid #78a6a2;border-radius:50%;z-index:3}
+.street-cycle:before,.street-cycle:after{content:"";position:absolute;top:-4px;width:8px;height:8px;border:2px solid #78a6a2;border-radius:50%}
+.street-cycle:before{left:-3px}.street-cycle:after{right:-3px}
+.street-tree{position:absolute;bottom:42%;width:27px;height:32px;background:#79a77a;border-radius:50%}
+.street-tree:after{content:"";position:absolute;left:12px;bottom:-13px;width:4px;height:17px;background:#927456}
+.street-tree.tree-a{left:15%}.street-tree.tree-b{right:15%;transform:scale(.85)}
+.street-bench{position:absolute;left:53%;bottom:47%;width:36px;height:5px;background:#a77c55;box-shadow:0 7px 0 -1px #8e6c51}
+.street-person{position:absolute;bottom:46%;width:6px;height:19px;border-radius:4px;background:#d28f68;z-index:4}
+.street-person:before{content:"";position:absolute;left:0;top:-7px;width:7px;height:7px;border-radius:50%;background:#d9a47f}
+.person-a{left:45%}.person-b{right:29%;transform:scale(.85)}
+
+/* Apartment interior scene */
+.interior-wall{position:absolute;inset:18px 8% 20px;background:#f4e5d9;border:2px solid #d4b9a7;box-shadow:0 8px 0 rgba(117,83,70,.1)}
+.interior-window{position:absolute;right:18%;top:29%;width:24%;height:34%;background:#a8cdd8;border:6px solid #fff;box-shadow:0 0 0 1px #c8aa97}
+.interior-rug{position:absolute;left:19%;bottom:21px;width:54%;height:37%;background:#d8b8a8;border-radius:50%;transform:rotate(-4deg)}
+.interior-sofa{position:absolute;left:20%;bottom:31px;width:43%;height:32%;background:#728ca0;border:5px solid #587183;border-radius:10px 10px 5px 5px;z-index:3}
+.interior-cushion{position:absolute;left:29%;bottom:64px;width:13%;height:17%;background:#e6c18f;border-radius:5px;z-index:4;box-shadow:35px 0 0 #c98f7c}
+.interior-table{position:absolute;right:16%;bottom:29px;width:23%;height:8px;border-radius:50%;background:#9a7258;z-index:4}
+.interior-plant{position:absolute;right:9%;bottom:26px;width:17px;height:29px;border-radius:90% 0 90% 0;background:#6f9c73;transform:rotate(-18deg);z-index:4}
+
+.challenge-card-heading h2{margin:0 0 8px;font:800 18px/1.18 Manrope;letter-spacing:-.55px;color:#243957}
+.challenge-card-heading p{font:10px/1.7 'DM Sans',sans-serif;color:#78869b;min-height:52px;margin:0}
+.challenge-card-tags{margin:12px 0 12px}
+.challenge-card-tags span{font-size:7px}
+.challenge-card-meta{gap:10px;flex-wrap:wrap;font-size:8px}
+.challenge-card-meta span{gap:5px}
+.challenge-card-meta svg{color:var(--scene-accent)}
+.challenge-card-actions{display:grid;grid-template-columns:.85fr 1.15fr;gap:7px;margin-top:2px}
+.challenge-card-actions button,.challenge-card-actions a{display:flex;align-items:center;justify-content:center;gap:7px;min-height:37px;border-radius:7px;padding:8px 9px;font:700 9px 'DM Sans',sans-serif;cursor:pointer;transition:.18s}
+.challenge-preview-button{border:1px solid #dfe5eb;background:#fff;color:#52627a}
+.challenge-preview-button:hover{border-color:var(--scene-accent);color:var(--scene-accent);background:var(--scene-soft)}
+.challenge-card-actions>a{background:#1e3150;color:#fff}
+.challenge-card-actions>a:hover{background:var(--scene-accent)}
+.challenge-library-footnote{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:0 0 25px;color:#8995a8;font:8px 'DM Mono',monospace;letter-spacing:.35px}
+.challenge-library-footnote span:first-child{display:flex;align-items:center;gap:7px;color:#74866c}
+
+/* Preview dialog */
+.challenge-preview-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(17,27,44,.62);backdrop-filter:blur(7px);display:grid;place-items:center;padding:22px}
+.challenge-preview-modal{position:relative;width:min(900px,100%);max-height:min(90vh,850px);overflow:auto;background:#fbfcf8;border:1px solid rgba(255,255,255,.55);border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.3);display:grid;grid-template-columns:.9fr 1.1fr}
+.challenge-preview-close{position:absolute;z-index:5;right:13px;top:13px;width:35px;height:35px;border:1px solid #e2e7e0;border-radius:50%;background:#fff;color:#34445d;display:grid;place-items:center;cursor:pointer}
+.challenge-preview-visual{position:relative;min-height:100%;padding:24px;background:var(--scene-soft,#eaf0ff);display:flex;align-items:center}
+.challenge-preview-visual .challenge-scene{width:100%;height:300px;margin:0;box-shadow:0 14px 34px rgba(34,50,72,.12)}
+.preview-stamp{position:absolute;left:25px;top:25px;padding:7px 9px;border-radius:5px;background:#1e3150;color:#fff;font:7px 'DM Mono';letter-spacing:1px}
+.challenge-preview-content{padding:40px 36px 32px}
+.challenge-preview-content>.eyebrow{font:8px 'DM Mono';letter-spacing:1px;color:#75856e}
+.challenge-preview-content h2{font:800 30px/1.1 Manrope;letter-spacing:-1.2px;color:#1e2d48;margin:12px 35px 10px 0}
+.challenge-preview-content>p{font:11px/1.8 'DM Sans';color:#718098}
+.preview-facts{display:flex;gap:14px;flex-wrap:wrap;padding:13px 0;margin:12px 0;border-top:1px solid #e5e9e0;border-bottom:1px solid #e5e9e0}
+.preview-facts span{display:flex;align-items:center;gap:6px;color:#4e6079;font:9px 'DM Mono'}
+.preview-facts svg{color:#82966f}
+.preview-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.preview-detail-grid h3{display:flex;align-items:center;gap:6px;font:750 11px Manrope;color:#2d405a;margin:0 0 9px}
+.preview-detail-grid h3 svg{color:#7c946c}
+.preview-detail-grid ul{padding:0 0 0 14px;margin:0;display:grid;gap:7px}
+.preview-detail-grid li{font:9px/1.55 'DM Sans';color:#728096}
+.challenge-preview-content .preview-estimate-note{margin:17px 0;padding:10px 12px;border-radius:8px;background:#eef2e8;color:#66765f;font-size:9px}
+.preview-start-link{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;background:#1e3150;color:#fff;border-radius:8px;font:700 10px 'DM Sans';transition:.18s}
+.preview-start-link:hover{background:#2d4b79}
+@media(max-width:1000px){.challenge-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.challenge-scene{height:190px}}
+@media(max-width:700px){
+ .challenge-filter-bar{align-items:flex-start;flex-direction:column;padding-top:20px}
+ .challenge-filter-options{justify-content:flex-start}
+ .challenge-filter-options button{font-size:8px;padding:8px 10px}
+ .challenge-library-grid{grid-template-columns:1fr;gap:13px}
+ .challenge-library-card{padding:13px}
+ .challenge-scene{height:200px}
+ .challenge-card-heading p{min-height:0}
+ .challenge-library-footnote{align-items:flex-start;flex-direction:column;line-height:1.6}
+ .challenge-preview-backdrop{padding:10px;align-items:end}
+ .challenge-preview-modal{grid-template-columns:1fr;max-height:92vh;border-radius:16px}
+ .challenge-preview-visual{min-height:185px;padding:14px}
+ .challenge-preview-visual .challenge-scene{height:185px}
+ .preview-stamp{left:17px;top:17px}
+ .challenge-preview-content{padding:22px 18px 20px}
+ .challenge-preview-content h2{font-size:25px}
+ .preview-detail-grid{grid-template-columns:1fr;gap:14px}
+}
