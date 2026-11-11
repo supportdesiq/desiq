@@ -191,3 +191,25 @@ The application intentionally does not include a Supabase service-role key in th
 
 ### Important learning-record note
 The current completion button records the in-studio self-evaluation score. It is a participation/completion certificate, not a professional qualification or externally moderated assessment. A future teacher-review workflow can be added before presenting certificates as independently assessed credentials.
+
+
+## V5.6 — Professional Studio (first release)
+
+Added a Professional Studio entry inside the Architecture subject at `/subjects/architecture`, with a dedicated workspace at `/architecture/professional`.
+
+The first release includes:
+- A separate professional workspace using the existing DESIQ sign-in.
+- Private project records stored in Supabase `professional_projects`, protected by Row Level Security.
+- Project name, client, location and notes.
+- A starter catalogue of interior fit-out products/services, plus editable custom line items.
+- Editable quantities, units and rates with automatic line totals and a live project estimate.
+- Saved project list, reopen/edit and delete.
+- CSV export of the estimate for use in a spreadsheet or client proposal.
+
+### Apply the V5.6 database update
+
+Before testing project saving, open Supabase → SQL Editor and run `supabase/professional_studio.sql` from this release. This creates the private professional-project table and its Row Level Security policies. No new environment variables are required. The same SQL is also appended to `supabase/schema.sql` for a fresh setup.
+
+### V5.6 scope and next steps
+
+Drawing upload, plan calibration/measurement, catalogue image management, supplier management, tax/discount controls, branded PDF quotations, client sharing and multi-user team access are not included in this first release. The workspace currently accepts project details and line-item pricing; the drawing-led workflow is the next development phase. All estimates are indicative and require professional verification.

@@ -1,0 +1,58 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, Building2, Check, ChevronRight, CirclePlus, Download, FileText, FolderOpen, Plus, Save, Trash2 } from "lucide-react";
+import { getSupabase } from "@/lib/supabase";
+import type { User } from "@supabase/supabase-js";
+
+type LineItem = { id: string; name: string; category: string; quantity: number; unit: string; rate: number };
+type Project = { id: string; project_name: string; client_name: string; location: string; notes: string; line_items: LineItem[]; updated_at: string };
+const catalogue: Omit<LineItem,"id">[] = [
+ {name:"Modular kitchen cabinetry",category:"Kitchen",quantity:1,unit:"running ft",rate:4500},
+ {name:"Wardrobe with laminate finish",category:"Storage",quantity:1,unit:"sq ft",rate:1800},
+ {name:"Vitrified floor tiles",category:"Flooring",quantity:1,unit:"sq ft",rate:120},
+ {name:"Interior wall paint",category:"Finishes",quantity:1,unit:"sq ft",rate:35},
+ {name:"False ceiling",category:"Ceiling",quantity:1,unit:"sq ft",rate:110},
+ {name:"LED ceiling light",category:"Electrical",quantity:1,unit:"piece",rate:1800},
+ {name:"Bathroom vanity",category:"Bathroom",quantity:1,unit:"piece",rate:12500},
+ {name:"Custom furniture",category:"Furniture",quantity:1,unit:"piece",rate:15000},
+];
+const money=(n:number)=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n||0);
+const makeId=()=>typeof crypto!=="undefined"&&"randomUUID" in crypto?crypto.randomUUID():String(Date.now()+Math.random());
+export default function ProfessionalStudioPage(){
+ const [user,setUser]=useState<User|null>(null),[projects,setProjects]=useState<Project[]>([]),[activeId,setActiveId]=useState<string|null>(null);
+ const [projectName,setProjectName]=useState("New client project"),[clientName,setClientName]=useState(""),[location,setLocation]=useState(""),[notes,setNotes]=useState("");
+ const [items,setItems]=useState<LineItem[]>([]),[loading,setLoading]=useState(true),[saving,setSaving]=useState(false),[message,setMessage]=useState(""),[error,setError]=useState("");
+ const total=useMemo(()=>items.reduce((sum,x)=>sum+(Number(x.quantity)||0)*(Number(x.rate)||0),0),[items]);
+ useEffect(()=>{let alive=true;async function load(){const db=getSupabase();if(!db){setError("Supabase is not configured. Please contact the DESIQ administrator.");setLoading(false);return;}const {data:{user:u}}=await db.auth.getUser();if(!alive)return;if(!u){setLoading(false);return;}setUser(u);const {data,error:e}=await db.from("professional_projects").select("*").eq("user_id",u.id).order("updated_at",{ascending:false});if(!alive)return;if(e)setError("Could not load projects: "+e.message);else setProjects((data||[]) as Project[]);setLoading(false);}load();return()=>{alive=false}},[]);
+ function blank(){setActiveId(null);setProjectName("New client project");setClientName("");setLocation("");setNotes("");setItems([]);setMessage("");}
+ function openProject(p:Project){setActiveId(p.id);setProjectName(p.project_name);setClientName(p.client_name||"");setLocation(p.location||"");setNotes(p.notes||"");setItems(p.line_items||[]);setMessage("");}
+ function addItem(item:Omit<LineItem,"id">){setItems(old=>[...old,{...item,id:makeId()}]);setMessage("");}
+ function updateItem(id:string,key:keyof LineItem,value:string|number){setItems(old=>old.map(x=>x.id===id?{...x,[key]:value}:x));}
+ async function save(){const db=getSupabase();if(!db||!user){setError("Sign in to save professional projects.");return;}if(!projectName.trim()){setError("Add a project name before saving.");return;}setSaving(true);setError("");setMessage("");const payload={user_id:user.id,project_name:projectName.trim(),client_name:clientName,location,notes,line_items:items,updated_at:new Date().toISOString()};const result=activeId?await db.from("professional_projects").update(payload).eq("id",activeId).eq("user_id",user.id).select("*").single():await db.from("professional_projects").insert(payload).select("*").single();setSaving(false);if(result.error){setError(result.error.message);return;}const p=result.data as Project;setActiveId(p.id);setProjects(old=>[p,...old.filter(x=>x.id!==p.id)]);setMessage("Project saved to your Professional Studio.");}
+ async function removeProject(id:string){const db=getSupabase();if(!db||!user||!confirm("Delete this professional project?"))return;const {error:e}=await db.from("professional_projects").delete().eq("id",id).eq("user_id",user.id);if(e){setError(e.message);return;}setProjects(old=>old.filter(x=>x.id!==id));if(activeId===id)blank();}
+ function exportEstimate(){const rows=[["DESIQ PROFESSIONAL STUDIO",""],["Project",projectName],["Client",clientName],["Location",location],["Item","Category","Quantity","Unit","Rate (INR)","Amount (INR)"],...items.map(x=>[x.name,x.category,String(x.quantity),x.unit,String(x.rate),String(x.quantity*x.rate)]),["","","","","Total",String(total)],["Note","Indicative planning estimate. Verify quantities, specifications, taxes and site conditions before issuing a quotation."]];const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\n");const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));const a=document.createElement("a");a.href=url;a.download=`${projectName.toLowerCase().replace(/[^a-z0-9]+/g,"-")}-estimate.csv`;a.click();URL.revokeObjectURL(url);}
+ return <main className="pro-studio-page">
+  <div className="pro-studio-wrap">
+   <Link href="/subjects/architecture" className="pro-back"><ArrowLeft size={15}/> Architecture</Link>
+   <header className="pro-hero"><div><span className="eyebrow">DESIQ / PROFESSIONAL WORKSPACE</span><h1>Design with clarity.<br/><em>Present with confidence.</em></h1><p>A practical project workspace for architects, interior designers, contractors and design studios.</p><div className="pro-hero-tags"><span>01 DRAWINGS & PROJECTS</span><span>02 PRODUCT CATALOGUE</span><span>03 LIVE ESTIMATES</span></div></div><div className="pro-hero-art"><div className="pro-art-sheet"><span>PROJECT / 001</span><div className="pro-art-floor"><i/><i/><i/><i/><b>PLAN</b></div><small>DESIQ PROFESSIONAL</small></div><div className="pro-art-stamp">DESIGN<br/>+ COST</div></div></header>
+   <section className="pro-feature-grid"><article><span>01</span><FileText/><h3>Work from your drawings</h3><p>Use your own floor-plan or drawing as the starting point. Drawing upload and on-canvas measurement tools are planned for the next build.</p></article><article><span>02</span><FolderOpen/><h3>Build your catalogue</h3><p>Start with useful sample items, then add your own products, specifications, units and supplier rates.</p></article><article><span>03</span><BriefcaseBusiness/><h3>Prepare client estimates</h3><p>Keep project and client details together, calculate line-item totals and export a shareable CSV estimate.</p></article></section>
+   <section className="pro-workspace" id="workspace"><div className="pro-workspace-heading"><div><span className="eyebrow">YOUR PROFESSIONAL SPACE</span><h2>Project costing workspace</h2><p>Create a project, add catalogue items and build an indicative estimate.</p></div><span className="pro-secure"><Check size={14}/> Private to your account</span></div>
+   {!user&&!loading?<div className="pro-signin"><Building2 size={28}/><h3>Sign in to open your workspace</h3><p>Use your existing DESIQ student account. Your professional projects are stored separately from your learning challenges.</p><Link href="/account" className="button button-dark">Sign in / Create account <ArrowUpRight size={16}/></Link></div>:loading?<div className="pro-signin">Loading your workspace…</div>:<div className="pro-workspace-grid">
+    <aside className="pro-project-sidebar"><div className="pro-sidebar-title"><b>YOUR PROJECTS</b><button onClick={blank}><Plus size={14}/> New</button></div>{projects.length===0?<p className="pro-no-projects">Your saved projects will appear here.</p>:projects.map(p=><button key={p.id} className={`pro-project-link ${activeId===p.id?"active":""}`} onClick={()=>openProject(p)}><span>{p.project_name}</span><small>{p.client_name||"No client added"}</small><ChevronRight size={14}/></button>)}</aside>
+    <div className="pro-editor"><div className="pro-editor-top"><div><span className="eyebrow">{activeId?"EDIT SAVED PROJECT":"NEW PROJECT"}</span><h3>Project details</h3></div><button className="pro-export" onClick={exportEstimate} disabled={!items.length}><Download size={14}/> Export estimate</button></div>
+     <div className="pro-fields"><label>Project name<input value={projectName} onChange={e=>setProjectName(e.target.value)} placeholder="e.g. 3BHK apartment interiors"/></label><label>Client name<input value={clientName} onChange={e=>setClientName(e.target.value)} placeholder="Client or company"/></label><label className="wide">Project location<input value={location} onChange={e=>setLocation(e.target.value)} placeholder="City, site or project address"/></label><label className="wide">Project notes<textarea value={notes} onChange={e=>setNotes(e.target.value)} placeholder="Scope, finish preferences, assumptions…"/></label></div>
+     <div className="pro-catalogue-head"><div><span className="eyebrow">COST LIBRARY</span><h3>Add products & services</h3></div><span>{items.length} line items</span></div>
+     <div className="pro-catalogue">{catalogue.map((c,i)=><button key={c.name} onClick={()=>addItem(c)}><CirclePlus size={15}/><span><b>{c.name}</b><small>{c.category} · {c.unit} · {money(c.rate)}</small></span></button>)}</div>
+     <button className="pro-add-custom" onClick={()=>addItem({name:"Custom item",category:"Custom",quantity:1,unit:"piece",rate:0})}><Plus size={15}/> Add your own item</button>
+     {items.length>0&&<div className="pro-line-items"><div className="pro-line-head"><b>PROJECT ITEMS</b><span>EDIT QUANTITY & RATE</span></div>{items.map(x=><div className="pro-line" key={x.id}><div className="pro-line-name"><input aria-label="Item name" value={x.name} onChange={e=>updateItem(x.id,"name",e.target.value)}/><small>{x.category}</small></div><label>Qty<input type="number" min="0" step="0.01" value={x.quantity} onChange={e=>updateItem(x.id,"quantity",Number(e.target.value))}/></label><label>Unit<input value={x.unit} onChange={e=>updateItem(x.id,"unit",e.target.value)}/></label><label>Rate ₹<input type="number" min="0" value={x.rate} onChange={e=>updateItem(x.id,"rate",Number(e.target.value))}/></label><b className="pro-line-total">{money(x.quantity*x.rate)}</b><button className="pro-remove-item" aria-label={`Remove ${x.name}`} onClick={()=>setItems(old=>old.filter(y=>y.id!==x.id))}><Trash2 size={14}/></button></div>)}</div>}
+     <div className="pro-estimate-total"><div><span>INDICATIVE PROJECT ESTIMATE</span><b>{money(total)}</b></div><small>Before taxes, contingency, professional fees and site-specific adjustments.</small></div>
+     {error&&<p className="pro-message error">{error}</p>}{message&&<p className="pro-message success">{message}</p>}
+     <div className="pro-save-row"><button className="button button-dark" onClick={save} disabled={saving}><Save size={15}/>{saving?"Saving…":"Save project"}</button>{activeId&&<button className="pro-delete" onClick={()=>removeProject(activeId)}><Trash2 size={14}/> Delete project</button>}</div>
+    </div>
+   </div>}
+   </section>
+   <p className="pro-disclaimer">DESIQ estimates are planning aids, not contractor quotations, certified bills of quantities or engineering advice. Verify measurements, specifications, supplier rates, taxes and local requirements before sharing a final commercial quote.</p>
+  </div>
+ </main>;
+}

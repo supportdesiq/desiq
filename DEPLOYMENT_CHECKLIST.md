@@ -38,3 +38,13 @@
 - [ ] Open the dashboard and verify the saved design is listed.
 - [ ] Evaluate a challenge, complete it, open its certificate and use Print → Save as PDF.
 - [ ] Verify a second student account cannot view the first student's saved designs or completion records.
+
+
+## V5.6 Professional Studio
+- [ ] Deploy the V5.6 project code to Vercel.
+- [ ] Run `supabase/professional_studio.sql` in Supabase SQL Editor.
+- [ ] Sign in with an existing DESIQ account and open `/architecture/professional`.
+- [ ] Create a test project, add catalogue items, edit quantity/rate and save.
+- [ ] Refresh the page and verify the project reopens with its line items.
+- [ ] Export a CSV estimate and verify the amounts.
+- [ ] Test with a second account to confirm project records remain private.
