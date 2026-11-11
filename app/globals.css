@@ -509,3 +509,45 @@
  .language-mini{right:6px;bottom:4px;font-size:14px}
  .drawing-mini{right:6px;bottom:6px;transform:scale(.8) rotate(-10deg);transform-origin:bottom right}
 }
+
+/* V5.2 — high-contrast, readable DESIQ support card */
+.footer-support-column{min-width:0}
+.footer-support-column>p{max-width:250px!important;margin:0 0 5px!important}
+.support-card{
+ width:100%;max-width:310px;box-sizing:border-box;margin-top:8px;padding:18px;
+ border-radius:16px;background:#192440;color:#f7f8fc;
+ border:1px solid rgba(255,255,255,.1);
+ box-shadow:0 12px 28px rgba(25,36,64,.16);
+ display:flex;flex-direction:column;gap:0
+}
+.support-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.support-headset{width:36px;height:36px;border-radius:11px;background:#d8f879;color:#192440;display:grid;place-items:center}
+.support-online{display:inline-flex;align-items:center;gap:7px;font:700 8px 'DM Mono';letter-spacing:1.1px;color:#d8f879}
+.support-online i{width:7px;height:7px;border-radius:50%;background:#d8f879;box-shadow:0 0 0 4px rgba(216,248,121,.13)}
+.support-card-title{font:800 17px Manrope,sans-serif;letter-spacing:-.45px;color:#fff;margin-bottom:8px}
+.support-card .footer-email{
+ display:flex!important;align-items:center;justify-content:space-between;gap:8px;
+ width:100%;box-sizing:border-box;padding:11px 12px;border-radius:9px;
+ background:#fff;color:#192440!important;font:800 11px Manrope,sans-serif!important;
+ text-decoration:none;overflow-wrap:anywhere
+}
+.support-card .footer-email:hover{background:#d8f879;color:#192440!important}
+.support-card-divider{height:1px;background:rgba(255,255,255,.16);margin:15px 0 12px}
+.support-fact{display:grid;grid-template-columns:30px minmax(0,1fr) 16px;gap:9px;align-items:center;padding:8px 0}
+.support-fact-icon{width:29px;height:29px;border-radius:8px;background:rgba(255,255,255,.1);color:#d8f879;display:grid;place-items:center}
+.support-fact strong{display:block;color:#fff;font:800 11px Manrope,sans-serif;line-height:1.35}
+.support-fact small{display:block;color:#c4cddd;font:9px 'DM Mono';line-height:1.5;margin-top:3px}
+.support-check{color:#d8f879}
+@media(max-width:1000px){
+ .footer-main{grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+ .footer-support-column{grid-column:1/-1}
+ .support-card{max-width:440px}
+}
+@media(max-width:700px){
+ .footer-main{grid-template-columns:1fr 1fr;gap:26px 18px}
+ .footer-support-column{grid-column:1/-1}
+ .support-card{max-width:none;padding:17px}
+ .support-card-title{font-size:16px}
+ .support-fact strong{font-size:11px}
+ .support-fact small{font-size:9px}
+}
