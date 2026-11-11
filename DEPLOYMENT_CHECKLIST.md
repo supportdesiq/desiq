@@ -78,3 +78,4 @@
 - [ ] Test a PNG/JPG drawing: calibrate using a known dimension, measure a line, trace a room polygon, add a measurement to the estimate, save, refresh and reopen.
 - [ ] Test a PDF drawing: confirm the first page renders and can be calibrated/measured. Only page one is currently supported for on-plan measurement.
 - [ ] Confirm existing Student Studio, Professional projects, drawing storage, company details and quotations still work.
+\n\n## V6.1 deployment note\n\nNo Supabase SQL migration is required for V6.1. It reuses the existing drawing annotations and project line-item fields. Deploy the updated repository and test named measurements, catalogue linking and unit conversions.\n
