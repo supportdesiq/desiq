@@ -551,3 +551,75 @@
  .support-fact strong{font-size:11px}
  .support-fact small{font-size:9px}
 }
+
+/* V5.3 — Architecture subject page: richer challenge introduction */
+.subject-page .challenge-heading{max-width:760px;margin-top:82px;margin-bottom:30px}
+.subject-page .challenge-heading h2{font-size:clamp(42px,5vw,62px);line-height:.99;letter-spacing:-2.7px}
+.subject-page .challenge-heading h2 em{color:#7d8b75}
+.subject-page .challenge-heading>p{max-width:590px;font-size:13px;line-height:1.8}
+.live-challenge-card{
+ display:grid;grid-template-columns:minmax(300px,.88fr) minmax(0,1.12fr);gap:clamp(22px,4vw,55px);
+ align-items:center;margin:28px 0 24px;padding:clamp(18px,2.5vw,30px);
+ border:1px solid #dce3d7;border-radius:18px;
+ background:linear-gradient(115deg,#f0f3e9 0%,#f7f8f2 45%,#eef2ff 100%);
+ box-shadow:0 18px 48px rgba(35,49,70,.055)
+}
+.live-challenge-art{
+ height:300px;min-height:260px;border-radius:13px;padding:20px 22px;position:relative;overflow:hidden;
+ color:#f8f9f1;background:#1e2b48;
+ background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+ background-size:24px 24px
+}
+.challenge-art-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.challenge-art-top>span:first-child{font:8px 'DM Mono';letter-spacing:1.2px;color:#c6d3e9}
+.challenge-art-index{font:9px 'DM Mono';color:#d8f879;letter-spacing:1px}
+.challenge-art-number{font:900 clamp(68px,8vw,100px)/.9 Manrope,sans-serif;letter-spacing:-8px;margin-top:22px;color:#d8f879;position:relative;z-index:2}
+.challenge-art-caption{font:8px 'DM Mono';letter-spacing:1.5px;color:#d4deed;margin-top:8px;position:relative;z-index:2}
+.challenge-art-mosaic{position:absolute;z-index:2;left:22px;right:22px;bottom:18px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.challenge-art-mosaic>span{min-width:0;height:58px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(255,255,255,.09);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:17px;backdrop-filter:blur(4px)}
+.challenge-art-mosaic small{font:6px 'DM Mono';letter-spacing:.25px;color:#d7e1ef;text-align:center}
+.challenge-art-orbit{position:absolute;border:1px solid rgba(216,248,121,.22);border-radius:50%;pointer-events:none}
+.orbit-one{width:240px;height:240px;right:-75px;top:10px}
+.orbit-two{width:180px;height:180px;right:-45px;top:40px}
+.live-challenge-copy{min-width:0;padding:8px 0}
+.live-challenge-copy>.eyebrow{font:8px 'DM Mono';letter-spacing:1.35px;color:#75836d}
+.live-challenge-copy h3{font:800 clamp(25px,3vw,36px)/1.08 Manrope,sans-serif;letter-spacing:-1.5px;margin:13px 0;color:#1d2c48}
+.live-challenge-copy p{font-size:12px;line-height:1.85;color:#66738a;max-width:590px;margin:0 0 18px}
+.live-challenge-meta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:19px}
+.live-challenge-meta span{padding:8px 10px;border-radius:99px;background:#e7ecdf;color:#52624c;font:7px 'DM Mono';letter-spacing:.7px}
+.live-challenge-copy .button{display:inline-flex;align-items:center;gap:12px;padding:14px 19px;border-radius:8px}
+.challenge-card-footnote{display:block;margin-top:13px;color:#8a9385;font:9px 'DM Mono';letter-spacing:.2px}
+.architecture-discovery-note{
+ display:grid;grid-template-columns:.85fr 1.15fr;gap:30px;align-items:center;
+ margin:24px 0 45px;padding:25px 28px;border:1px solid #e0e5da;border-radius:15px;
+ background:linear-gradient(110deg,#f0f3e9,#fafbf7)
+}
+.architecture-discovery-note .eyebrow{font:8px 'DM Mono';letter-spacing:1.2px;color:#829078}
+.architecture-discovery-note h3{font:750 20px/1.2 Manrope;color:#25334b;margin:9px 0 7px}
+.architecture-discovery-note p{font:11px/1.7 'DM Sans',sans-serif;color:#718098;margin:0;max-width:360px}
+.discipline-chip-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.discipline-chip-grid span{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e2e7dc;border-radius:8px;background:rgba(255,255,255,.7);font:8px 'DM Mono';color:#91a083}
+.discipline-chip-grid span:last-child{grid-column:1/-1}
+.discipline-chip-grid b{font:700 10px Manrope;color:#465444}
+@media(max-width:850px){
+ .live-challenge-card{grid-template-columns:1fr;gap:20px}
+ .live-challenge-art{height:260px}
+ .architecture-discovery-note{grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:600px){
+ .subject-page .challenge-heading{margin-top:58px}
+ .subject-page .challenge-heading h2{font-size:42px;letter-spacing:-1.8px}
+ .live-challenge-card{padding:13px;border-radius:13px}
+ .live-challenge-art{height:235px;min-height:235px;padding:15px}
+ .challenge-art-number{font-size:76px;margin-top:18px}
+ .challenge-art-mosaic{left:13px;right:13px;bottom:13px;gap:4px}
+ .challenge-art-mosaic>span{height:51px;font-size:14px}
+ .challenge-art-mosaic small{font-size:5px;letter-spacing:0}
+ .live-challenge-copy h3{font-size:27px}
+ .live-challenge-meta{gap:6px}
+ .live-challenge-meta span{font-size:6px;padding:7px}
+ .architecture-discovery-note{padding:18px}
+ .discipline-chip-grid{gap:6px}
+ .discipline-chip-grid span{padding:9px 8px;gap:7px}
+ .discipline-chip-grid b{font-size:9px}
+}
