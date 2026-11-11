@@ -48,3 +48,13 @@
 - [ ] Refresh the page and verify the project reopens with its line items.
 - [ ] Export a CSV estimate and verify the amounts.
 - [ ] Test with a second account to confirm project records remain private.
+
+
+## V5.7 white-label client quotations
+- [ ] Run the updated `supabase/professional_studio.sql` migration (safe to rerun; adds company_profile if missing).
+- [ ] Deploy the updated source through GitHub → Vercel.
+- [ ] Open a professional project and enter company name, contact, email, phone, address and optional GSTIN/logo URL.
+- [ ] Save the project, reload it, and confirm company details persist.
+- [ ] Add at least one line item and a client name.
+- [ ] Generate a client quotation and use Print → Save as PDF.
+- [ ] Verify the quotation uses the professional's company identity and does not display DESIQ branding.

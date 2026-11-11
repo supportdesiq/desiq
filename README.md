@@ -213,3 +213,20 @@ Before testing project saving, open Supabase → SQL Editor and run `supabase/pr
 ### V5.6 scope and next steps
 
 Drawing upload, plan calibration/measurement, catalogue image management, supplier management, tax/discount controls, branded PDF quotations, client sharing and multi-user team access are not included in this first release. The workspace currently accepts project details and line-item pricing; the drawing-led workflow is the next development phase. All estimates are indicative and require professional verification.
+
+
+## V5.7 — White-label client quotations
+
+Professional Studio now supports a company identity and client-facing quotation:
+- Company/business name, contact person, email, phone and address.
+- Optional GSTIN and logo image URL.
+- Configurable tax percentage and quotation terms.
+- Company identity is saved with each professional project in `professional_projects.company_profile`.
+- Client quotation opens a print-ready document without DESIQ branding. Use the browser print dialog to save it as PDF.
+- Internal CSV estimate export remains available.
+
+### Supabase migration
+Run the updated `supabase/professional_studio.sql` in the Supabase SQL Editor. It includes an idempotent `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` migration for `company_profile`. Existing professional projects are retained.
+
+### Quotation notes
+The tax percentage is user-entered and is applied as a simple estimate line. Professionals must confirm the correct tax treatment, rates, GST compliance, quotation terms and commercial details before sending a quotation. Logo is currently supplied as an image URL; direct logo upload and reusable organisation-wide branding settings are planned enhancements.
