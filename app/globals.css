@@ -340,3 +340,63 @@
 .challenge-hub-link{margin:-20px 0 28px}
 @media(max-width:900px){.challenge-library-grid{grid-template-columns:repeat(2,1fr)}.quantity-summary{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.challenge-brief-panel{grid-template-columns:1fr;padding:16px}.challenge-library{padding:0 4% 40px}.challenge-library>header{padding:45px 0 30px}.challenge-library>header h1{font-size:53px;letter-spacing:-2.8px}.challenge-library-grid{grid-template-columns:1fr;padding:22px 0}.challenge-library-card{min-height:unset}.quantity-summary{grid-template-columns:1fr 1fr}.quantity-summary b{font-size:14px}}
+
+
+/* Challenge-specific environments: distinct mood, colour and studio atmosphere */
+.builder-page.theme-home{background:linear-gradient(180deg,#f5f7fb 0%,#f7f8f5 40%)}
+.builder-page.theme-tiny{background:linear-gradient(180deg,#f7f2ea 0%,#fbf8f2 42%,#f7f8f5 100%)}
+.builder-page.theme-climate{background:linear-gradient(180deg,#edf7f3 0%,#f6faf7 42%,#f7f8f5 100%)}
+.builder-page.theme-accessible{background:linear-gradient(180deg,#eef4f8 0%,#f7faf8 42%,#f7f8f5 100%)}
+.builder-page.theme-courtyard{background:linear-gradient(180deg,#eff5e9 0%,#f7f8f1 42%,#f7f8f5 100%)}
+.builder-page.theme-cafe{background:linear-gradient(180deg,#f8efe5 0%,#fbf6ef 42%,#f7f8f5 100%)}
+.builder-page.theme-renovation{background:linear-gradient(180deg,#f5eeeb 0%,#faf7f5 42%,#f7f8f5 100%)}
+.builder-page.theme-cafe .builder-kicker,.builder-page.theme-cafe .builder-step{color:#a86b43}
+.builder-page.theme-courtyard .builder-kicker,.builder-page.theme-courtyard .builder-step{color:#63875d}
+.builder-page.theme-climate .builder-kicker,.builder-page.theme-climate .builder-step{color:#418b83}
+.builder-page.theme-accessible .builder-kicker,.builder-page.theme-accessible .builder-step{color:#547d9b}
+.builder-page.theme-renovation .builder-kicker,.builder-page.theme-renovation .builder-step{color:#a76d5e}
+.builder-page.theme-cafe .builder-hero-art{background:radial-gradient(circle at 75% 28%,#f4d9b9,transparent 34%),linear-gradient(135deg,#f3e0cc,#fff8ef);border-color:#e8d1b9;color:#9a633f}
+.builder-page.theme-cafe .hero-blueprint{border-color:#9e704f;background-color:#fffaf4;background-image:linear-gradient(#e9cdb3 1px,transparent 1px),linear-gradient(90deg,#e9cdb3 1px,transparent 1px)}
+.builder-page.theme-cafe .hero-blueprint span,.builder-page.theme-cafe .hero-blueprint>b{color:#9b6847}
+.builder-page.theme-cafe .challenge-brief-panel{background:linear-gradient(120deg,#f5e5d5,#fff9f1);border-color:#ead7c3}
+.builder-page.theme-cafe .challenge-goal{background:#684a39}
+.builder-page.theme-cafe .floor-canvas{background-color:#fffaf3;background-image:linear-gradient(#eadfd2 1px,transparent 1px),linear-gradient(90deg,#eadfd2 1px,transparent 1px);border-color:#987052}
+.builder-page.theme-courtyard .builder-hero-art{background:radial-gradient(circle at 70% 25%,#c9dfb9,transparent 38%),linear-gradient(135deg,#e0ebd8,#fbfff7);border-color:#d1dfc9;color:#64875b}
+.builder-page.theme-courtyard .hero-blueprint{border-color:#6b8b62;background-color:#fbfff8;background-image:linear-gradient(#c9d9c1 1px,transparent 1px),linear-gradient(90deg,#c9d9c1 1px,transparent 1px)}
+.builder-page.theme-courtyard .challenge-brief-panel{background:linear-gradient(120deg,#e5efdc,#fbfff8);border-color:#d4e2cc}
+.builder-page.theme-courtyard .challenge-goal{background:#486347}
+.builder-page.theme-courtyard .floor-canvas{background-color:#fbfff7;background-image:linear-gradient(#dce8d4 1px,transparent 1px),linear-gradient(90deg,#dce8d4 1px,transparent 1px);border-color:#6b8b62}
+.builder-page.theme-climate .builder-hero-art{background:radial-gradient(circle at 75% 25%,#bce4dc,transparent 38%),linear-gradient(135deg,#d9eee8,#f7fffc);border-color:#c9e2da;color:#478b80}
+.builder-page.theme-climate .hero-blueprint{border-color:#508c83;background-color:#f7fffc;background-image:linear-gradient(#c5e2db 1px,transparent 1px),linear-gradient(90deg,#c5e2db 1px,transparent 1px)}
+.builder-page.theme-climate .challenge-brief-panel{background:linear-gradient(120deg,#e0f1eb,#f8fffc);border-color:#cfe4dc}
+.builder-page.theme-climate .challenge-goal{background:#356c66}
+.builder-page.theme-climate .floor-canvas{background-color:#f7fffc;background-image:linear-gradient(#d1e8e1 1px,transparent 1px),linear-gradient(90deg,#d1e8e1 1px,transparent 1px);border-color:#508c83}
+.builder-page.theme-accessible .builder-hero-art{background:radial-gradient(circle at 75% 25%,#cbdfea,transparent 38%),linear-gradient(135deg,#e4eef4,#fbfdff);border-color:#d0e0e9;color:#547f9b}
+.builder-page.theme-accessible .hero-blueprint{border-color:#5c819b;background-color:#fbfdff;background-image:linear-gradient(#cfdee8 1px,transparent 1px),linear-gradient(90deg,#cfdee8 1px,transparent 1px)}
+.builder-page.theme-accessible .challenge-brief-panel{background:linear-gradient(120deg,#e5eff4,#fbfdff);border-color:#d2e1e9}
+.builder-page.theme-accessible .challenge-goal{background:#3f6075}
+.builder-page.theme-accessible .floor-canvas{background-color:#fbfdff;background-image:linear-gradient(#d9e5ec 1px,transparent 1px),linear-gradient(90deg,#d9e5ec 1px,transparent 1px);border-color:#5c819b}
+.builder-page.theme-tiny .builder-hero-art{background:radial-gradient(circle at 75% 25%,#ead8b7,transparent 38%),linear-gradient(135deg,#f1e8d8,#fffaf0);border-color:#e3d5bd;color:#967a53}
+.builder-page.theme-tiny .hero-blueprint{border-color:#9a805d;background-color:#fffaf0;background-image:linear-gradient(#e8dbc6 1px,transparent 1px),linear-gradient(90deg,#e8dbc6 1px,transparent 1px)}
+.builder-page.theme-tiny .challenge-brief-panel{background:linear-gradient(120deg,#f3eadb,#fffaf2);border-color:#e8dbc8}
+.builder-page.theme-tiny .challenge-goal{background:#715b3d}
+.builder-page.theme-tiny .floor-canvas{background-color:#fffaf2;background-image:linear-gradient(#eadfcf 1px,transparent 1px),linear-gradient(90deg,#eadfcf 1px,transparent 1px);border-color:#9a805d}
+.builder-page.theme-renovation .builder-hero-art{background:radial-gradient(circle at 75% 25%,#e6c9bf,transparent 38%),linear-gradient(135deg,#f1e3de,#fff9f7);border-color:#e7d2ca;color:#a36d5d}
+.builder-page.theme-renovation .hero-blueprint{border-color:#a77768;background-color:#fff9f7;background-image:linear-gradient(#ead6d0 1px,transparent 1px),linear-gradient(90deg,#ead6d0 1px,transparent 1px)}
+.builder-page.theme-renovation .challenge-brief-panel{background:linear-gradient(120deg,#f3e6e1,#fffaf8);border-color:#ead8d1}
+.builder-page.theme-renovation .challenge-goal{background:#754d43}
+.builder-page.theme-renovation .floor-canvas{background-color:#fffaf8;background-image:linear-gradient(#ecded9 1px,transparent 1px),linear-gradient(90deg,#ecded9 1px,transparent 1px);border-color:#a77768}
+.challenge-library-card{overflow:hidden}
+.challenge-card-icon{width:100%;height:104px;border-radius:7px;margin:15px 0 14px;justify-items:start;padding:14px 18px;box-sizing:border-box;background:linear-gradient(135deg,#edf3ff,#f9fbff)}
+.challenge-card-icon span{font-size:48px;filter:drop-shadow(0 7px 7px #20334b22)}
+.challenge-card-icon.scene-dream-house{background:linear-gradient(135deg,#e1eafe,#f8fbff)}
+.challenge-card-icon.scene-tiny-home{background:linear-gradient(135deg,#f2e7d3,#fffaf1)}
+.challenge-card-icon.scene-climate-smart{background:linear-gradient(135deg,#d9eee7,#f6fffb)}
+.challenge-card-icon.scene-accessible-home{background:linear-gradient(135deg,#dcebf3,#f8fcff)}
+.challenge-card-icon.scene-courtyard-home{background:linear-gradient(135deg,#dcebd4,#f9fff4)}
+.challenge-card-icon.scene-community-cafe{background:linear-gradient(135deg,#f0ddc9,#fff8ef)}
+.challenge-card-icon.scene-studio-renovation{background:linear-gradient(135deg,#eedbd4,#fff8f5)}
+.challenge-library>header h1{max-width:850px}
+.architecture-discovery-note{margin:26px 0 42px;padding:25px;border:1px solid #dfe6ec;border-radius:10px;background:linear-gradient(120deg,#f1f5ed,#fbfcf8)}
+.architecture-discovery-note h3{font:750 19px Manrope;color:#263c56;margin:0 0 7px}
+.architecture-discovery-note p{font:11px/1.7 'DM Sans',sans-serif;color:#718098;margin:0}

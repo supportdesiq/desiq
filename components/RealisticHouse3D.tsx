@@ -73,6 +73,40 @@ export default function RealisticHouse3D({length,width,rooms,items,openings=[],w
     const tall=k==="wardrobe"||k==="shoe";const topY=tall?1.05:.82;add(w,tall?2:.12,d,x+w/2,tall?1:.76,z+d/2,upholstery);if(!tall){for(const xx of [x+.08,x+w-.08])for(const zz of [z+.08,z+d-.08])add(.07,.72,.07,xx,.38,zz,wood);}
     if(k==="slab"||k==="island"){add(w,.08,d,x+w/2,topY,z+d/2,white);if(k==="slab"){add(.48,.025,.32,x+w*.65,topY+.055,z+d/2,metal);}}
     if(k==="diningtable"){for(const side of [-1,1])for(let n=0;n<2;n++){const cx=x+w*(.25+n*.5),cz=z+d/2+side*.42;add(.42,.12,.42,cx,.48,cz,upholstery);add(.42,.45,.08,cx,.72,cz+side*.18,upholstery);for(const dx of [-.14,.14])for(const dz of [-.14,.14])add(.045,.4,.045,cx+dx,.22,cz+dz,wood);}}
+   }else if(k==="cafe-table"){
+    add(w,.1,d,x+w/2,.78,z+d/2,wood);for(const dx of [.12,w-.12])for(const dz of [.12,d-.12])add(.06,.74,.06,x+dx,.38,z+dz,metal);
+   }else if(k==="cafe-chair"||k==="bar-stool"){
+    const seatY=k==="bar-stool" ? .72 : .48;add(w,.1,d,x+w/2,seatY,z+d/2,upholstery);add(w,.45,.07,x+w/2,seatY+.24,z+d*.12,upholstery);
+    for(const dx of [.08,w-.08])for(const dz of [.08,d-.08])add(.045,seatY,.045,x+dx,seatY/2,z+dz,wood);
+    if(k==="bar-stool")add(.06,.06,.06,x+w/2,.36,z+d/2,metal);
+   }else if(k==="cafe-counter"||k==="prep-table"){
+    add(w,.9,d,x+w/2,.48,z+d/2,wood);add(w+.03,.08,d+.03,x+w/2,.96,z+d/2,k==="prep-table"?metal:upholstery);
+   }else if(k==="espresso"){
+    add(w,.5,d,x+w/2,.42,z+d/2,metal);add(w*.72,.12,d*.7,x+w/2,.75,z+d/2,dark);add(.08,.18,.08,x+w*.25,.85,z+d*.3,white);add(.08,.18,.08,x+w*.75,.85,z+d*.3,white);
+   }else if(k==="display-case"){
+    add(w,.12,d,x+w/2,.08,z+d/2,wood);add(w,.62,d, x+w/2,.46,z+d/2,glass);add(w,.06,d,x+w/2,.79,z+d/2,white);
+   }else if(k==="commercial-sink"){
+    add(w,.78,d,x+w/2,.4,z+d/2,metal);add(w*.68,.08,d*.6,x+w/2,.82,z+d/2,white);
+   }else if(k==="menu-board"){
+    add(w,.85,.08,x+w/2,1.5,z+d/2,dark);
+   }else if(k==="pendant-light"){
+    add(.035,.55,.035,x+w/2,wallHeight-.28,z+d/2,metal);add(.35,.14,.35,x+w/2,wallHeight-.55,z+d/2,upholstery);
+   }else if(k==="planter"||k==="tree"){
+    add(w*.75,.35,d*.75,x+w/2,.2,z+d/2,wood);const foliage=new THREE.Mesh(new THREE.SphereGeometry(Math.max(.25,w*.48),16,12),mat("#5f9367",.95));foliage.position.set(x+w/2,k==="tree"?1.25:.85,z+d/2);foliage.scale.set(1,1.2,1);scene.add(foliage);
+   }else if(k==="bench"){
+    add(w,.1,d,x+w/2,.5,z+d/2,wood);for(const dx of [.1,w-.1])add(.07,.48,.07,x+dx,.26,z+d/2,metal);
+   }else if(k==="water-feature"){
+    add(w,.25,d,x+w/2,.14,z+d/2,mat("#7eb5c7",.3));add(w*.8,.04,d*.8,x+w/2,.3,z+d/2,glass);
+   }else if(k==="ramp"){
+    const ramp=new THREE.Mesh(new THREE.BoxGeometry(w,.12,d),mat("#b9c2b9"));ramp.position.set(x+w/2,.12,z+d/2);ramp.rotation.z=-.12;scene.add(ramp);
+   }else if(k==="grab-rail"||k==="louvre"){
+    add(w,.08,d,x+w/2,1.1,z+d/2,metal);
+   }else if(k==="fold-bed"){
+    add(w,.18,d,x+w/2,.25,z+d/2,wood);add(w*.95,.16,d*.9,x+w/2,.42,z+d*.5,white);add(w,.9,.1,x+w/2,.55,z+.04,upholstery);
+   }else if(k==="fold-table"||k==="storage-wall"){
+    add(w,k==="storage-wall"?2:.1,d,x+w/2,k==="storage-wall"?1:.8,z+d/2,wood);
+   }else if(k==="shade"){
+    add(w,.08,d,x+w/2,wallHeight-.4,z+d/2,upholstery);
    }else if(k==="sink"||k==="vanity"){add(w,.72,d,x+w/2,.38,z+d/2,white);add(w*.65,.08,d*.65,x+w/2,.78,z+d/2,metal);add(.06,.35,.06,x+w/2,.98,z+d*.2,metal);}
    else if(k==="toilet"){add(w*.8,.28,d*.58,x+w/2,.25,z+d*.58,white);add(w*.72,.52,d*.25,x+w/2,.42,z+d*.2,white);}
    else if(k==="bathtub"){add(w,.48,d,x+w/2,.28,z+d/2,white);add(w*.82,.06,d*.7,x+w/2,.53,z+d/2,mat("#b7d9e8"));}

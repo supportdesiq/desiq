@@ -117,3 +117,17 @@ New features:
 - Challenge hub at `/architecture/challenges`; each brief opens its own studio route.
 
 Estimator note: quantities and prices are simplified educational assumptions. The current model does not calculate foundations, columns, beams, internal wall take-offs, lintels, MEP services, taxes or local site conditions. It is not a construction-ready bill of quantities. Door/window editing is supported on the outer perimeter and room perimeter walls; complex wall junctions, door swings, sliding tracks and code validation remain future work. The 3D scene is a conceptual model rather than a photorealistic or BIM-grade model. Projects are currently held in client state and are not persisted to accounts.
+
+
+## Architecture Studio V4 — challenge-specific design environments
+
+Each Architecture challenge now opens a tailored workspace rather than reusing one residential catalogue:
+- Dream house: residential rooms, kitchen, bedrooms, bathrooms, living and family furniture.
+- Tiny home: flexible living, sleeping nook, kitchenette, compact fold-away furniture and storage.
+- Climate-smart home: residential spaces plus courtyard, garden, solar, rainwater, shade and ventilation components.
+- Accessible multigenerational home: accessible bedroom and bathroom spaces, ramps, grab rails and shower seats.
+- Courtyard home: courtyard and garden zones, trees, planters, benches and water features.
+- Neighbourhood café: customer seating, service counter, prep kitchen, customer washroom, outdoor seating, café tables/chairs, stools, espresso machine, display case, commercial sink, menu board and pendant lighting.
+- Apartment renovation: apartment spaces, kitchenette, furniture, storage, finishes and lighting.
+
+The Architecture landing feature now invites visitors to choose a design brief rather than presenting the dream-house challenge as the only entry point. The challenge library has a neutral Architecture-wide headline, differentiated challenge cards and distinct visual treatments. The studio page and 2D plan use a challenge-specific colour atmosphere. Café estimating switches to a fit-out allowance for its selected equipment, furniture and finishes rather than presenting a house-materials list.
