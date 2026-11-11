@@ -76,3 +76,17 @@ The challenge ideas and planned tools are illustrative placeholders to refine be
 - `/architecture/challenge` contains the interactive Dream House budget challenge.
 - Learners can select rooms from the supplied sample price list, monitor a ₹10 lakh budget, self-check design considerations, and receive a transparent rubric-based learning score.
 - Challenge progress is currently in browser state only. Accounts, cloud saving, certificates, and instructor assessment are not connected yet.
+
+
+## Architecture Floor Plan Studio (MVP)
+
+The Dream House challenge now includes:
+- Adjustable plot length and width.
+- Adjustable project budget and illustrative construction-rate assumptions.
+- 2D floor-plan canvas with draggable room blocks.
+- Room catalogue and room resizing/removal controls.
+- Additional doors, windows, fixtures, furniture and sustainability items.
+- A live estimate that recalculates from plot area, rate and selected catalogue extras.
+- A conceptual isometric 3D-style preview (not a detailed CAD/BIM model).
+
+Cost values are educational estimates only, not construction quotations. Room placement is a simple visual planning exercise; it does not yet validate wall connections, building codes, structural feasibility or exact quantities. The design is currently held in browser state and is not saved to an account or cloud.
