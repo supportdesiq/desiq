@@ -68,3 +68,11 @@ Before launch, connect a backend/database and authentication provider; integrate
 - Header/footer: `components/Header.tsx` and `components/Footer.tsx`
 
 The challenge ideas and planned tools are illustrative placeholders to refine before launch. The email address `hello@desiq.com` is a placeholder; replace it with an inbox you control.
+
+
+## Architecture MVP
+
+- `/architecture` redirects to the Architecture subject page.
+- `/architecture/challenge` contains the interactive Dream House budget challenge.
+- Learners can select rooms from the supplied sample price list, monitor a ₹10 lakh budget, self-check design considerations, and receive a transparent rubric-based learning score.
+- Challenge progress is currently in browser state only. Accounts, cloud saving, certificates, and instructor assessment are not connected yet.

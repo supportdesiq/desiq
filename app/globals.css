@@ -46,3 +46,104 @@
 .hero-light .hero-bottom{left:6.3%;right:6.3%;border-color:#dfe4e8;color:#8792a2}.hero-light .hero-bottom a{color:#45628d}
 @media(max-width:1000px){.hero-light{grid-template-columns:1fr 1fr;gap:2%;padding-left:5%;padding-right:5%}.hero-light h1{font-size:clamp(54px,6vw,76px);letter-spacing:-4.5px}.hero-art-light{height:430px}.floorplan-card{width:53%;left:2%}.model-house{right:0;width:48%}.hero-stats{gap:13px}}
 @media(max-width:700px){.hero-light{display:flex;flex-direction:column;align-items:stretch;padding:54px 6% 65px;gap:22px;min-height:0}.hero-light .hero-copy{padding:0}.hero-kicker{font-size:8px;margin-bottom:18px}.hero-light h1{font-size:clamp(48px,12vw,68px);letter-spacing:-3.8px;line-height:1.02;margin-bottom:18px}.hero-light h1 em{letter-spacing:-3px}.hero-light .hero-lede{font-size:13px;line-height:1.75}.hero-light .hero-buttons{gap:9px}.hero-light .button{min-height:45px;padding:0 15px;font-size:10px}.hero-stats{margin-top:27px;gap:13px}.hero-stats b{font-size:21px}.hero-stats span{font-size:8px}.hero-art-light{height:360px;width:100%;border-radius:18px;transform:none;margin:0}.floorplan-card{top:18%;left:3%;width:52%;height:58%;padding:8px}.floorplan{min-height:130px;border-width:4px}.room{font-size:6px}.room small{font-size:5px}.model-house{top:22%;right:1%;width:48%;height:55%}.house-roof{top:13%}.house-body{top:38%}.note-top{top:4%;left:38%;padding:7px 9px}.note-bottom{bottom:4%;left:4%;padding:7px 9px}.art-note b{font-size:9px}.art-note span{font-size:6px}.art-tools{right:5%;bottom:5%}.art-tools span{width:27px;height:27px;font-size:16px}.hero-light .hero-bottom{left:6%;right:6%;height:42px;font-size:6px}.hero-light .hero-bottom span:last-child{display:none}}
+
+
+/* DESIQ Architecture interactive challenge */
+.dream-challenge{background:#f7f7f1;color:#17213d;min-height:100vh;padding:0 7.2% 80px}
+.challenge-topline{height:54px;border-bottom:1px solid #dfe3e8;display:flex;align-items:center;justify-content:space-between;font:9px 'DM Mono',monospace;letter-spacing:1.2px;color:#6e7890}
+.challenge-back{display:flex;align-items:center;gap:8px;font:600 11px 'DM Sans',sans-serif;letter-spacing:0;color:#34425e}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8bbd4b;margin-right:8px}
+.challenge-intro{display:grid;grid-template-columns:1fr 1fr;gap:6%;align-items:center;padding:76px 0 70px;border-bottom:1px solid #dfe3e8}
+.challenge-kicker,.challenge-step{display:flex;align-items:center;gap:8px;font:600 9px 'DM Mono',monospace;letter-spacing:1.5px;color:#5476bf}
+.challenge-intro h1{font:800 clamp(52px,6.8vw,88px)/.96 Manrope,sans-serif;letter-spacing:-5px;margin:23px 0;color:#17213d}
+.challenge-intro h1 em,.challenge-footer-cta h2 em{font:italic 400 1em Georgia,serif;color:#416fe1;letter-spacing:-4px}
+.challenge-intro p{max-width:490px;color:#63718a;font-size:14px;line-height:1.85;margin:0 0 24px}
+.challenge-meta{display:flex;gap:12px;align-items:center;font:9px 'DM Mono',monospace;letter-spacing:1px;color:#75819a}
+.challenge-meta i{width:3px;height:3px;border-radius:50%;background:#9ca8ba}
+.challenge-illustration{height:370px;border:1px solid #dce4ee;border-radius:18px;background:linear-gradient(135deg,#eaf2ff,#fff 65%);position:relative;overflow:hidden;box-shadow:0 20px 55px #223a6012}
+.challenge-illustration:before{content:"";position:absolute;width:290px;height:290px;border-radius:50%;background:#d6e7ff;right:-45px;top:-75px}
+.challenge-illustration:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:#e0f0d9;left:-70px;bottom:-100px}
+.mini-floorplan{position:absolute;z-index:2;left:13%;top:18%;width:55%;height:65%;display:grid;grid-template-columns:1fr 1.2fr;grid-template-rows:1fr .8fr;border:7px solid #294a78;box-shadow:0 12px 25px #1d355422;transform:rotate(-3deg);background:#fff}
+.plan-room{border:2px solid #5479a9;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 9px 'DM Mono',monospace;color:#39577f;background:#eef5ff;text-align:center}
+.plan-room small{font:8px 'DM Sans',sans-serif;color:#8092aa;margin-top:5px}
+.plan-bedroom{grid-row:span 1}.plan-living{grid-row:span 2;background:#f8f4e9}.plan-kitchen{background:#e9f3e9}.plan-bath{background:#e6f5f6}
+.plan-measure{position:absolute;z-index:3;font:10px 'DM Mono',monospace;color:#42648f}.measure-top{top:10%;left:34%}.measure-side{top:47%;left:6%;writing-mode:vertical-rl}
+.plan-house-icon{position:absolute;z-index:3;right:8%;bottom:9%;width:115px;height:115px;border-radius:20px;background:#fff;color:#4779d8;display:grid;place-items:center;transform:rotate(7deg);box-shadow:0 12px 28px #274b7622}
+.plan-caption{position:absolute;z-index:3;right:7%;top:10%;font:8px 'DM Mono',monospace;letter-spacing:1px;color:#7186a5}
+.challenge-workspace,.design-decisions{padding:70px 0;border-bottom:1px solid #dfe3e8}
+.workspace-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}
+.workspace-heading h2,.challenge-rubric h2{font:750 clamp(29px,3vw,42px)/1.1 Manrope,sans-serif;letter-spacing:-1.8px;margin:12px 0 8px;color:#17213d}
+.workspace-heading p{font-size:12px;line-height:1.7;color:#748097;margin:0;max-width:550px}
+.reset-button{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid #d1d9e4;border-radius:6px;padding:10px 13px;color:#53617a;font:600 10px 'DM Sans',sans-serif;cursor:pointer}
+.planner-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:start}
+.room-catalogue,.budget-panel{border:1px solid #dce2e9;border-radius:12px;background:#fff;padding:20px}
+.planner-subhead,.budget-panel-top{display:flex;justify-content:space-between;align-items:center;font:600 9px 'DM Mono',monospace;letter-spacing:1px;color:#566782;margin-bottom:15px}
+.planner-subhead span,.budget-status{font-size:8px;color:#8a96a9}
+.room-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.room-option{display:flex;align-items:center;gap:10px;text-align:left;padding:13px 11px;border:1px solid #e0e5ec;background:#fbfcfe;border-radius:8px;cursor:pointer;color:#25334c;min-width:0;transition:border .2s,background .2s}
+.room-option:hover{border-color:#9db8eb}.room-option.is-selected{background:#eef4ff;border-color:#9cb7e8}
+.room-option-mark{width:27px;height:27px;flex-shrink:0;border-radius:7px;background:#eaf0fa;color:#4d73bd;display:grid;place-items:center}
+.room-option-copy{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.room-option-copy b{font:700 11px Manrope}.room-option-copy small{font-size:9px;color:#8a94a6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.room-option>strong{font:700 10px 'DM Mono',monospace;white-space:nowrap;color:#425b86}
+.planner-note{display:flex;gap:9px;align-items:flex-start;margin-top:17px;padding:12px;background:#f7f8f5;border-radius:7px;color:#7c8796;font-size:10px;line-height:1.6}
+.planner-note svg{flex-shrink:0;color:#718bb8}
+.budget-panel{background:#17233a;color:#f7f9fd;border-color:#17233a;position:sticky;top:95px}
+.budget-panel-top{color:#dce7fa}.budget-status{color:#c8ef91}
+.design-name-label{display:block;font-size:9px;color:#aab8ce;margin-bottom:6px}
+.budget-panel input{width:100%;border:1px solid #43516a;background:#202e48;border-radius:6px;color:#fff;padding:11px 12px;font:600 12px 'DM Sans',sans-serif;outline:none}
+.budget-total-label{font:9px 'DM Mono',monospace;letter-spacing:1px;color:#aab8ce;margin-top:24px}
+.budget-total{font:800 39px Manrope;letter-spacing:-2px;margin:5px 0 13px;color:#d7f78c}
+.budget-total.over{color:#ffad9e}
+.budget-track{height:9px;background:#3a4962;border-radius:20px;overflow:hidden}.budget-track span{display:block;height:100%;border-radius:20px;background:#c9ef79;transition:width .25s}
+.budget-figures{display:flex;justify-content:space-between;color:#93a2ba;font:9px 'DM Mono',monospace;margin-top:7px}
+.budget-figures b{color:#dfe8f5;font-weight:500}
+.budget-remaining{display:flex;justify-content:space-between;border-top:1px solid #3b4961;border-bottom:1px solid #3b4961;padding:13px 0;margin:16px 0;font-size:10px;color:#b8c4d6}
+.budget-remaining b{color:#fff;font:700 11px 'DM Mono',monospace}
+.selected-summary>b{font:9px 'DM Mono',monospace;letter-spacing:1px;color:#aab8ce;display:block;margin-bottom:10px}
+.selected-summary>div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #34435a;font-size:10px;color:#dfe7f3}
+.selected-summary>div strong{font:10px 'DM Mono',monospace;color:#cfe9a1}
+.selected-summary p{font-size:10px;color:#aab8ce}
+.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0}
+.decision-card{display:flex;gap:12px;align-items:flex-start;border:1px solid #dce2e9;background:#fff;border-radius:9px;padding:17px;cursor:pointer}
+.decision-card input{position:absolute;opacity:0;pointer-events:none}
+.decision-check{width:23px;height:23px;flex-shrink:0;border:1px solid #cbd5e2;border-radius:6px;display:grid;place-items:center;color:#fff}
+.decision-active{border-color:#91ade1;background:#f0f5ff}.decision-active .decision-check{background:#416fe1;border-color:#416fe1}
+.decision-card b,.decision-card small{display:block}.decision-card b{font:700 12px Manrope;color:#273650;margin-bottom:5px}.decision-card small{font-size:10px;line-height:1.6;color:#77849a}
+.explanation-label{display:block;font:700 11px Manrope;color:#2b3a55;margin-bottom:8px}
+.explanation-label span{font:400 10px 'DM Sans',sans-serif;color:#8490a2}
+.design-decisions textarea{display:block;width:100%;border:1px solid #d7dfe8;border-radius:8px;padding:14px;background:#fff;color:#24334c;font:12px/1.7 'DM Sans',sans-serif;resize:vertical;outline:none}
+.design-decisions textarea:focus,.budget-panel input:focus{border-color:#7799dd;box-shadow:0 0 0 3px #4779d81a}
+.submit-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:18px}
+.submit-row p{font-size:9px;line-height:1.6;color:#8590a1;max-width:440px;margin:0}
+.challenge-submit{border:0;cursor:pointer;background:#416fe1;color:white}
+.challenge-submit:hover{background:#315dc8}
+.challenge-results{display:grid;grid-template-columns:.7fr 1.3fr;gap:20px;background:#eaf1ff;border:1px solid #ccdaf4;border-radius:12px;padding:24px;margin-top:28px}
+.result-score{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.result-score>span{font:9px 'DM Mono',monospace;letter-spacing:1px;color:#5b74a1}
+.result-score>strong{font:800 64px Manrope;letter-spacing:-4px;color:#315fc8;margin:5px 0}
+.result-score>strong small{font:600 19px Manrope;color:#8a9abb;letter-spacing:0}
+.result-score>b{font:700 13px Manrope;color:#273b60}
+.result-breakdown h3{font:700 15px Manrope;color:#273b60;margin:0 0 12px}
+.result-breakdown>div{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #d3def0;font-size:10px;color:#566985}
+.result-breakdown>div b{font:700 10px 'DM Mono',monospace;color:#315fc8;white-space:nowrap}
+.result-breakdown>p{font-size:10px;line-height:1.7;color:#667895;margin:13px 0}
+.challenge-rubric{padding:70px 0;border-bottom:1px solid #dfe3e8}
+.rubric-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:25px}
+.rubric-grid>div{background:#fff;border:1px solid #e0e5eb;border-radius:8px;padding:16px;min-height:130px}
+.rubric-grid b{display:block;font:800 22px Manrope;color:#416fe1;margin-bottom:15px}
+.rubric-grid strong{display:block;font:700 11px Manrope;color:#293750;margin-bottom:6px}
+.rubric-grid p{font-size:9px;line-height:1.6;color:#7e899b;margin:0}
+.challenge-footer-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:60px 0 0}
+.challenge-footer-cta h2{font:750 clamp(30px,4vw,48px)/1.05 Manrope;letter-spacing:-2px;margin:12px 0 0}
+.live-challenge-card{display:grid;grid-template-columns:.65fr 1.35fr;gap:25px;background:#edf3ff;border:1px solid #d5e2f6;border-radius:10px;padding:18px;margin:25px 0 35px;align-items:center}
+.live-challenge-art{height:190px;background:#dce9ff;border-radius:7px;position:relative;overflow:hidden;padding:16px;color:#365b9b}
+.live-challenge-art>span{font:8px 'DM Mono',monospace;letter-spacing:1px}
+.live-challenge-art>strong{display:block;font:800 42px Manrope;letter-spacing:-2px;margin-top:28px}
+.live-challenge-art>small{font:8px 'DM Mono',monospace;letter-spacing:1px}
+.live-house-lines{position:absolute;right:16px;bottom:-13px;font:115px Georgia;color:#83a8e5;opacity:.7}
+.live-challenge-copy h3{font:750 25px Manrope;letter-spacing:-1px;margin:8px 0;color:#1d2c48}
+.live-challenge-copy p{font-size:11px;line-height:1.8;color:#687994;max-width:600px;margin:0 0 12px}
+.live-challenge-meta{display:flex;gap:14px;font:8px 'DM Mono',monospace;letter-spacing:1px;color:#7186a7;margin-bottom:14px}
+@media(max-width:850px){.dream-challenge{padding:0 5% 60px}.challenge-intro{grid-template-columns:1fr;padding:55px 0;gap:30px}.challenge-illustration{height:300px}.planner-layout{grid-template-columns:1fr}.budget-panel{position:static}.rubric-grid{grid-template-columns:repeat(3,1fr)}.live-challenge-card{grid-template-columns:1fr 1.5fr}}
+@media(max-width:600px){.challenge-topline{font-size:7px}.challenge-intro h1{font-size:54px;letter-spacing:-3px}.challenge-intro p{font-size:12px}.challenge-meta{font-size:7px;gap:7px}.challenge-illustration{height:250px}.mini-floorplan{left:10%;width:62%;height:66%}.plan-house-icon{width:75px;height:75px;right:5%}.plan-house-icon svg{width:58px}.workspace-heading{align-items:flex-start;flex-direction:column}.workspace-heading h2,.challenge-rubric h2{font-size:30px}.room-options{grid-template-columns:1fr}.room-catalogue,.budget-panel{padding:15px}.decision-grid{grid-template-columns:1fr}.submit-row{align-items:stretch;flex-direction:column}.challenge-results{grid-template-columns:1fr}.rubric-grid{grid-template-columns:1fr 1fr}.challenge-footer-cta{align-items:flex-start;flex-direction:column}.live-challenge-card{grid-template-columns:1fr}.live-challenge-art{height:150px}.live-challenge-copy h3{font-size:22px}}
