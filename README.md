@@ -104,3 +104,16 @@ The Architecture challenge now supports:
 - Three-dimensional interactive preview using Three.js with orbit and zoom controls, room walls and placed furnishing volumes.
 
 Important limitations: this is a learning prototype, not CAD/BIM software. The 3D preview is a generated conceptual model; it does not yet model accurate wall openings, structural systems, stairs, services, code compliance or construction-ready details. The price list and construction rates are illustrative and should be calibrated by region and specification before being presented as real quotations. Projects are not yet saved to user accounts.
+
+
+## Architecture Studio V3
+
+New features:
+- Wall-mounted doors and windows can be attached to a selected external wall or a room's north/east/south/west wall. Select an opening in the plan to adjust its width and position.
+- The 3D preview reflects wall openings, wall height, roof style (flat, pitched or open cutaway), material palette and stairs when multiple floors are planned.
+- Recognisable coloured 3D furniture silhouettes: sofa with cushions/arms, beds with pillows/headboards, dining table and chairs, kitchen counters, wardrobes, bathroom fixtures and more.
+- Expanded construction quantity estimator for indicative bricks, cement, reinforcement steel, sand, aggregate, tiles, paint and labour allowances.
+- Seven Architecture design briefs: dream house, tiny home, climate-smart home, accessible multigenerational home, courtyard home, neighbourhood café and compact apartment renovation.
+- Challenge hub at `/architecture/challenges`; each brief opens its own studio route.
+
+Estimator note: quantities and prices are simplified educational assumptions. The current model does not calculate foundations, columns, beams, internal wall take-offs, lintels, MEP services, taxes or local site conditions. It is not a construction-ready bill of quantities. Door/window editing is supported on the outer perimeter and room perimeter walls; complex wall junctions, door swings, sliding tracks and code validation remain future work. The 3D scene is a conceptual model rather than a photorealistic or BIM-grade model. Projects are currently held in client state and are not persisted to accounts.

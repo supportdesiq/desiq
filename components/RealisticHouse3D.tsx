@@ -2,66 +2,94 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
-export type ModelRoom = { id:number; name:string; x:number; y:number; w:number; h:number; kind:string };
-export type ModelItem = { id:number; name:string; x:number; y:number; w:number; h:number; kind:string; color:string };
-export default function RealisticHouse3D({length,width,rooms,items}:{length:number;width:number;rooms:ModelRoom[];items:ModelItem[]}){
+export type ModelRoom={id:number;name:string;x:number;y:number;w:number;h:number;kind:string};
+export type ModelItem={id:number;name:string;x:number;y:number;w:number;h:number;kind:string;color:string};
+export type ModelOpening={id:number;kind:"door"|"window";wall:string;offset:number;width:number};
+export default function RealisticHouse3D({length,width,rooms,items,openings=[],wallHeight=2.8,roof="flat",material="warm",showStairs=false}:{length:number;width:number;rooms:ModelRoom[];items:ModelItem[];openings?:ModelOpening[];wallHeight?:number;roof?:string;material?:string;showStairs?:boolean}){
  const host=useRef<HTMLDivElement>(null);
  useEffect(()=>{
   const el=host.current;if(!el)return;
-  const scene=new THREE.Scene();scene.background=new THREE.Color("#e9eff7");
-  scene.fog=new THREE.Fog("#e9eff7",25,55);
-  const camera=new THREE.PerspectiveCamera(42,el.clientWidth/el.clientHeight,.1,100);
-  camera.position.set(length*1.35,width*1.45,Math.max(length,width)*1.35);
-  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.setSize(el.clientWidth,el.clientHeight);
-  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-  renderer.outputColorSpace=THREE.SRGBColorSpace;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
-  el.appendChild(renderer.domElement);
-  scene.add(new THREE.HemisphereLight(0xffffff,0x8b9ab0,2));
-  const sun=new THREE.DirectionalLight(0xffffff,2.4);sun.position.set(-length, width*1.8, length);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
-  const ground=new THREE.Mesh(new THREE.PlaneGeometry(length+10,width+10),new THREE.MeshStandardMaterial({color:"#dce4ee",roughness:1}));
-  ground.rotation.x=-Math.PI/2;ground.position.set(length/2,-.16,width/2);ground.receiveShadow=true;scene.add(ground);
-  const floor=new THREE.Mesh(new THREE.BoxGeometry(length,.18,width),new THREE.MeshStandardMaterial({color:"#d5c9b7",roughness:.9}));
-  floor.position.set(length/2,0,width/2);floor.receiveShadow=true;floor.castShadow=true;scene.add(floor);
-  const wallMat=new THREE.MeshStandardMaterial({color:"#f4f1e9",roughness:.82});
-  const edgeMat=new THREE.MeshStandardMaterial({color:"#c8d2df",roughness:.9});
-  const wallH=2.75, wallT=.14;
-  function wall(x:number,z:number,w:number,d:number,y=wallH/2,mat=wallMat){
-   const m=new THREE.Mesh(new THREE.BoxGeometry(w,wallH,d),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;scene.add(m);
-  }
-  // Outer perimeter walls, intentionally kept low so the interior remains visible.
-  wall(length/2,0,length,wallT);wall(length/2,width,length,wallT);
-  wall(0,width/2,wallT,width);wall(length,width/2,wallT,width);
-  // Interior room partitions are rendered as raised wall segments around each room.
+  const scene=new THREE.Scene();scene.background=new THREE.Color("#e8edf4");scene.fog=new THREE.Fog("#e8edf4",35,75);
+  const camera=new THREE.PerspectiveCamera(38,el.clientWidth/el.clientHeight,.1,150);camera.position.set(length*1.35,width*1.5,Math.max(length,width)*1.55);
+  const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));renderer.setSize(el.clientWidth,el.clientHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;el.appendChild(renderer.domElement);
+  scene.add(new THREE.HemisphereLight(0xfff7e9,0x7789a2,2.1));
+  const sun=new THREE.DirectionalLight(0xffe5bf,3.1);sun.position.set(-length,width*1.7,length);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
+  const fill=new THREE.PointLight(0xffffff,.45,50);fill.position.set(length/2,wallHeight+5,width/2);scene.add(fill);
+  const mat=(color:string,roughness=.78)=>new THREE.MeshStandardMaterial({color,roughness});
+  const floorMat=mat(material==="dark"?"#827c73":material==="cool"?"#b7c5ce":"#d5c8b5");
+  const ground=new THREE.Mesh(new THREE.PlaneGeometry(length+12,width+12),mat("#dce3eb",1));ground.rotation.x=-Math.PI/2;ground.position.set(length/2,-.2,width/2);ground.receiveShadow=true;scene.add(ground);
+  const base=new THREE.Mesh(new THREE.BoxGeometry(length,.2,width),floorMat);base.position.set(length/2,0,width/2);base.receiveShadow=true;scene.add(base);
+  const wallColor=material==="dark"?"#d7d0c5":material==="cool"?"#e7f0f2":"#f4f0e7";const wallMat=mat(wallColor);const trim=mat("#b8a995");const glass= new THREE.MeshPhysicalMaterial({color:"#8fc8e5",metalness:.05,roughness:.12,transparent:true,opacity:.78});
+  const wallT=.16;
+  function box(w:number,h:number,d:number,x:number,y:number,z:number,m:THREE.Material,cast=true){const o=new THREE.Mesh(new THREE.BoxGeometry(Math.max(.03,w),Math.max(.03,h),Math.max(.03,d)),m);o.position.set(x,y,z);o.castShadow=cast;o.receiveShadow=true;scene.add(o);return o;}
+  // Perimeter walls are split where openings are requested.
+  const perimeter=[{side:"North",x:length/2,z:0,w:length,h:wallT,axis:"x"},{side:"South",x:length/2,z:width,w:length,h:wallT,axis:"x"},{side:"West",x:0,z:width/2,w:wallT,h:width,axis:"z"},{side:"East",x:length,z:width/2,w:wallT,h:width,axis:"z"}];
+  perimeter.forEach(p=>{
+   const opening=openings.find(o=>o.wall===`Outer ${p.side}`);const span=p.axis==="x"?length:width;
+   if(!opening){box(p.w,wallHeight,p.h,p.x,wallHeight/2,p.z,wallMat);return;}
+   const start=Math.max(.3,Math.min(span-opening.width-.3,opening.offset));
+   const a=start,b=span-start-opening.width;
+   if(a>.05){if(p.axis==="x")box(a,wallHeight,wallT,a/2,wallHeight/2,p.z,wallMat);else box(wallT,wallHeight,a,p.x,wallHeight/2,a/2,wallMat);}
+   if(b>.05){if(p.axis==="x")box(b,wallHeight,wallT,start+opening.width+b/2,wallHeight/2,p.z,wallMat);else box(wallT,wallHeight,b,p.x,wallHeight/2,start+opening.width+b/2,wallMat);}
+   if(opening.kind==="window"){const sill=.85,head=2.1;box(opening.width,sill,wallT,p.axis==="x"?start+opening.width/2:p.x,sill/2,p.axis==="x"?p.z:start+opening.width/2,wallMat);box(opening.width,Math.max(.1,wallHeight-head),wallT,p.axis==="x"?start+opening.width/2:(p.x),head+(wallHeight-head)/2,p.axis==="x"?p.z:start+opening.width/2,wallMat);box(opening.width,1.15,.035,p.axis==="x"?start+opening.width/2:p.x,1.48,p.axis==="x"?p.z:start+opening.width/2,glass,false);}
+   else {box(opening.width,wallHeight-2.1,wallT,p.axis==="x"?start+opening.width/2:p.x,2.1+(wallHeight-2.1)/2,p.axis==="x"?p.z:start+opening.width/2,wallMat);const doorMat=mat("#9a704f",.6);if(p.axis==="x"){box(opening.width-.08,2.02,.055,start+opening.width/2,1.02,p.z+.035,doorMat);const knob=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),mat("#c8a45c",.3));knob.position.set(start+opening.width-.16,1.02,p.z+.08);scene.add(knob);}else{box(.055,2.02,opening.width-.08,p.x+.035,1.02,start+opening.width/2,doorMat);const knob=new THREE.Mesh(new THREE.SphereGeometry(.045,12,12),mat("#c8a45c",.3));knob.position.set(p.x+.08,1.02,start+opening.width-.16);scene.add(knob);}}
+  });
+  // Room partitions, with warm skirting and subtle room rugs.
   rooms.forEach(r=>{
-   const x=r.x,z=r.y,w=r.w,d=r.h;
-   wall(x+w/2,z,w,wallT,wallH/2,edgeMat);
-   wall(x+w/2,z+d,w,wallT,wallH/2,edgeMat);
-   wall(x,z+d/2,wallT,d,wallH/2,edgeMat);
-   wall(x+w,z+d/2,wallT,d,wallH/2,edgeMat);
-   const mat=new THREE.MeshStandardMaterial({color:"#dce7f6",roughness:.92});
-   const rug=new THREE.Mesh(new THREE.BoxGeometry(Math.max(.6,w*.62),.025,Math.max(.6,d*.62)),mat);
-   rug.position.set(x+w/2,.105,z+d/2);rug.receiveShadow=true;scene.add(rug);
+   const c=mat("#e4eaf0");
+   const buildPartition=(side:"North"|"South"|"East"|"West")=>{
+    const horizontal=side==="North"||side==="South";const span=horizontal?r.w:r.h;
+    const op=openings.find(o=>o.wall===`Room ${r.id} ${side}`);
+    const wallX=side==="West"?r.x:side==="East"?r.x+r.w:0;
+    const wallZ=side==="North"?r.y:side==="South"?r.y+r.h:0;
+    const segment=(from:number,to:number)=>{const len=Math.max(0,to-from);if(len<.04)return;if(horizontal)box(len,wallHeight,wallT,(r.x+from+to)/2,wallHeight/2,wallZ,c);else box(wallT,wallHeight,len,wallX,wallHeight/2,r.y+(from+to)/2,c);};
+    if(!op){segment(0,span);return;}
+    const start=Math.max(.1,Math.min(span-op.width-.1,op.offset)),end=start+op.width;
+    segment(0,start);segment(end,span);
+    if(op.kind==="window"){
+     const sill=.85,head=2.1;
+     if(horizontal){box(op.width,sill,wallT,r.x+start+op.width/2,sill/2,wallZ,c);box(op.width,Math.max(.1,wallHeight-head),wallT,r.x+start+op.width/2,head+(wallHeight-head)/2,wallZ,c);box(op.width,1.15,.035,r.x+start+op.width/2,1.48,wallZ,glass,false);}
+     else{box(wallT,sill,op.width,wallX,sill/2,r.y+start+op.width/2,c);box(wallT,Math.max(.1,wallHeight-head),op.width,wallX,head+(wallHeight-head)/2,r.y+start+op.width/2,c);box(.035,1.15,op.width,wallX,1.48,r.y+start+op.width/2,glass,false);}
+    }else{
+     if(horizontal){box(op.width,wallHeight-2.1,wallT,r.x+start+op.width/2,2.1+(wallHeight-2.1)/2,wallZ,c);box(.07,2.05,.08,r.x+start+op.width/2,1.02,wallZ+.03,trim);}
+     else{box(wallT,wallHeight-2.1,op.width,wallX,2.1+(wallHeight-2.1)/2,r.y+start+op.width/2,c);const doorMat=mat("#9a704f",.6);box(.055,2.02,op.width-.08,wallX+.035,1.02,r.y+start+op.width/2,doorMat);const knob=new THREE.Mesh(new THREE.SphereGeometry(.04,12,12),mat("#c8a45c",.3));knob.position.set(wallX+.08,1.02,r.y+start+op.width-.16);scene.add(knob);}
+    }
+   };
+   (["North","South","West","East"] as const).forEach(buildPartition);
+   const rug=mat(r.kind==="bedroom"?"#d9c4b8":r.kind==="living"?"#c9d9df":"#d8d2bd");box(Math.max(.7,r.w*.7),.025,Math.max(.7,r.h*.68),r.x+r.w/2,.12,r.y+r.h/2,rug,false);
   });
-  // Catalogue objects are represented as scaled furniture/fixture volumes.
+  // Distinct furniture silhouettes, coloured upholstery and recognisable forms.
   items.forEach(it=>{
-   const material=new THREE.MeshStandardMaterial({color:it.color,roughness:.72});
-   const body=new THREE.Mesh(new THREE.BoxGeometry(it.w,.65,it.h),material);
-   body.position.set(it.x+it.w/2,.48,it.y+it.h/2);body.castShadow=true;body.receiveShadow=true;scene.add(body);
-   const top=new THREE.Mesh(new THREE.BoxGeometry(it.w+.03,.06,it.h+.03),new THREE.MeshStandardMaterial({color:"#f5f1e8",roughness:.55}));
-   top.position.set(it.x+it.w/2,.83,it.y+it.h/2);top.castShadow=true;scene.add(top);
+   const x=it.x,z=it.y,w=it.w,d=it.h,k=it.kind;const upholstery=mat(it.color,.65),wood=mat("#8b684d"),white=mat("#eeeae2"),dark=mat("#465363"),metal=mat("#89949d",.35);
+   const add=(bw:number,bh:number,bd:number,bx:number,by:number,bz:number,m:THREE.Material)=>box(bw,bh,bd,bx,by,bz,m);
+   if(k==="sofa"){
+    add(w*.86,.42,d*.48,x+w/2,.35,z+d*.58,upholstery);add(w*.86,.55,.18,x+w/2,.68,z+d*.88,upholstery);add(.18,.5,d*.78,x+.09,.5,z+d*.53,upholstery);add(.18,.5,d*.78,x+w-.09,.5,z+d*.53,upholstery);
+    for(let n=0;n<3;n++)add(w*.24,.16,d*.38,x+w*(.16+n*.29),.62,z+d*.48,mat("#d9e2e8",.9));
+    for(const xx of [x+.2,x+w-.2])for(const zz of [z+.2,z+d-.2])add(.07,.18,.07,xx,.09,zz,wood);
+   }else if(k==="bed"||k==="singlebed"){
+    add(w,.22,d,x+w/2,.22,z+d/2,wood);add(w*.94,.2,d*.84,x+w/2,.42,z+d*.52,white);add(w*.38,.12,d*.22,x+w*.27,.58,z+d*.23,mat("#fffaf2"));add(w*.38,.12,d*.22,x+w*.72,.58,z+d*.23,mat("#fffaf2"));add(w,.85,.12,x+w/2,.48,z+.06,upholstery);
+    add(.12,.2,.12,x+.18,.1,z+.18,wood);add(.12,.2,.12,x+w-.18,.1,z+.18,wood);
+   }else if(k==="diningtable"||k==="desk"||k==="island"||k==="slab"||k==="wardrobe"||k==="shoe"||k==="tv"){
+    const tall=k==="wardrobe"||k==="shoe";const topY=tall?1.05:.82;add(w,tall?2:.12,d,x+w/2,tall?1:.76,z+d/2,upholstery);if(!tall){for(const xx of [x+.08,x+w-.08])for(const zz of [z+.08,z+d-.08])add(.07,.72,.07,xx,.38,zz,wood);}
+    if(k==="slab"||k==="island"){add(w,.08,d,x+w/2,topY,z+d/2,white);if(k==="slab"){add(.48,.025,.32,x+w*.65,topY+.055,z+d/2,metal);}}
+    if(k==="diningtable"){for(const side of [-1,1])for(let n=0;n<2;n++){const cx=x+w*(.25+n*.5),cz=z+d/2+side*.42;add(.42,.12,.42,cx,.48,cz,upholstery);add(.42,.45,.08,cx,.72,cz+side*.18,upholstery);for(const dx of [-.14,.14])for(const dz of [-.14,.14])add(.045,.4,.045,cx+dx,.22,cz+dz,wood);}}
+   }else if(k==="sink"||k==="vanity"){add(w,.72,d,x+w/2,.38,z+d/2,white);add(w*.65,.08,d*.65,x+w/2,.78,z+d/2,metal);add(.06,.35,.06,x+w/2,.98,z+d*.2,metal);}
+   else if(k==="toilet"){add(w*.8,.28,d*.58,x+w/2,.25,z+d*.58,white);add(w*.72,.52,d*.25,x+w/2,.42,z+d*.2,white);}
+   else if(k==="bathtub"){add(w,.48,d,x+w/2,.28,z+d/2,white);add(w*.82,.06,d*.7,x+w/2,.53,z+d/2,mat("#b7d9e8"));}
+   else if(k==="shower"){add(w,.04,d,x+w/2,.06,z+d/2,mat("#b7d9e8"));add(.04,2.1,d,x,.98,z+d/2,glass);add(w,2.1,.04,x+w/2,.98,z,glass);}
+   else if(k==="hob"){add(w,.12,d,x+w/2,.85,z+d/2,dark);for(let n=0;n<4;n++){const ring=new THREE.Mesh(new THREE.TorusGeometry(.12,.025,8,24),metal);ring.rotation.x=Math.PI/2;ring.position.set(x+w*(.25+(n%2)*.5),.93,z+d*(.3+Math.floor(n/2)*.4));scene.add(ring);}}
+   else if(k==="window"||k==="door"||k==="sliding"){add(w,.08,d,x+w/2,.04,z+d/2,glass);}
+   else {add(w,.55,d,x+w/2,.35,z+d/2,upholstery);add(w,.08,d,x+w/2,.67,z+d/2,white);}
   });
-  // Soft skirting and a few window-like glazed panels on the outer walls.
-  const glass=new THREE.MeshStandardMaterial({color:"#9dc7e5",metalness:.15,roughness:.2,transparent:true,opacity:.82});
-  const windowMesh=new THREE.Mesh(new THREE.BoxGeometry(1.25,1,.08),glass);
-  windowMesh.position.set(length*.48,1.7,wallT);scene.add(windowMesh);
-  const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(length/2,.5,width/2);controls.enableDamping=true;controls.dampingFactor=.06;controls.maxPolarAngle=Math.PI*.48;controls.minDistance=4;controls.maxDistance=45;
-  const resize=()=>{if(!el)return;camera.aspect=el.clientWidth/el.clientHeight;camera.updateProjectionMatrix();renderer.setSize(el.clientWidth,el.clientHeight);};
-  const observer=new ResizeObserver(resize);observer.observe(el);
+  // Stair flight for multi-level concepts.
+  if(showStairs){for(let i=0;i<12;i++){box(1.05,.13,.28,length*.78,.18+i*.13,width*.18+i*.28,trim);}}
+  // Optional pitched roof as two visible sloping panels; transparent enough to read the model.
+  if(roof==="flat"){const slab=mat("#aeb9c7",.8);const cap=box(length,.16,width,length/2,wallHeight+.08,width/2,slab);cap.material= new THREE.MeshStandardMaterial({color:"#aeb9c7",roughness:.8,transparent:true,opacity:.2,side:THREE.DoubleSide});}
+  if(roof==="pitched"){const roofMat=new THREE.MeshStandardMaterial({color:"#6e829a",roughness:.62,side:THREE.DoubleSide,transparent:true,opacity:.82});const left=new THREE.Mesh(new THREE.BoxGeometry(length*.56,.16,width+1),roofMat);left.position.set(length*.25,wallHeight+.55,width/2);left.rotation.z=-.24;scene.add(left);const right=new THREE.Mesh(new THREE.BoxGeometry(length*.56,.16,width+1),roofMat);right.position.set(length*.75,wallHeight+.55,width/2);right.rotation.z=.24;scene.add(right);}
+  const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(length/2,wallHeight*.35,width/2);controls.enableDamping=true;controls.dampingFactor=.065;controls.maxPolarAngle=Math.PI*.48;controls.minDistance=4;controls.maxDistance=55;
+  const resize=()=>{camera.aspect=el.clientWidth/el.clientHeight;camera.updateProjectionMatrix();renderer.setSize(el.clientWidth,el.clientHeight);};const observer=new ResizeObserver(resize);observer.observe(el);
   let frame=0;const animate=()=>{frame=requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);};animate();
   return()=>{cancelAnimationFrame(frame);observer.disconnect();controls.dispose();renderer.dispose();scene.traverse(o=>{if(o instanceof THREE.Mesh){o.geometry.dispose();const m=o.material;if(Array.isArray(m))m.forEach(x=>x.dispose());else m.dispose();}});if(el.contains(renderer.domElement))el.removeChild(renderer.domElement);};
- },[length,width,rooms,items]);
- return <div ref={host} className="real3d-canvas"><div className="real3d-hint">DRAG TO ORBIT · SCROLL TO ZOOM</div></div>;
+ },[length,width,rooms,items,openings,wallHeight,roof,material,showStairs]);
+ return <div ref={host} className="real3d-canvas"><div className="real3d-hint">DRAG TO ORBIT · SCROLL TO ZOOM · CONCEPT MODEL</div></div>;
 }
