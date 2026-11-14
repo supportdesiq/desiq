@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, Building2, Check, ChevronRight, CirclePlus, Download, FileText, FolderOpen, Plus, Save, Trash2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Building2, Check, ChevronRight, CirclePlus, Download, FileText, FolderOpen, Plus, Save, Trash2 } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 

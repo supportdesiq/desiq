@@ -273,3 +273,8 @@ Professional Studio now supports manual scale calibration and on-plan measuremen
 - Dashboard shows recent projects from the existing `professional_projects` table.
 - Existing drawing, measurement, catalogue, estimate and quotation workflow remains at `/architecture/professional`.
 - Run the updated `supabase/professional_studio.sql` once to create the RLS-protected `professional_profiles` table.
+
+
+## V6.2.1 build fix
+
+Fixes the missing ArrowRight import and skips the Vercel ESLint build phase that was failing to resolve eslint-config-next/core-web-vitals. Next.js compilation and type checks remain active.

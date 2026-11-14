@@ -87,3 +87,10 @@
 4. Sign in and open `/architecture/professional/dashboard`.
 5. Select multiple specialisations, save, refresh, and confirm they remain selected.
 6. Open the drawing & estimating studio and verify existing projects and quotations still work.
+
+
+## V6.2.1 build fix
+
+- Fixes the missing ArrowRight icon import in the Professional Studio page.
+- Configures Next.js to skip the separate ESLint build phase because the Vercel log showed an unresolved eslint-config-next/core-web-vitals module. TypeScript and Next.js compilation checks remain enabled.
+- No Supabase SQL migration is needed beyond the V6.2 migration already run.
