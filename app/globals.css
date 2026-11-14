@@ -1067,3 +1067,6 @@
 /* V6.2 unified professional dashboard shortcut */
 .pro-dashboard-link{display:inline-flex;align-items:center;gap:8px;margin:10px 0 0 14px;padding:9px 13px;border:1px solid #d8dce5;border-radius:999px;color:#26334a;font-size:12px;font-weight:700;text-decoration:none;background:#fff}
 .pro-dashboard-link:hover{border-color:#7c83ee;color:#4f46e5}
+
+/* V6.3 drawing intelligence navigation */
+.pro-dashboard-link{margin-right:8px}

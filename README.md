@@ -278,3 +278,13 @@ Professional Studio now supports manual scale calibration and on-plan measuremen
 ## V6.2.1 build fix
 
 Fixes the missing ArrowRight import and skips the Vercel ESLint build phase that was failing to resolve eslint-config-next/core-web-vitals. Next.js compilation and type checks remain active.
+
+## V6.3 — AI Drawing Intelligence (experimental foundation)
+
+- New workspace: `/architecture/professional/ai-drawing`.
+- Supported uploads: PDF (first page), JPG, PNG and ASCII DXF.
+- DXF extraction reads LINE and LWPOLYLINE entities and calculates polyline lengths / closed-polyline areas in drawing units.
+- PDF and raster image processing provides basic long horizontal/vertical line cues and an ink-density indicator. These are not semantic room detections.
+- Results are editable and exportable as CSV for professional review.
+- This release does not add AI model inference or automatic room/door/window/stair/ramp recognition. Do not use unverified outputs for quotations.
+- No Supabase migration is required. Existing Professional Studio and V6.2 profile schema are unchanged.

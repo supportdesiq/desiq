@@ -94,3 +94,7 @@
 - Fixes the missing ArrowRight icon import in the Professional Studio page.
 - Configures Next.js to skip the separate ESLint build phase because the Vercel log showed an unresolved eslint-config-next/core-web-vitals module. TypeScript and Next.js compilation checks remain enabled.
 - No Supabase SQL migration is needed beyond the V6.2 migration already run.
+
+## V6.3 deployment
+
+No Supabase SQL is required. Replace repository files with this ZIP's `desiq-repo` contents, commit and push, then wait for Vercel. Open `/architecture/professional/ai-drawing` and test with an image, PDF and ASCII DXF. This is a geometry-extraction prototype; verify results manually.
