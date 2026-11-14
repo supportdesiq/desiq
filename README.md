@@ -266,3 +266,10 @@ Run the complete updated `supabase/professional_studio.sql` in Supabase → SQL 
 
 Professional Studio now supports manual scale calibration and on-plan measurement for uploaded image plans (PNG/JPG/WebP) and PDF drawings. PDF preview and measurement render the first page. Calibrate by selecting two points with a known real-world distance; then use Measure line for distances or Measure room area to trace a polygon. Measurements and calibration are stored in `professional_projects.drawing_annotations` and `drawing_calibration`. Run the updated `supabase/professional_studio.sql` migration before deploying. PDF rendering uses `pdfjs-dist` and its matching worker hosted by cdnjs. This is manual tracing, not automatic CAD/BIM recognition; check all measurements against source drawings and site conditions.
 \n\n## V6.1 — Named measurements and catalogue linking\n\n- Give each on-plan measurement a room or measurement name before tracing.\n- Link area measurements to compatible area catalogue products and line measurements to running-length products.\n- Area quantities convert from m² to sq ft when the selected catalogue item uses sq ft; line quantities convert from metres to running feet when needed.\n- Existing JSON project fields are reused; no new Supabase migration is required.\n- Review product suitability, converted quantities, supplier rates and site conditions before issuing quotations.\n
+## V6.2 — Unified Professional Studio
+
+- New dashboard at `/architecture/professional/dashboard`.
+- Professionals can select multiple specialisations in one account.
+- Dashboard shows recent projects from the existing `professional_projects` table.
+- Existing drawing, measurement, catalogue, estimate and quotation workflow remains at `/architecture/professional`.
+- Run the updated `supabase/professional_studio.sql` once to create the RLS-protected `professional_profiles` table.

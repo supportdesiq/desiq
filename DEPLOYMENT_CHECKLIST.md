@@ -79,3 +79,11 @@
 - [ ] Test a PDF drawing: confirm the first page renders and can be calibrated/measured. Only page one is currently supported for on-plan measurement.
 - [ ] Confirm existing Student Studio, Professional projects, drawing storage, company details and quotations still work.
 \n\n## V6.1 deployment note\n\nNo Supabase SQL migration is required for V6.1. It reuses the existing drawing annotations and project line-item fields. Deploy the updated repository and test named measurements, catalogue linking and unit conversions.\n
+## V6.2 deployment
+
+1. Run the complete updated `supabase/professional_studio.sql` in Supabase SQL Editor. It adds `professional_profiles`; it does not delete existing project data.
+2. Replace repository files with this ZIP's `desiq-repo` contents and push to GitHub.
+3. Wait for Vercel deployment.
+4. Sign in and open `/architecture/professional/dashboard`.
+5. Select multiple specialisations, save, refresh, and confirm they remain selected.
+6. Open the drawing & estimating studio and verify existing projects and quotations still work.
