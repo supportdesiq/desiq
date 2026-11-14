@@ -126,3 +126,10 @@ No SQL required. Deploy the updated repository. Check the gap below the header o
 - [ ] Confirm existing Architecture Student Studio and Professional Studio still work.
 
 No new Vercel environment variables are required. Do not upload `.env.local`, Supabase secret keys or database passwords to GitHub.
+
+
+## IT Support route verification
+- Homepage IT Support card now links directly to `/subjects/it-support`.
+- Legacy `/subjects/it` redirects to `/subjects/it-support`.
+- IT Support Studio back link returns to `/#worlds`.
+- After deployment, verify `/subjects/it-support`, `/subjects/it-support/challenges`, and `/subjects/it-support/admin`.
