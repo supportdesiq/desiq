@@ -288,3 +288,8 @@ Fixes the missing ArrowRight import and skips the Vercel ESLint build phase that
 - Results are editable and exportable as CSV for professional review.
 - This release does not add AI model inference or automatic room/door/window/stair/ramp recognition. Do not use unverified outputs for quotations.
 - No Supabase migration is required. Existing Professional Studio and V6.2 profile schema are unchanged.
+
+
+## V6.3.1 — PDF.js TypeScript build fix
+
+Removed the unsupported `canvas` property from the PDF.js render parameters. PDF rendering continues to use the canvas context and viewport. No Supabase migration is required.

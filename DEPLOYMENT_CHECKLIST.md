@@ -98,3 +98,8 @@
 ## V6.3 deployment
 
 No Supabase SQL is required. Replace repository files with this ZIP's `desiq-repo` contents, commit and push, then wait for Vercel. Open `/architecture/professional/ai-drawing` and test with an image, PDF and ASCII DXF. This is a geometry-extraction prototype; verify results manually.
+
+
+## V6.3.1 build fix
+
+Replaces the V6.3 PDF.js render options with the supported `canvasContext` and `viewport` properties. No SQL is required.
