@@ -9,3 +9,7 @@ out
 # Local secrets and Supabase environment variables
 .env*
 !.env.example
+
+# Keep the private IT challenge answer-key seed out of Git history
+/PRIVATE_SUPABASE_SETUP/
+/02-IT-Support-Answer-Key-PRIVATE.sql

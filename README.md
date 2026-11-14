@@ -301,3 +301,39 @@ Removed the unsupported `canvas` property from the PDF.js render parameters. PDF
 - Repeated the ticker content four times and animated one-quarter of the track for a seamless continuous loop.
 - Removed hover-to-pause behavior; reduced-motion accessibility preference remains respected.
 - No database migration required.
+
+## DESIQ IT Support Studio V1
+
+New routes are available under `/subjects/it-support`. The existing IT subject overview at `/subjects/it` links into the new studio.
+
+### Features
+- 80 seeded practical IT challenges across eight categories, with three difficulty levels.
+- Challenge answers are stored in a separate table that is not readable by browser clients. The `submit_it_challenge` database function validates answers and awards XP server-side.
+- User progress, levels, streaks and badges.
+- Daily challenge schedule seeded for the next 365 days when the migration runs.
+- Private support tickets with user replies, owner responses, internal notes, status and priority management.
+- Private attachment bucket limited to image and PDF uploads up to 5 MB.
+- Skill Passport with a browser print / Save as PDF option. It is a learning activity record, not an accredited professional certification.
+
+### Setup
+1. Run `supabase/it_support_v1.sql` in the Supabase SQL Editor. It is designed to be safe to re-run and does not alter existing DESIQ tables.
+2. From the ZIP root, run `PRIVATE_SUPABASE_SETUP/02-IT-Support-Answer-Key-PRIVATE.sql` in Supabase SQL Editor. This private seed contains the answer key; keep it outside the GitHub repository and do not commit it. The browser-readable challenge table does not contain correct answers.
+3. Create or use the DESIQ owner account, then find its UUID under Supabase Authentication → Users.
+4. In Supabase SQL Editor, grant owner access with:
+
+```sql
+insert into public.it_support_admins(user_id)
+values ('YOUR_AUTH_USER_UUID')
+on conflict do nothing;
+```
+
+Replace the placeholder with the owner's actual Auth user UUID. Do not use an email address or a Supabase secret key. Only this explicitly granted account can administer support tickets.
+5. Deploy the updated repository through GitHub Desktop. Existing Supabase URL and publishable/anon key environment variables are reused; no new environment variables are required.
+
+### Security notes
+- Ticket creation and progress require a signed-in DESIQ account.
+- Ticket rows and messages are protected by Row Level Security.
+- Users can only read their own tickets and messages; internal notes are only readable by the authorised owner.
+- The admin dashboard checks the `it_support_admins` table and the database policies enforce the same restriction.
+- Challenge answer keys are stored separately from public challenge content and validated by a database function. XP cannot be set by the browser.
+- Ticket attachments are stored in a private bucket and are served using short-lived signed URLs.

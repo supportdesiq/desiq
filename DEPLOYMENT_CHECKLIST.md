@@ -108,3 +108,21 @@ Replaces the V6.3 PDF.js render options with the supported `canvasContext` and `
 ## V6.3.2 homepage update
 
 No SQL required. Deploy the updated repository. Check the gap below the header on desktop and mobile, then verify the lime ticker moves continuously and loops without stopping.
+
+## DESIQ IT Support Studio V1
+
+- [ ] Run `supabase/it_support_v1.sql` in Supabase SQL Editor.
+- [ ] Run `PRIVATE_SUPABASE_SETUP/02-IT-Support-Answer-Key-PRIVATE.sql` from the ZIP root in Supabase SQL Editor; do not copy it into or commit it to GitHub.
+- [ ] Add the DESIQ owner's Auth user UUID to `public.it_support_admins` using the SQL in README.md.
+- [ ] Copy the updated repository files and push through GitHub Desktop.
+- [ ] Confirm Vercel deployment succeeds.
+- [ ] Open `/subjects/it-support` and confirm the eight categories and 80 challenges load.
+- [ ] Sign in and complete one challenge; verify the XP result and that progress remains after refresh.
+- [ ] Open the Skill Passport and test Print / Save as PDF.
+- [ ] Submit a support ticket with an optional image attachment.
+- [ ] Confirm the user can view and reply to their own ticket.
+- [ ] Confirm the owner can open `/subjects/it-support/admin`, view the attachment, reply and update ticket status.
+- [ ] Confirm a second ordinary account cannot access the owner dashboard or another user's tickets.
+- [ ] Confirm existing Architecture Student Studio and Professional Studio still work.
+
+No new Vercel environment variables are required. Do not upload `.env.local`, Supabase secret keys or database passwords to GitHub.
