@@ -1,0 +1,15 @@
+"use client";
+import { useEffect,useState,use } from "react";
+import Link from "next/link";
+import { Award, ArrowLeft, Printer } from "lucide-react";
+import { getSupabase } from "@/lib/supabase";
+type CompletionRecord={id:string;challenge_key:string;project_name:string;score:number;completed_at:string};
+const titles:Record<string,string>={"dream-house":"Design your dream house","community-cafe":"Design a neighbourhood café","traffic-bridge":"Build a bridge for smoother traffic","community-auditorium":"Design a community auditorium","public-park":"Create a neighbourhood park","pedestrian-plaza":"Reimagine a busy street","studio-renovation":"Renovate a compact apartment"};
+export default function CertificatePage({params}:{params:Promise<{id:string}>}){
+ const {id}=use(params);
+ const [record,setRecord]=useState<CompletionRecord|null>(null);const [name,setName]=useState("DESIQ Student");const [error,setError]=useState("");
+ useEffect(()=>{let active=true;async function load(){const db=getSupabase();if(!db){setError("Certificate service is not configured.");return;}const {data:{user}}=await db.auth.getUser();if(!user){window.location.href="/account";return;}setName(user.user_metadata?.full_name||user.email||"DESIQ Student");const {data,error}=await db.from("challenge_completions").select("*").eq("id",id).eq("user_id",user.id).single();if(!active)return;if(error)setError("We couldn't find this certificate in your account.");else setRecord(data);}load();return()=>{active=false}},[id]);
+ if(error)return <main className="certificate-page"><p>{error}</p><Link href="/dashboard">Back to dashboard</Link></main>;
+ if(!record)return <main className="certificate-page"><p>Loading certificate…</p></main>;
+ return <main className="certificate-page"><div className="certificate-actions"><Link href="/dashboard"><ArrowLeft size={15}/> Dashboard</Link><button onClick={()=>window.print()}><Printer size={15}/> Print / Save as PDF</button></div><article className="certificate-sheet"><div className="certificate-brand"><span className="brand-mark">D</span> DESIQ</div><div className="certificate-rule"/><Award size={44} className="certificate-award"/><span className="eyebrow">CERTIFICATE OF COMPLETION</span><h1>Certificate<br/><em>of achievement</em></h1><p className="certificate-intro">This certificate is proudly presented to</p><h2>{name}</h2><p className="certificate-copy">for completing the DESIQ design challenge</p><h3>{record.project_name||titles[record.challenge_key]||record.challenge_key}</h3><p className="certificate-copy">and demonstrating creativity, thoughtful planning and commitment to learning by doing.</p><div className="certificate-score"><span>ASSESSMENT SCORE</span><b>{record.score}<small>/100</small></b></div><div className="certificate-bottom"><div><span>DATE COMPLETED</span><b>{new Date(record.completed_at).toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"})}</b></div><div><span>CERTIFICATE ID</span><b>{record.id.slice(0,8).toUpperCase()}</b></div><div className="certificate-signature"><b>DESIQ</b><span>DESIGN + IQ</span></div></div></article></main>;
+}

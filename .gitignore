@@ -5,3 +5,7 @@ out
 .env.local
 .DS_Store
 .vercel
+
+# Local secrets and Supabase environment variables
+.env*
+!.env.example
