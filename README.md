@@ -343,3 +343,7 @@ Replace the placeholder with the owner's actual Auth user UUID. Do not use an em
 V2 adds category learning paths with four modes: existing MCQ practice, interactive lab simulations, troubleshooting simulations, and guided learning checks. It also clarifies the IT Support offer on the IT Support landing page and the main DESIQ world card. Existing V1 tickets, Skill Passport, challenge library and owner support inbox remain in place.
 
 Run `supabase/it_support_v2.sql` after the V1 IT Support SQL migration to enable saved practical activity completions and XP awards. Interactive activities are safe simulations and do not execute commands on a learner's device.
+
+## V2.1 – Visual interactive IT labs
+
+The practical lab mode now includes a clickable visual workspace for all eight IT Support categories. Learners can hover, focus, or click highlighted hotspots to inspect component and workflow explanations, use previous/next controls, and choose modules from the hotspot list. The scene is a safe browser-only simulation and does not interact with the learner's actual device or network. No additional Supabase migration is required for this UI enhancement; V2's existing progress migration remains required.

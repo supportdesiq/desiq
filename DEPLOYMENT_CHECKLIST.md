@@ -143,3 +143,9 @@ No new Vercel environment variables are required. Do not upload `.env.local`, Su
 - [ ] Sign in as the support owner and test the Challenge Manager at the bottom of the owner console by publishing a test challenge.
 - [ ] Sign in and complete a practical activity; confirm the result is saved and XP appears in Skill Passport.
 - [ ] Confirm existing support tickets, owner inbox, daily challenge and existing MCQs still work.
+
+## V2.1 visual lab enhancement
+- [ ] In each category, open Interactive Lab and hover over, focus, and click each of the four visual hotspots.
+- [ ] Verify the detail panel changes, previous/next controls work, and hotspot list selects the same item.
+- [ ] Test at desktop and mobile widths.
+- [ ] No additional database migration is required beyond the V2 migration already supplied.
