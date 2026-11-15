@@ -133,3 +133,13 @@ No new Vercel environment variables are required. Do not upload `.env.local`, Su
 - Legacy `/subjects/it` redirects to `/subjects/it-support`.
 - IT Support Studio back link returns to `/#worlds`.
 - After deployment, verify `/subjects/it-support`, `/subjects/it-support/challenges`, and `/subjects/it-support/admin`.
+
+## IT Support V2 database update
+
+- [ ] In Supabase SQL Editor, run the complete `supabase/it_support_v2.sql` migration after the V1 migration.
+- [ ] Confirm the `it_practical_completions` table and `complete_it_practical` function were created.
+- [ ] Deploy the V2 repository update through GitHub Desktop and Vercel.
+- [ ] Test each category's four learning choices; MCQ links to the existing library, interactive labs use an ordered workflow builder, and troubleshooting / guided learning use safe decision simulations.
+- [ ] Sign in as the support owner and test the Challenge Manager at the bottom of the owner console by publishing a test challenge.
+- [ ] Sign in and complete a practical activity; confirm the result is saved and XP appears in Skill Passport.
+- [ ] Confirm existing support tickets, owner inbox, daily challenge and existing MCQs still work.

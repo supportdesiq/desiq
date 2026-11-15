@@ -337,3 +337,9 @@ Replace the placeholder with the owner's actual Auth user UUID. Do not use an em
 - The admin dashboard checks the `it_support_admins` table and the database policies enforce the same restriction.
 - Challenge answer keys are stored separately from public challenge content and validated by a database function. XP cannot be set by the browser.
 - Ticket attachments are stored in a private bucket and are served using short-lived signed URLs.
+
+## DESIQ IT Support V2
+
+V2 adds category learning paths with four modes: existing MCQ practice, interactive lab simulations, troubleshooting simulations, and guided learning checks. It also clarifies the IT Support offer on the IT Support landing page and the main DESIQ world card. Existing V1 tickets, Skill Passport, challenge library and owner support inbox remain in place.
+
+Run `supabase/it_support_v2.sql` after the V1 IT Support SQL migration to enable saved practical activity completions and XP awards. Interactive activities are safe simulations and do not execute commands on a learner's device.
