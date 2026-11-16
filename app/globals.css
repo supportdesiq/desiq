@@ -1160,3 +1160,55 @@
 @media(max-width:900px){.discovery-hero-art{min-height:0;padding:0 0 65px}.discovery-panel{max-width:680px}.hero{grid-template-columns:1fr;min-height:0;padding-top:70px}.hero-copy{padding-bottom:30px;max-width:680px}.hero-art{height:auto}}
 @media(max-width:560px){.discovery-panel{padding:18px 15px 14px}.discovery-bubbles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:16px 0}.discovery-bubble{min-height:105px;padding:10px}.discovery-bubble b{font-size:11px}.discovery-bubble small{font-size:8px}.discovery-controls>span{display:none}.discovery-result-card{grid-template-columns:22px 32px minmax(0,1fr) 28px;gap:7px;padding:9px}.result-icon{width:31px;height:31px}.result-copy small{display:none}.discovery-results h2{font-size:29px}.discovery-hero-art{padding-bottom:58px}}
 @media(prefers-reduced-motion:reduce){.discovery-bubble,.discovery-progress span{transition:none}}
+
+
+/* Discovery playground interactions — DESIQ paper, ink, sage and lime palette */
+.discovery-stage{padding:5px 0 14px}
+.discovery-stage h2{font:600 clamp(26px,3vw,35px)/1.12 Manrope,sans-serif;letter-spacing:-1.4px;margin:0 0 8px;color:#202720}
+.discovery-stage>p{font-size:11px;line-height:1.65;color:#687166;max-width:490px;margin:0}
+.discovery-orbit{height:300px;position:relative;margin:18px auto 10px;max-width:510px;border-radius:50%;background:radial-gradient(ellipse at center,#e9ede4 0,#f5f5f0 62%,transparent 63%)}
+.orbit-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:104px;height:104px;border-radius:50%;background:#273329;color:#f4f5ef;display:grid;place-content:center;text-align:center;font:700 11px/1.6 Manrope;letter-spacing:1px;box-shadow:0 0 0 9px #e4e9df}
+.orbit-node{position:absolute;width:124px;min-height:86px;border-radius:48%;border:1px solid #cfd7c9;background:#f8f8f3;color:#344034;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 7px;cursor:pointer;box-shadow:0 4px 14px #2533250b;transition:transform .2s,background .2s,border-color .2s}
+.orbit-node>span{font-size:18px;color:#77886e;min-height:21px;display:grid;place-items:center}
+.orbit-node b{font:700 10px Manrope}
+.orbit-node small{font-size:8px;color:#788174;text-align:center;line-height:1.3}
+.orbit-node:hover,.orbit-node.expanded{transform:scale(1.08);border-color:#829476;background:#edf1e8;z-index:3}
+.orbit-node.chosen{background:#e2eadb;border:2px solid #829476}
+.orbit-1{left:4%;top:7%}.orbit-2{right:4%;top:7%}.orbit-3{right:0;top:61%}.orbit-4{right:37%;bottom:-1%}.orbit-5{left:0;top:61%}.orbit-6{left:4%;top:7%}
+.orbit-6{left:37%;top:-1%}
+.discovery-selected-line{border-top:1px solid #e1e3dc;padding-top:10px;font:9px 'DM Mono',monospace;color:#778174;display:flex;justify-content:space-between;gap:10px}
+.discovery-selected-line span{font-family:'DM Sans',sans-serif;text-align:right;color:#53604f}
+.activity-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:18px 0}
+.activity-tile{position:relative;min-height:74px;border:1px solid #dfe2d9;background:#eceee7;border-radius:5px;text-align:left;padding:12px 13px 10px 48px;display:flex;flex-direction:column;justify-content:center;gap:4px;cursor:pointer;color:#273127;transition:.18s}
+.activity-tile:hover:not(:disabled){background:#e4e9de;border-color:#9eae94;transform:translateY(-2px)}
+.activity-tile.ranked{background:#e2eadb;border-color:#8c9d81;cursor:default}
+.activity-rank{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:25px;height:25px;border-radius:50%;border:1px solid #c7d0c1;display:grid;place-items:center;font:9px 'DM Mono';color:#6c7c63;background:#f8f8f3}
+.activity-tile b{font:700 11px Manrope}.activity-tile small{font-size:9px;color:#7c8578}.activity-tile>svg{position:absolute;right:11px;top:12px;color:#75866b}
+.pattern-board{margin:18px 0 10px;background:#eceee7;border:1px solid #dfe2d9;border-radius:5px;padding:15px}
+.pattern-question{font:600 12px Manrope;color:#354034;margin-bottom:12px}
+.pattern-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.pattern-tile{height:56px;background:#f8f8f3;border:1px solid #d9ded4;border-radius:4px;display:grid;place-items:center;font:22px Georgia;color:#58684f}
+.pattern-tile.missing{border:1px dashed #9ba995;background:#e3e9dd;font-size:25px}
+.pattern-answers{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
+.pattern-answers button{background:#f8f8f3;border:1px solid #d8ded3;border-radius:4px;padding:9px 12px;font:600 10px Manrope;color:#3b4738;cursor:pointer}
+.pattern-answers button:hover,.pattern-answers button.selected{background:#dfe8d7;border-color:#87977d}
+.pattern-feedback{font-size:9px;color:#788174;margin-top:10px;min-height:14px}
+.puzzle-refresh{border:0;background:none;padding:8px 0 0;color:#66755f;font-size:9px;text-decoration:underline;cursor:pointer}
+.scenario-board{margin:18px 0 10px;display:grid;grid-template-columns:1fr 1.2fr;gap:12px}
+.scenario-brief{background:#e7ebe1;border:1px solid #d6ded0;border-radius:5px;padding:16px;display:flex;flex-direction:column;gap:9px;justify-content:center}
+.scenario-brief>span{font:9px 'DM Mono';letter-spacing:1px;color:#819078}
+.scenario-brief b{font:700 14px/1.35 Manrope;color:#344032}
+.scenario-brief small{font-size:9px;color:#778174}
+.scenario-actions{display:grid;gap:6px}
+.scenario-actions button{display:grid;grid-template-columns:25px 1fr 15px;align-items:center;gap:7px;text-align:left;border:1px solid #dfe2d9;background:#eceee7;border-radius:4px;padding:9px;color:#344034;font-size:10px;cursor:pointer}
+.scenario-actions button>span{width:22px;height:22px;border:1px solid #cbd4c5;border-radius:50%;display:grid;place-items:center;font:8px 'DM Mono';color:#76856e}
+.scenario-actions button.done{background:#e0e9d9;border-color:#91a286}
+.scenario-sequence{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}
+.scenario-sequence span{background:#f0f2eb;border:1px solid #e0e4db;padding:6px 8px;border-radius:3px;font-size:8px;color:#64715e}
+.interest-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:17px 0}
+.interest-map button{min-height:94px;border:1px solid #dfe2d9;background:#eceee7;border-radius:5px;padding:10px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#354034;cursor:pointer;transition:.18s}
+.interest-map button:hover,.interest-map button.map-picked{background:#e1e9d9;border-color:#87977d;transform:translateY(-2px)}
+.interest-map button>span{font-size:18px;color:#74856c}
+.interest-map button b{font:700 9px Manrope;text-align:center}
+.interest-map button small{font-size:8px;color:#7c8578;text-align:center}
+@media(max-width:560px){.discovery-orbit{height:275px;transform:scale(.96);transform-origin:center}.orbit-node{width:105px;min-height:77px}.orbit-core{width:85px;height:85px;font-size:9px}.orbit-1{left:0;top:4%}.orbit-2{right:0;top:4%}.orbit-3{right:-2%;top:61%}.orbit-4{right:34%;bottom:-2%}.orbit-5{left:-2%;top:61%}.orbit-6{left:34%;top:-2%}.activity-board{grid-template-columns:1fr}.scenario-board{grid-template-columns:1fr}.interest-map{grid-template-columns:repeat(2,minmax(0,1fr))}.discovery-selected-line{flex-direction:column}.discovery-selected-line span{text-align:left}}
