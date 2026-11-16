@@ -1169,3 +1169,96 @@
 .spin{animation:verify-spin 1.2s linear infinite}
 @keyframes verify-spin{to{transform:rotate(360deg)}}
 @media(max-width:720px){.site-header{padding:0 4%;height:68px}.desktop-nav{display:none}.header-actions{gap:10px}.user-menu-trigger{max-width:135px}.verify-card{padding:35px 22px}}
+
+
+/* DESIQ dark-mode typography refinement — light mode remains unchanged */
+:root[data-theme="dark"] .hero-light h1,
+:root[data-theme="dark"] .hero-light h1 strong,
+:root[data-theme="dark"] .hero-light h1 span,
+:root[data-theme="dark"] .hero-light .hero-stats b,
+:root[data-theme="dark"] .hero-light .hero-bottom,
+:root[data-theme="dark"] .hero-light .hero-bottom a {
+  color: #f1f2ea;
+}
+:root[data-theme="dark"] .hero-light h1 em {
+  color: #8298ff;
+}
+:root[data-theme="dark"] .hero-light .hero-lede {
+  color: #c2c9be;
+}
+:root[data-theme="dark"] .hero-light .hero-stats,
+:root[data-theme="dark"] .hero-light .hero-stats span {
+  color: #aab3a6;
+}
+:root[data-theme="dark"] .hero-light .hero-stats > i {
+  background: #465047;
+}
+:root[data-theme="dark"] .hero-light .hero-kicker {
+  color: #9db8f4;
+}
+:root[data-theme="dark"] .hero-light .hero-kicker-mark {
+  background: #26364c;
+  color: #b4c9ff;
+}
+:root[data-theme="dark"] .hero-light .kicker-divider {
+  background: #465047;
+}
+:root[data-theme="dark"] .hero-light .button-ghost {
+  background: #e9ece4;
+  color: #20251f;
+  border-color: #e9ece4;
+}
+:root[data-theme="dark"] .hero-light .button-ghost:hover {
+  background: #d7fb70;
+  color: #20251f;
+}
+:root[data-theme="dark"] .hero-light .hero-bottom {
+  border-color: #465047;
+}
+:root[data-theme="dark"] .section-heading h2,
+:root[data-theme="dark"] .manifesto h2,
+:root[data-theme="dark"] .how-intro h2,
+:root[data-theme="dark"] .weekly-copy h2,
+:root[data-theme="dark"] .certificate-band h2,
+:root[data-theme="dark"] .audience-copy h2,
+:root[data-theme="dark"] .final-cta h2,
+:root[data-theme="dark"] .subject-section-heading h2,
+:root[data-theme="dark"] .subject-cta h2 {
+  color: #f1f2ea;
+}
+:root[data-theme="dark"] .section-heading h2 em,
+:root[data-theme="dark"] .manifesto h2 em,
+:root[data-theme="dark"] .how-intro h2 em,
+:root[data-theme="dark"] .weekly-copy h2 em,
+:root[data-theme="dark"] .certificate-band h2 em,
+:root[data-theme="dark"] .audience-copy h2 em,
+:root[data-theme="dark"] .final-cta h2 em {
+  color: #8298ff;
+}
+:root[data-theme="dark"] .section-heading h3,
+:root[data-theme="dark"] .section-heading h4,
+:root[data-theme="dark"] .world-info h3,
+:root[data-theme="dark"] .benefit-card h3,
+:root[data-theme="dark"] .price-card h3,
+:root[data-theme="dark"] .manifesto h3 {
+  color: #e8eee5;
+}
+:root[data-theme="dark"] .section-heading p,
+:root[data-theme="dark"] .world-info p,
+:root[data-theme="dark"] .benefit-card p,
+:root[data-theme="dark"] .audience-copy p,
+:root[data-theme="dark"] .weekly-copy p,
+:root[data-theme="dark"] .final-cta p {
+  color: #bdc6ba;
+}
+:root[data-theme="dark"] .world-art-center {
+  color: #ffffff;
+}
+:root[data-theme="dark"] .site-header .brand,
+:root[data-theme="dark"] .site-header .brand small {
+  color: #f1f2ea;
+}
+:root[data-theme="dark"] .site-header .brand-mark {
+  background: #e9ece4;
+  color: #20251f;
+}
