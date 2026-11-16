@@ -43,7 +43,7 @@ export default function DiscoveryGame(){
  const [complete,setComplete]=useState(false);
  const [expanded,setExpanded]=useState<string|null>(null);
  const [scoreMap,setScoreMap]=useState<Record<string,number>>({});
- const addScore=(score:Record<string,number>)=>setScoreMap(prev=>{const next={...prev};Object.entries(score).forEach(([k,v])=>next[k]=(next[k]||0)+v);return next});
+ const addScore=(score:Partial<Record<string,number>>)=>setScoreMap(prev=>{const next={...prev};Object.entries(score).forEach(([k,v])=>{if(typeof v==="number")next[k]=(next[k]||0)+v});return next});
  const toggleInterest=(id:string)=>{const node=interestNodes.find(n=>n.id===id)!;setPicked(prev=>{const exists=prev.includes(id);if(!exists)addScore(node.score);return exists?prev.filter(x=>x!==id):[...prev,id]});setExpanded(id)};
  const rankChoice=(id:string)=>{if(ranked.includes(id))return;setRanked(prev=>[...prev,id]);const opt=activityOptions.find(o=>o.id===id)!;addScore(opt.score)};
  const scenarioChoice=(id:string)=>{if(scenario.includes(id))return;setScenario(prev=>[...prev,id]);const step=scenarioSteps.find(o=>o.id===id)!;addScore(step.score)};
