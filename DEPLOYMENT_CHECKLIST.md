@@ -13,7 +13,7 @@
 ## Before accepting payments
 - [ ] Implement secure authentication and account profiles.
 - [ ] Implement server-side plan entitlements and subscription status.
-- [ ] Enforce one free class per user across all seven subjects.
+- [ ] Enforce one free class per user across all ten learning worlds.
 - [ ] Integrate and test a payment provider and webhook handling.
 - [ ] Add invoices/receipts and subscription cancellation/renewal flows.
 - [ ] Add admin tools for classes, challenges, members and certificates.

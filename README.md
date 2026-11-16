@@ -4,7 +4,7 @@ A GitHub- and Vercel-ready starter website for DESIQ, a practical-learning ecosy
 
 ## What's included
 
-- Responsive DESIQ homepage with brand story, seven learning worlds, benefits, learning cycle, weekly challenges, certificate messaging, pricing, parent/school information and contact links.
+- Responsive DESIQ homepage with brand story, ten learning worlds, benefits, learning cycle, weekly challenges, certificate messaging, pricing, parent/school information and contact links.
 - Seven subject landing pages generated from one reusable template:
   - `/subjects/architecture`
   - `/subjects/it`
@@ -18,7 +18,7 @@ A GitHub- and Vercel-ready starter website for DESIQ, a practical-learning ecosy
   - Starter: ₹0; one free class across DESIQ and free weekly challenges.
   - One subject: ₹199/month/subject.
   - All Access: ₹499/month.
-  - Premium: ₹999/year with all seven subjects, premium challenges, additional learning support, priority feature access, live workshops, exclusive competitions and certificate discounts.
+  - Premium: ₹999/year with all ten learning worlds, premium challenges, additional learning support, priority feature access, live workshops, exclusive competitions and certificate discounts.
 
 ## Run locally
 
@@ -347,3 +347,6 @@ Run `supabase/it_support_v2.sql` after the V1 IT Support SQL migration to enable
 ## V2.1 – Visual interactive IT labs
 
 The practical lab mode now includes a clickable visual workspace for all eight IT Support categories. Learners can hover, focus, or click highlighted hotspots to inspect component and workflow explanations, use previous/next controls, and choose modules from the hotspot list. The scene is a safe browser-only simulation and does not interact with the learner's actual device or network. No additional Supabase migration is required for this UI enhancement; V2's existing progress migration remains required.
+
+## Ten learning worlds
+The DESIQ homepage now presents ten learning worlds: Architecture & Design, IT Support, Computer Hardware, Coding & AI, Sustainability, Languages, Drawing & Sketching, Games & Game Design, Stitching & Embroidery, and Cooking & Food Skills. The three new worlds have introductory subject pages with learning topics, sample practical challenges and tool/experience outlines. These are starter outlines, not a claim that full instructor-led courses or dedicated interactive challenge engines are already live.
