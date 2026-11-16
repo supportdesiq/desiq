@@ -1594,3 +1594,61 @@
 :root[data-theme="dark"] .price-quarterly li{color:#d0d8cd}
 @media(max-width:1000px){.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.hero-kicker-copy small{font-size:10px;line-height:1.45;max-width:280px}.pricing-grid{grid-template-columns:1fr 1fr}}
+
+/* DESIQ homepage: clearer platform story, challenges and recognition. */
+.desiq-offer-section{padding:100px 8.3%;background:#f1f2eb;color:#171b19}
+.desiq-offer-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:8%;align-items:end;margin-bottom:42px}
+.desiq-offer-heading h2,.challenge-recognition-top h2{font:500 clamp(42px,5vw,66px)/.98 Manrope,Arial,sans-serif;letter-spacing:-3.8px;margin:13px 0 0}
+.desiq-offer-heading h2 em,.challenge-recognition-top h2 em{font-family:Georgia,serif;font-weight:400;color:#7e8d79}
+.desiq-offer-heading>p,.challenge-recognition-top>p{font-size:13px;line-height:1.9;color:#667064;max-width:490px;margin:0 0 5px}
+.desiq-offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.desiq-offer-card{position:relative;min-height:290px;padding:25px 25px 22px;border:1px solid #d9ded3;background:#f8f9f3;display:flex;flex-direction:column;align-items:flex-start}
+.desiq-offer-card>span,.challenge-board-top,.challenge-board-bottom{font:9px 'DM Mono',monospace;letter-spacing:1.2px;color:#7d8979}
+.desiq-offer-card .offer-symbol{width:53px;height:53px;display:grid;place-items:center;border-radius:50%;font:32px Georgia;margin:28px 0 18px;background:#e6eddf;color:#526a50}
+.offer-practice .offer-symbol{background:#e9e9fa;color:#5669bb}.offer-create .offer-symbol{background:#f8e8dc;color:#b77d50}
+.desiq-offer-card h3{font:650 20px Manrope;margin:0 0 10px;letter-spacing:-.6px}
+.desiq-offer-card p{font-size:11px;line-height:1.8;color:#70796e;max-width:390px;margin:0 0 20px}
+.desiq-offer-card a{display:flex;align-items:center;gap:8px;margin-top:auto;font-size:10px;font-weight:700;color:#26372a;border-bottom:1px solid #aeb9a8;padding-bottom:5px}
+.desiq-offer-foot{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #d5dbd0;margin-top:28px;padding-top:15px;font:8px 'DM Mono',monospace;letter-spacing:1px;color:#849080}
+.challenge-recognition-section{padding:100px 8.3%;background:#e5e9df;color:#171b19}
+.challenge-recognition-top{display:grid;grid-template-columns:1.1fr .9fr;gap:8%;align-items:end;margin-bottom:42px}
+.challenge-recognition-body{display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:stretch}
+.challenge-board{background:#202a23;color:#f2f4ec;padding:27px 30px;min-height:390px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.challenge-board:after{content:'✳';position:absolute;right:-20px;top:40px;font-size:190px;color:rgba(210,245,120,.08);line-height:1;pointer-events:none}
+.challenge-board-top,.challenge-board-bottom{display:flex;justify-content:space-between;gap:12px;color:#aab7a5;position:relative;z-index:1}
+.challenge-live-mark{color:#d8f878}
+.challenge-board-main{display:grid;grid-template-columns:100px 1fr;gap:24px;align-items:center;position:relative;z-index:1}
+.challenge-board-number{font:italic 78px Georgia;color:#d8f878;line-height:1}
+.challenge-board-main small{font:9px 'DM Mono';letter-spacing:1.2px;color:#a9b9a4}
+.challenge-board-main h3{font:600 clamp(29px,3vw,42px)/1.05 Manrope;margin:13px 0;letter-spacing:-1.8px}
+.challenge-board-main h3 em{font:italic 400 Georgia;color:#d8f878}
+.challenge-board-main p{font-size:11px;line-height:1.8;color:#c0cabe;max-width:310px}
+.challenge-board-bottom{border-top:1px solid #455044;padding-top:14px}
+.recognition-copy{display:flex;flex-direction:column;justify-content:space-between;padding:5px 0}
+.recognition-steps{display:grid;gap:0}
+.recognition-steps>div{display:grid;grid-template-columns:45px 1fr;gap:13px;padding:14px 0;border-bottom:1px solid #cbd2c5}
+.recognition-steps>div:first-child{padding-top:4px}
+.recognition-steps>div>b{font:10px 'DM Mono';color:#84947b;padding-top:3px}
+.recognition-steps strong{display:block;font:650 14px Manrope;margin-bottom:4px}
+.recognition-steps small{display:block;font-size:10px;line-height:1.65;color:#687366}
+.recognition-note{display:flex;gap:15px;align-items:center;background:#f4f5ef;border:1px solid #d3d9ce;padding:17px;margin-top:23px}
+.recognition-seal{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;background:#e2edcf;color:#71865d;font-size:22px}
+.recognition-note b{font:650 12px Manrope}.recognition-note p{font-size:9px;line-height:1.6;color:#737d70;margin-top:5px}
+/* Five pricing cards share one desktop row; collapse gracefully on smaller screens. */
+.pricing-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:stretch}
+.price-card{min-width:0;padding:20px 16px 17px;min-height:390px}
+.price-name{font-size:16px}.price-desc{min-height:42px;font-size:10px;line-height:1.55}.price-amount{font-size:31px;white-space:nowrap}.price-amount small{font-size:9px;white-space:normal}.price-card ul{gap:11px}.price-card li{font-size:9px;line-height:1.45;align-items:flex-start}.price-card li svg{flex:none;width:12px}.price-card .button{font-size:9px;padding:0 8px;white-space:normal;text-align:center;min-height:38px}
+:root[data-theme="dark"] .desiq-offer-section{background:#171d19;color:#edf0e9}
+:root[data-theme="dark"] .desiq-offer-heading>p,:root[data-theme="dark"] .challenge-recognition-top>p{color:#c0cabe}
+:root[data-theme="dark"] .desiq-offer-heading h2 em,:root[data-theme="dark"] .challenge-recognition-top h2 em{color:#c0d49e}
+:root[data-theme="dark"] .desiq-offer-card{background:#222923;border-color:#39453b;color:#edf0e9}
+:root[data-theme="dark"] .desiq-offer-card p,:root[data-theme="dark"] .recognition-steps small{color:#c0cabe}
+:root[data-theme="dark"] .desiq-offer-card a{color:#e1ebdc;border-color:#657562}
+:root[data-theme="dark"] .desiq-offer-foot{border-color:#39453b;color:#aab7a5}
+:root[data-theme="dark"] .challenge-recognition-section{background:#202820;color:#edf0e9}
+:root[data-theme="dark"] .recognition-steps>div{border-color:#465247}
+:root[data-theme="dark"] .recognition-note{background:#29342b;border-color:#465247}
+:root[data-theme="dark"] .recognition-note p{color:#c0cabe}
+@media(max-width:1150px){.pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.price-card{min-height:360px}}
+@media(max-width:850px){.desiq-offer-section,.challenge-recognition-section{padding:75px 6%}.desiq-offer-heading,.challenge-recognition-top{grid-template-columns:1fr;gap:20px}.challenge-recognition-body{grid-template-columns:1fr}.challenge-board{min-height:330px}}
+@media(max-width:700px){.desiq-offer-grid{grid-template-columns:1fr}.desiq-offer-card{min-height:245px;padding:21px}.desiq-offer-heading h2,.challenge-recognition-top h2{font-size:43px;letter-spacing:-2.5px}.desiq-offer-foot{font-size:7px;flex-direction:column;gap:8px}.challenge-board{padding:22px 18px;min-height:300px}.challenge-board-main{grid-template-columns:55px 1fr;gap:12px}.challenge-board-number{font-size:54px}.challenge-board-main h3{font-size:30px}.challenge-board-bottom{font-size:7px}.recognition-note{align-items:flex-start}.pricing-grid{grid-template-columns:1fr 1fr;gap:9px}.price-card{padding:17px 12px;min-height:365px}.price-amount{font-size:27px}}
