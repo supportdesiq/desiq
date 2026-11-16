@@ -1,0 +1,2 @@
+import ITShell from "@/components/it-support/ITShell";import TicketCenter from "@/components/it-support/TicketCenter";
+export default function TicketsPage(){return <ITShell active="tickets"><section className="it-section it-ticket-page"><div className="it-inner-hero"><span className="it-eyebrow">DESIQ / CUSTOMER SUPPORT</span><h1>Support <em>desk.</em></h1><p>Submit a request and follow your conversation with the DESIQ support team. Sign in is required to keep your requests private.</p></div><TicketCenter/></section></ITShell>}

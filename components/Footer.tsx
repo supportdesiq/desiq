@@ -9,8 +9,8 @@ export default function Footer(){
     <Link href="/" className="brand footer-brand"><span className="brand-mark">D</span><span>DESIQ<small>DESIGN + IQ</small></span></Link>
     <p>Learn by doing. Build skills you can show.</p>
    </div>
-   <div><b>Explore</b>{subjects.map(s=><Link key={s.slug} href={`/subjects/${s.slug}`}>{s.short}</Link>)}</div>
-   <div><b>DESIQ</b><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="mailto:supportdesiq@gmail.com?subject=School%20partnership">School partnerships</a><a href="mailto:supportdesiq@gmail.com">Contact us</a></div>
+   <div><b>Explore</b>{subjects.map(s=><Link key={s.slug} href={s.slug === "it" ? "/subjects/it-support" : `/subjects/${s.slug}`}>{s.short}</Link>)}</div>
+   <div><b>DESIQ</b><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="mailto:supportdesiq@gmail.com?subject=School%20partnership">School partnerships</a><a href="mailto:supportdesiq@gmail.com">Contact us</a><Link href="/subjects/it-support/tickets">IT Support Desk</Link></div>
    <div className="footer-support-column">
     <b>NEED HELP?</b>
     <p>Questions about classes, plans or partnerships? Talk to the DESIQ support team.</p>

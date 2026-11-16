@@ -14,7 +14,7 @@ export default function AccountPage(){
   const supabase=getSupabase(); if(!supabase){setError("Student accounts are not connected yet. Add the Supabase project URL and anon key to your Vercel environment variables, then redeploy.");setBusy(false);return;}
   try{
    if(mode==="signup"){
-    const {data,error}=await supabase.auth.signUp({email,password,options:{data:{full_name:name}}});
+    const {data,error}=await supabase.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:`${window.location.origin}/auth/callback`}});
     if(error)throw error;
     if(data.session){window.location.href="/dashboard";return;}
     setMessage("Your account has been created. Check your email to confirm your address, then sign in.");

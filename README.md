@@ -266,3 +266,84 @@ Run the complete updated `supabase/professional_studio.sql` in Supabase → SQL 
 
 Professional Studio now supports manual scale calibration and on-plan measurement for uploaded image plans (PNG/JPG/WebP) and PDF drawings. PDF preview and measurement render the first page. Calibrate by selecting two points with a known real-world distance; then use Measure line for distances or Measure room area to trace a polygon. Measurements and calibration are stored in `professional_projects.drawing_annotations` and `drawing_calibration`. Run the updated `supabase/professional_studio.sql` migration before deploying. PDF rendering uses `pdfjs-dist` and its matching worker hosted by cdnjs. This is manual tracing, not automatic CAD/BIM recognition; check all measurements against source drawings and site conditions.
 \n\n## V6.1 — Named measurements and catalogue linking\n\n- Give each on-plan measurement a room or measurement name before tracing.\n- Link area measurements to compatible area catalogue products and line measurements to running-length products.\n- Area quantities convert from m² to sq ft when the selected catalogue item uses sq ft; line quantities convert from metres to running feet when needed.\n- Existing JSON project fields are reused; no new Supabase migration is required.\n- Review product suitability, converted quantities, supplier rates and site conditions before issuing quotations.\n
+## V6.2 — Unified Professional Studio
+
+- New dashboard at `/architecture/professional/dashboard`.
+- Professionals can select multiple specialisations in one account.
+- Dashboard shows recent projects from the existing `professional_projects` table.
+- Existing drawing, measurement, catalogue, estimate and quotation workflow remains at `/architecture/professional`.
+- Run the updated `supabase/professional_studio.sql` once to create the RLS-protected `professional_profiles` table.
+
+
+## V6.2.1 build fix
+
+Fixes the missing ArrowRight import and skips the Vercel ESLint build phase that was failing to resolve eslint-config-next/core-web-vitals. Next.js compilation and type checks remain active.
+
+## V6.3 — AI Drawing Intelligence (experimental foundation)
+
+- New workspace: `/architecture/professional/ai-drawing`.
+- Supported uploads: PDF (first page), JPG, PNG and ASCII DXF.
+- DXF extraction reads LINE and LWPOLYLINE entities and calculates polyline lengths / closed-polyline areas in drawing units.
+- PDF and raster image processing provides basic long horizontal/vertical line cues and an ink-density indicator. These are not semantic room detections.
+- Results are editable and exportable as CSV for professional review.
+- This release does not add AI model inference or automatic room/door/window/stair/ramp recognition. Do not use unverified outputs for quotations.
+- No Supabase migration is required. Existing Professional Studio and V6.2 profile schema are unchanged.
+
+
+## V6.3.1 — PDF.js TypeScript build fix
+
+Removed the unsupported `canvas` property from the PDF.js render parameters. PDF rendering continues to use the canvas context and viewport. No Supabase migration is required.
+
+
+## V6.3.2 — Homepage spacing and ticker loop
+
+- Reduced desktop homepage hero top padding to remove the large blank gap below the navigation.
+- Repeated the ticker content four times and animated one-quarter of the track for a seamless continuous loop.
+- Removed hover-to-pause behavior; reduced-motion accessibility preference remains respected.
+- No database migration required.
+
+## DESIQ IT Support Studio V1
+
+New routes are available under `/subjects/it-support`. The existing IT subject overview at `/subjects/it` links into the new studio.
+
+### Features
+- 80 seeded practical IT challenges across eight categories, with three difficulty levels.
+- Challenge answers are stored in a separate table that is not readable by browser clients. The `submit_it_challenge` database function validates answers and awards XP server-side.
+- User progress, levels, streaks and badges.
+- Daily challenge schedule seeded for the next 365 days when the migration runs.
+- Private support tickets with user replies, owner responses, internal notes, status and priority management.
+- Private attachment bucket limited to image and PDF uploads up to 5 MB.
+- Skill Passport with a browser print / Save as PDF option. It is a learning activity record, not an accredited professional certification.
+
+### Setup
+1. Run `supabase/it_support_v1.sql` in the Supabase SQL Editor. It is designed to be safe to re-run and does not alter existing DESIQ tables.
+2. From the ZIP root, run `PRIVATE_SUPABASE_SETUP/02-IT-Support-Answer-Key-PRIVATE.sql` in Supabase SQL Editor. This private seed contains the answer key; keep it outside the GitHub repository and do not commit it. The browser-readable challenge table does not contain correct answers.
+3. Create or use the DESIQ owner account, then find its UUID under Supabase Authentication → Users.
+4. In Supabase SQL Editor, grant owner access with:
+
+```sql
+insert into public.it_support_admins(user_id)
+values ('YOUR_AUTH_USER_UUID')
+on conflict do nothing;
+```
+
+Replace the placeholder with the owner's actual Auth user UUID. Do not use an email address or a Supabase secret key. Only this explicitly granted account can administer support tickets.
+5. Deploy the updated repository through GitHub Desktop. Existing Supabase URL and publishable/anon key environment variables are reused; no new environment variables are required.
+
+### Security notes
+- Ticket creation and progress require a signed-in DESIQ account.
+- Ticket rows and messages are protected by Row Level Security.
+- Users can only read their own tickets and messages; internal notes are only readable by the authorised owner.
+- The admin dashboard checks the `it_support_admins` table and the database policies enforce the same restriction.
+- Challenge answer keys are stored separately from public challenge content and validated by a database function. XP cannot be set by the browser.
+- Ticket attachments are stored in a private bucket and are served using short-lived signed URLs.
+
+## DESIQ IT Support V2
+
+V2 adds category learning paths with four modes: existing MCQ practice, interactive lab simulations, troubleshooting simulations, and guided learning checks. It also clarifies the IT Support offer on the IT Support landing page and the main DESIQ world card. Existing V1 tickets, Skill Passport, challenge library and owner support inbox remain in place.
+
+Run `supabase/it_support_v2.sql` after the V1 IT Support SQL migration to enable saved practical activity completions and XP awards. Interactive activities are safe simulations and do not execute commands on a learner's device.
+
+## V2.1 – Visual interactive IT labs
+
+The practical lab mode now includes a clickable visual workspace for all eight IT Support categories. Learners can hover, focus, or click highlighted hotspots to inspect component and workflow explanations, use previous/next controls, and choose modules from the hotspot list. The scene is a safe browser-only simulation and does not interact with the learner's actual device or network. No additional Supabase migration is required for this UI enhancement; V2's existing progress migration remains required.

@@ -1,0 +1,2 @@
+import ITShell from "@/components/it-support/ITShell";import ChallengeBrowser from "@/components/it-support/ChallengeBrowser";
+export default function ChallengesPage(){return <ITShell active="challenges"><section className="it-inner-hero"><span className="it-eyebrow">80 CHALLENGES · 8 CATEGORIES</span><h1>Challenge <em>Studio.</em></h1><p>Work through realistic IT problems, test your decisions and learn from every attempt.</p></section><section className="it-section it-library-section"><ChallengeBrowser/></section></ITShell>}

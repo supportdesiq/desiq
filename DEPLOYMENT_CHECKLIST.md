@@ -79,3 +79,73 @@
 - [ ] Test a PDF drawing: confirm the first page renders and can be calibrated/measured. Only page one is currently supported for on-plan measurement.
 - [ ] Confirm existing Student Studio, Professional projects, drawing storage, company details and quotations still work.
 \n\n## V6.1 deployment note\n\nNo Supabase SQL migration is required for V6.1. It reuses the existing drawing annotations and project line-item fields. Deploy the updated repository and test named measurements, catalogue linking and unit conversions.\n
+## V6.2 deployment
+
+1. Run the complete updated `supabase/professional_studio.sql` in Supabase SQL Editor. It adds `professional_profiles`; it does not delete existing project data.
+2. Replace repository files with this ZIP's `desiq-repo` contents and push to GitHub.
+3. Wait for Vercel deployment.
+4. Sign in and open `/architecture/professional/dashboard`.
+5. Select multiple specialisations, save, refresh, and confirm they remain selected.
+6. Open the drawing & estimating studio and verify existing projects and quotations still work.
+
+
+## V6.2.1 build fix
+
+- Fixes the missing ArrowRight icon import in the Professional Studio page.
+- Configures Next.js to skip the separate ESLint build phase because the Vercel log showed an unresolved eslint-config-next/core-web-vitals module. TypeScript and Next.js compilation checks remain enabled.
+- No Supabase SQL migration is needed beyond the V6.2 migration already run.
+
+## V6.3 deployment
+
+No Supabase SQL is required. Replace repository files with this ZIP's `desiq-repo` contents, commit and push, then wait for Vercel. Open `/architecture/professional/ai-drawing` and test with an image, PDF and ASCII DXF. This is a geometry-extraction prototype; verify results manually.
+
+
+## V6.3.1 build fix
+
+Replaces the V6.3 PDF.js render options with the supported `canvasContext` and `viewport` properties. No SQL is required.
+
+
+## V6.3.2 homepage update
+
+No SQL required. Deploy the updated repository. Check the gap below the header on desktop and mobile, then verify the lime ticker moves continuously and loops without stopping.
+
+## DESIQ IT Support Studio V1
+
+- [ ] Run `supabase/it_support_v1.sql` in Supabase SQL Editor.
+- [ ] Run `PRIVATE_SUPABASE_SETUP/02-IT-Support-Answer-Key-PRIVATE.sql` from the ZIP root in Supabase SQL Editor; do not copy it into or commit it to GitHub.
+- [ ] Add the DESIQ owner's Auth user UUID to `public.it_support_admins` using the SQL in README.md.
+- [ ] Copy the updated repository files and push through GitHub Desktop.
+- [ ] Confirm Vercel deployment succeeds.
+- [ ] Open `/subjects/it-support` and confirm the eight categories and 80 challenges load.
+- [ ] Sign in and complete one challenge; verify the XP result and that progress remains after refresh.
+- [ ] Open the Skill Passport and test Print / Save as PDF.
+- [ ] Submit a support ticket with an optional image attachment.
+- [ ] Confirm the user can view and reply to their own ticket.
+- [ ] Confirm the owner can open `/subjects/it-support/admin`, view the attachment, reply and update ticket status.
+- [ ] Confirm a second ordinary account cannot access the owner dashboard or another user's tickets.
+- [ ] Confirm existing Architecture Student Studio and Professional Studio still work.
+
+No new Vercel environment variables are required. Do not upload `.env.local`, Supabase secret keys or database passwords to GitHub.
+
+
+## IT Support route verification
+- Homepage IT Support card now links directly to `/subjects/it-support`.
+- Legacy `/subjects/it` redirects to `/subjects/it-support`.
+- IT Support Studio back link returns to `/#worlds`.
+- After deployment, verify `/subjects/it-support`, `/subjects/it-support/challenges`, and `/subjects/it-support/admin`.
+
+## IT Support V2 database update
+
+- [ ] In Supabase SQL Editor, run the complete `supabase/it_support_v2.sql` migration after the V1 migration.
+- [ ] Confirm the `it_practical_completions` table and `complete_it_practical` function were created.
+- [ ] Deploy the V2 repository update through GitHub Desktop and Vercel.
+- [ ] Test each category's four learning choices; MCQ links to the existing library, interactive labs use an ordered workflow builder, and troubleshooting / guided learning use safe decision simulations.
+- [ ] Sign in as the support owner and test the Challenge Manager at the bottom of the owner console by publishing a test challenge.
+- [ ] Sign in and complete a practical activity; confirm the result is saved and XP appears in Skill Passport.
+- [ ] Confirm existing support tickets, owner inbox, daily challenge and existing MCQs still work.
+
+## V2.1 visual lab enhancement
+- [ ] In each category, open Interactive Lab and hover over, focus, and click each of the four visual hotspots.
+- [ ] Verify the detail panel changes, previous/next controls work, and hotspot list selects the same item.
+- [ ] Test at desktop and mobile widths.
+- [ ] No additional database migration is required beyond the V2 migration already supplied.

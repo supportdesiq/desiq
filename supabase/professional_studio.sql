@@ -88,3 +88,23 @@ create policy "Professionals can delete their own drawings"
 alter table public.professional_projects
   add column if not exists drawing_annotations jsonb not null default '[]'::jsonb,
   add column if not exists drawing_calibration jsonb;
+
+
+-- V6.2: one professional account can manage multiple specialisations.
+create table if not exists public.professional_profiles (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  specialisations jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+alter table public.professional_profiles enable row level security;
+drop policy if exists "Professionals can view their own profile" on public.professional_profiles;
+create policy "Professionals can view their own profile"
+  on public.professional_profiles for select to authenticated using (auth.uid() = user_id);
+drop policy if exists "Professionals can create their own profile" on public.professional_profiles;
+create policy "Professionals can create their own profile"
+  on public.professional_profiles for insert to authenticated with check (auth.uid() = user_id);
+drop policy if exists "Professionals can update their own profile" on public.professional_profiles;
+create policy "Professionals can update their own profile"
+  on public.professional_profiles for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+grant select, insert, update on public.professional_profiles to authenticated;

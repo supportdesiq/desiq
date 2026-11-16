@@ -1,0 +1,2 @@
+import ITShell from "@/components/it-support/ITShell";import PracticalActivity from "@/components/it-support/PracticalActivity";
+export default async function PracticePage({searchParams}:{searchParams:Promise<{category?:string;mode?:string}>}){const p=await searchParams;return <ITShell active="challenges"><section className="it-section it-practice-section"><PracticalActivity category={p.category||"hardware"} mode={p.mode||"lab"}/></section></ITShell>}
