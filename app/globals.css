@@ -1579,3 +1579,18 @@
 :root[data-theme="dark"] .student-auth-card { background: #242d26; color: #edf1e9; border-color: #465247; }
 :root[data-theme="dark"] .verify-card p,
 :root[data-theme="dark"] .student-auth-card p { color: #bdc7ba; }
+
+/* DESIQ homepage messaging refinement */
+.hero-kicker-copy{display:flex;flex-direction:column;align-items:flex-start;gap:5px;letter-spacing:0}
+.hero-kicker-copy b{font:700 10px 'DM Mono',monospace;letter-spacing:1.8px}
+.hero-kicker-copy small{font:500 11px 'DM Sans',Arial,sans-serif;letter-spacing:0;color:#68758b}
+:root[data-theme="dark"] .hero-light .hero-kicker-copy small{color:#c2cbdc}
+.pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.price-quarterly{background:#eef0e8;border-color:#d9ddd2}
+:root[data-theme="dark"] .price-quarterly{background:#222923;border-color:#394139;color:#edf0e9}
+:root[data-theme="dark"] .price-quarterly .price-desc{color:#bdc6ba}
+:root[data-theme="dark"] .price-quarterly .price-amount small{color:#bdc6ba}
+:root[data-theme="dark"] .price-quarterly .price-rule{border-color:#394139}
+:root[data-theme="dark"] .price-quarterly li{color:#d0d8cd}
+@media(max-width:1000px){.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.hero-kicker-copy small{font-size:10px;line-height:1.45;max-width:280px}.pricing-grid{grid-template-columns:1fr 1fr}}
