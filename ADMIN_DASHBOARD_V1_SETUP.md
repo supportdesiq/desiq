@@ -10,27 +10,30 @@ This update adds the first general DESIQ admin workspace while preserving the ex
 - Staff invitation form with learning-world assignments, individual student UUID assignments and capability selections.
 - Invitation Edge Function using the Supabase service-role key only on the server.
 - Database tables and row-level security for roles, invitations, assignments, capabilities, audit logs and learning activity events.
+- GitHub Actions workflow to deploy the `admin-invite` Edge Function and set its `SITE_URL` secret without using a local laptop CLI.
 
-## Required setup before deployment
+## Required setup
 
 1. In Supabase Dashboard → SQL Editor, run `supabase/admin_dashboard_v1.sql`.
 2. Confirm that `supportdesiq@gmail.com` already exists as a Supabase Auth user. If it does, the SQL migration automatically bootstraps it as the protected Super Admin. If it does not exist yet, create/confirm that account; the auth trigger promotes it when the user record is created.
-3. Deploy the Edge Function from the repository root:
+3. In the GitHub repository, open **Settings → Secrets and variables → Actions** and add these repository secrets:
+   - `SUPABASE_ACCESS_TOKEN`: create a personal access token in the Supabase Dashboard under your account's **Access Tokens** page. Treat it like a password; never commit it or paste it into chat.
+   - `SUPABASE_PROJECT_ID`: `tlpjmngeaxhjlpdgvpho`.
+4. Ensure GitHub Actions are enabled for the repository. The workflow is `.github/workflows/deploy-supabase-admin-invite.yml`.
+5. Push this workflow to the repository's `main` or `master` branch. It runs automatically when the workflow or `supabase/functions/admin-invite/**` changes. You can also run it manually from GitHub → **Actions** → **Deploy DESIQ admin invitation function** → **Run workflow**.
+6. The workflow deploys `admin-invite` and sets the Edge Function secret `SITE_URL=https://desiq-kappa.vercel.app`.
+7. Ensure Supabase Auth → URL Configuration allows `https://desiq-kappa.vercel.app/auth/callback` as a redirect URL.
 
-   ```bash
-   supabase functions deploy admin-invite
-   ```
+Supabase automatically provides `SUPABASE_URL`, `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` to Edge Functions. The service-role key is not required as a GitHub secret and must never be added to `.env.local` or any `NEXT_PUBLIC_*` variable.
 
-4. Set the Edge Function secrets (never add the service-role key to `.env.local` or `NEXT_PUBLIC_*` variables):
+## How to verify deployment
 
-   ```bash
-   supabase secrets set SITE_URL=https://desiq-kappa.vercel.app
-   ```
+1. Open the GitHub repository → **Actions**.
+2. Open the latest **Deploy DESIQ admin invitation function** run.
+3. Confirm all steps have green check marks.
+4. Sign in to DESIQ as `supportdesiq@gmail.com` and test an invitation using an email address you control.
 
-   Supabase supplies `SUPABASE_URL`, `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` to Edge Functions automatically. If your project requires manually setting any of these, set them as Edge Function secrets only.
-
-5. Ensure Supabase Auth → URL Configuration allows `https://desiq-kappa.vercel.app/auth/callback` as a redirect URL.
-6. Deploy the website through the existing GitHub Desktop → Vercel workflow.
+If the workflow fails, open the failed run and share the error text with secrets/tokens redacted.
 
 ## Important boundaries in V1
 
