@@ -1652,3 +1652,155 @@
 @media(max-width:1150px){.pricing-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.price-card{min-height:360px}}
 @media(max-width:850px){.desiq-offer-section,.challenge-recognition-section{padding:75px 6%}.desiq-offer-heading,.challenge-recognition-top{grid-template-columns:1fr;gap:20px}.challenge-recognition-body{grid-template-columns:1fr}.challenge-board{min-height:330px}}
 @media(max-width:700px){.desiq-offer-grid{grid-template-columns:1fr}.desiq-offer-card{min-height:245px;padding:21px}.desiq-offer-heading h2,.challenge-recognition-top h2{font-size:43px;letter-spacing:-2.5px}.desiq-offer-foot{font-size:7px;flex-direction:column;gap:8px}.challenge-board{padding:22px 18px;min-height:300px}.challenge-board-main{grid-template-columns:55px 1fr;gap:12px}.challenge-board-number{font-size:54px}.challenge-board-main h3{font-size:30px}.challenge-board-bottom{font-size:7px}.recognition-note{align-items:flex-start}.pricing-grid{grid-template-columns:1fr 1fr;gap:9px}.price-card{padding:17px 12px;min-height:365px}.price-amount{font-size:27px}}
+
+
+/* DESIQ homepage dark-mode visual correction V3.
+   All rules below are dark-theme-only; day mode remains unchanged. */
+:root[data-theme="dark"] .ticker{
+  background:#d7e7a0 !important;
+  color:#172019 !important;
+  border-top:1px solid #a8bb78;
+  border-bottom:1px solid #a8bb78;
+}
+:root[data-theme="dark"] .ticker-track,
+:root[data-theme="dark"] .ticker-track>span,
+:root[data-theme="dark"] .ticker-track b{color:#172019 !important}
+:root[data-theme="dark"] .hero-light .hero-kicker-copy small{
+  color:#d1d9cb !important;
+  font-size:14px !important;
+  line-height:1.55 !important;
+  max-width:520px;
+}
+:root[data-theme="dark"] .hero-light .hero-kicker-copy b{color:#b8c9ff}
+:root[data-theme="dark"] .hero-light .hero-bottom>span:last-child{color:#aeb9aa}
+:root[data-theme="dark"] .hero-stats-two{display:flex;gap:24px;align-items:center}
+:root[data-theme="dark"] .hero-stats-two>div{min-width:120px}
+:root[data-theme="dark"] .hero-stats-two>i{height:35px;width:1px;background:#485448}
+:root[data-theme="dark"] .hero-stats-two b{color:#f1f4eb !important}
+:root[data-theme="dark"] .hero-stats-two span{color:#bdc8b8 !important}
+:root[data-theme="dark"] .hero-art-light{
+  background:linear-gradient(145deg,#202a25,#18211d) !important;
+  border-color:#465449 !important;
+  box-shadow:0 24px 65px rgba(0,0,0,.28) !important;
+}
+:root[data-theme="dark"] .hero-art-light .art-grid{
+  background-image:linear-gradient(rgba(174,199,173,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(174,199,173,.075) 1px,transparent 1px) !important;
+}
+:root[data-theme="dark"] .hero-art-light .world-art-card{
+  background:#29352e !important;
+  color:#f0f4eb !important;
+  border:1px solid #536354 !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.2) !important;
+}
+:root[data-theme="dark"] .hero-art-light .world-art-card b{color:#f0f4eb !important}
+:root[data-theme="dark"] .hero-art-light .world-art-card small{color:#bdc9b9 !important}
+:root[data-theme="dark"] .hero-art-light .world-art-icon{color:#b9c9ff !important}
+:root[data-theme="dark"] .hero-art-light .world-art-center{
+  background:linear-gradient(135deg,#26395e,#344d7a) !important;
+  border:1px solid #6079aa !important;
+  color:#fff !important;
+}
+:root[data-theme="dark"] .hero-art-light .art-note{
+  background:#303d34 !important;color:#f1f4eb !important;
+  border:1px solid #566657 !important;box-shadow:0 8px 22px rgba(0,0,0,.28) !important;
+}
+:root[data-theme="dark"] .hero-art-light .art-note span{color:#c2d1b8 !important}
+:root[data-theme="dark"] .hero-art-light .art-note b{color:#f2f5ed !important}
+:root[data-theme="dark"] .hero-art-light .art-tools span{filter:brightness(.92) saturate(.8)}
+:root[data-theme="dark"] .hero-art-light .art-spark{color:#c3d98b !important}
+
+/* Ten learning-world cards: make their symbols and category labels visible. */
+:root[data-theme="dark"] .world-card,
+:root[data-theme="dark"] .world-4,
+:root[data-theme="dark"] .world-5,
+:root[data-theme="dark"] .world-6,
+:root[data-theme="dark"] .world-7,
+:root[data-theme="dark"] .world-8,
+:root[data-theme="dark"] .world-9,
+:root[data-theme="dark"] .world-10{
+  background:linear-gradient(145deg,#26312a,#202923) !important;
+  border:1px solid #3e4d41 !important;
+  color:#edf2e9 !important;
+}
+:root[data-theme="dark"] .world-top,
+:root[data-theme="dark"] .world-top>span:first-child{color:#b7c5b2 !important}
+:root[data-theme="dark"] .world-icon{color:#d4e1ca !important}
+:root[data-theme="dark"] .visual-symbol{
+  color:#f0f4e9 !important;
+  text-shadow:0 0 18px color-mix(in srgb,var(--world),white 28%),0 5px 18px rgba(0,0,0,.35) !important;
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.22));
+}
+:root[data-theme="dark"] .visual-orb{opacity:.58;filter:blur(8px) saturate(1.05)}
+:root[data-theme="dark"] .visual-lines{border-color:color-mix(in srgb,var(--world),#dce9d7 20%) !important;opacity:.85}
+:root[data-theme="dark"] .world-info h3{color:#f1f4eb !important}
+:root[data-theme="dark"] .world-info p{color:#c1cbbb !important}
+:root[data-theme="dark"] .round-arrow{color:#e9f0e4 !important;border-color:#718071 !important}
+:root[data-theme="dark"] .world-card:hover .round-arrow{background:#d7e7a0 !important;color:#172019 !important;border-color:#d7e7a0 !important}
+:root[data-theme="dark"] .world-foot{color:#b3c0ae !important;border-color:#3d4b40 !important}
+
+/* Remove pale blocks that looked like white patches in dark mode. */
+:root[data-theme="dark"] .manifesto{
+  background:#202922 !important;color:#eff3e9 !important;
+}
+:root[data-theme="dark"] .manifesto:before,
+:root[data-theme="dark"] .manifesto:after{color:#2c3a30 !important}
+:root[data-theme="dark"] .manifesto h2{color:#f0f3eb !important}
+:root[data-theme="dark"] .manifesto h2 em{color:#a8bbff !important}
+:root[data-theme="dark"] .manifesto>p{color:#c1cbbb !important}
+:root[data-theme="dark"] .benefits-section{background:#171d19 !important;color:#edf2e9 !important}
+:root[data-theme="dark"] .benefit-card{background:#232d26 !important;border-color:#3e4b40 !important;color:#edf2e9 !important}
+:root[data-theme="dark"] .benefit-card h3{color:#f0f4eb !important}
+:root[data-theme="dark"] .benefit-card p{color:#bdc8b9 !important}
+:root[data-theme="dark"] .benefit-icon{background:#344337 !important;color:#d7e7a0 !important}
+:root[data-theme="dark"] .audience-section{
+  background:#1b241e !important;color:#edf2e9 !important;
+}
+:root[data-theme="dark"] .audience-copy h2{color:#f0f4eb !important}
+:root[data-theme="dark"] .audience-copy h2 em{color:#a8bbff !important}
+:root[data-theme="dark"] .audience-copy>p{color:#c0cabc !important}
+:root[data-theme="dark"] .audience-links a{color:#e6eee2 !important;border-color:#455247 !important}
+:root[data-theme="dark"] .tile-parent,
+:root[data-theme="dark"] .tile-school{
+  background:linear-gradient(145deg,#303d33,#263129) !important;
+  border:1px solid #52604f !important;color:#f1f4eb !important;
+}
+:root[data-theme="dark"] .audience-tile span{color:#c3d0bc !important}
+:root[data-theme="dark"] .audience-tile b{color:#f3f5ee !important}
+:root[data-theme="dark"] .audience-tile>div{color:#c5d69a !important;opacity:.16}
+:root[data-theme="dark"] .footer{
+  background:#111813 !important;color:#e9efe5 !important;
+  border-top:1px solid #344237;
+}
+:root[data-theme="dark"] .footer-main p{color:#b4c0b0 !important}
+:root[data-theme="dark"] .footer-main>div>b{color:#c2d0b9 !important}
+:root[data-theme="dark"] .footer-main a:not(.brand){color:#d2ddcd !important}
+:root[data-theme="dark"] .footer-main a:hover{color:#d7e7a0 !important}
+:root[data-theme="dark"] .footer-main .footer-email{color:#eaf0e4 !important}
+:root[data-theme="dark"] .footer-bottom{border-color:#3b493d !important;color:#9eac9c !important}
+
+/* Pricing cards and their actions stay legible in the dark palette. */
+:root[data-theme="dark"] .pricing-section{background:#202820 !important;color:#edf2e9 !important}
+:root[data-theme="dark"] .pricing-section .section-heading h2{color:#f0f4eb !important}
+:root[data-theme="dark"] .pricing-section .section-heading h2 em{color:#b3c5a1 !important}
+:root[data-theme="dark"] .pricing-section .section-heading>p{color:#c0cabc !important}
+:root[data-theme="dark"] .price-card{
+  background:#29342c !important;color:#eff3e9 !important;border-color:#465448 !important;
+}
+:root[data-theme="dark"] .price-card.price-popular,
+:root[data-theme="dark"] .price-card.price-quarterly{background:#303d31 !important}
+:root[data-theme="dark"] .price-card.price-premium{background:#172019 !important}
+:root[data-theme="dark"] .price-name,
+:root[data-theme="dark"] .price-amount{color:#f2f5ed !important}
+:root[data-theme="dark"] .price-desc,
+:root[data-theme="dark"] .price-amount small,
+:root[data-theme="dark"] .price-card li,
+:root[data-theme="dark"] .pricing-footnote{color:#c1cbbb !important}
+:root[data-theme="dark"] .price-rule{border-color:#4b594b !important}
+:root[data-theme="dark"] .price-card li svg{color:#c9df9b !important}
+:root[data-theme="dark"] .price-card .button-outline{color:#f0f4eb !important;border-color:#758574 !important}
+:root[data-theme="dark"] .price-card .button-dark{background:#d7e7a0 !important;color:#182019 !important;border-color:#d7e7a0 !important}
+:root[data-theme="dark"] .popular-ribbon{background:#d7e7a0 !important;color:#172019 !important}
+:root[data-theme="dark"] .premium-ribbon{background:#c8b6ff !important;color:#211b32 !important}
+
+/* Make the homepage learning promise comfortably readable in both themes. */
+.hero-kicker-copy small{font-size:13px;line-height:1.5}
