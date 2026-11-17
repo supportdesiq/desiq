@@ -36,5 +36,5 @@ jobs:
             echo "Missing SUPABASE_ACCESS_TOKEN or SUPABASE_PROJECT_ID GitHub Actions secret."
             exit 1
           fi
-          supabase functions deploy admin-invite --project-ref "$SUPABASE_PROJECT_ID"
+          supabase functions deploy admin-invite --project-ref "$SUPABASE_PROJECT_ID" --yes
           supabase secrets set SITE_URL=https://desiq-kappa.vercel.app --project-ref "$SUPABASE_PROJECT_ID"
