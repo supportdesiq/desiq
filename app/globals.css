@@ -1804,3 +1804,64 @@
 
 /* Make the homepage learning promise comfortably readable in both themes. */
 .hero-kicker-copy small{font-size:13px;line-height:1.5}
+
+
+/* DESIQ homepage refinement V4: hero metrics have stronger hierarchy. */
+.hero-stats-two{display:flex;align-items:center;gap:30px;margin-top:30px;padding-top:3px}
+.hero-stats-two>div{display:flex;flex-direction:column;gap:3px;min-width:130px}
+.hero-stats-two>div>b{display:block;font:800 clamp(54px,5.2vw,72px)/.88 Manrope,sans-serif;letter-spacing:-4px;color:var(--ink)}
+.hero-stats-two>div>span{font:600 11px 'DM Sans',sans-serif;letter-spacing:.15px;color:var(--muted)}
+.hero-stats-two>i{height:54px;width:1px;background:var(--line);display:block}
+.hero-kicker-copy small{display:block}
+.auth-forgot-row{display:flex;justify-content:flex-end;margin-top:-5px;margin-bottom:1px}
+.auth-forgot-row a{font:600 10px 'DM Sans',sans-serif;color:#4168ed;text-decoration:underline;text-underline-offset:3px}
+.auth-forgot-row a:hover{color:#294db8}
+.reset-auth-card form{display:grid;gap:15px}
+.reset-auth-card .auth-success{display:flex;align-items:flex-start;gap:8px}
+.reset-auth-card .auth-success svg{flex:none;margin-top:1px}
+@media(max-width:700px){.hero-stats-two{gap:17px;margin-top:25px}.hero-stats-two>div{min-width:0;flex:1}.hero-stats-two>div>b{font-size:48px;letter-spacing:-2.5px}.hero-stats-two>div>span{font-size:10px}.hero-stats-two>i{height:43px}.hero-copy{padding-bottom:70px}}
+
+/* V4 dark-mode contrast pass: keep illustrations and all learning surfaces readable. */
+:root[data-theme="dark"] .hero-stats-two>div>b{color:#f4f5ee !important;font-weight:900}
+:root[data-theme="dark"] .hero-stats-two>div>span{color:#d0d8cb !important}
+:root[data-theme="dark"] .hero-light .hero-kicker-copy small{color:#e0e6da !important}
+:root[data-theme="dark"] .hero-light .hero-kicker-copy b{display:none}
+:root[data-theme="dark"] .hero-art-light .world-art-card{color:#f3f5ed !important;background:#303c33 !important;border:1px solid #526252 !important}
+:root[data-theme="dark"] .hero-art-light .world-art-card b{color:#f3f5ed !important}
+:root[data-theme="dark"] .hero-art-light .world-art-card small{color:#c3d0c0 !important}
+:root[data-theme="dark"] .hero-art-light .world-art-center{background:linear-gradient(145deg,#26352b,#1c2921) !important;border:1px solid #64765e !important;color:#f5f7ef !important}
+:root[data-theme="dark"] .hero-art-light .art-note{background:#303d33 !important;color:#f1f4e9 !important;border-color:#526451 !important}
+:root[data-theme="dark"] .hero-art-light .art-note b{color:#f1f4e9 !important}
+:root[data-theme="dark"] .hero-art-light .world-art-icon{color:#d7e7a0 !important}
+:root[data-theme="dark"] .hero-art-light .arch-mini,:root[data-theme="dark"] .hero-art-light .it-mini,:root[data-theme="dark"] .hero-art-light .hardware-mini,:root[data-theme="dark"] .hero-art-light .code-mini,:root[data-theme="dark"] .hero-art-light .green-mini,:root[data-theme="dark"] .hero-art-light .language-mini,:root[data-theme="dark"] .hero-art-light .drawing-mini{opacity:1;filter:brightness(1.35) saturate(.9)}
+:root[data-theme="dark"] .ticker{background:#dce8b8 !important;color:#172019 !important}
+:root[data-theme="dark"] .ticker *{color:#172019 !important}
+:root[data-theme="dark"] .hero-light .button:not(.button-ghost){background:#d7e7a0 !important;color:#172019 !important;border-color:#d7e7a0 !important}
+:root[data-theme="dark"] .hero-light .button-ghost{background:#e8ede2 !important;color:#1d261f !important;border-color:#e8ede2 !important}
+:root[data-theme="dark"] .hero-light .button:hover{filter:brightness(.96)}
+:root[data-theme="dark"] .student-auth-card h1{color:#f1f4eb !important}
+:root[data-theme="dark"] .student-auth-card form>label{color:#dce5d8 !important}
+:root[data-theme="dark"] .student-auth-card .auth-tabs{background:#303a32 !important}
+:root[data-theme="dark"] .student-auth-card .auth-tabs button{color:#c4d0c1 !important}
+:root[data-theme="dark"] .student-auth-card .auth-tabs button.active{background:#e4eadf !important;color:#1d281f !important}
+:root[data-theme="dark"] .student-auth-card .auth-forgot-row a{color:#b8c9ff !important}
+:root[data-theme="dark"] .student-auth-card .auth-submit{background:#d7e7a0 !important;color:#172019 !important}
+:root[data-theme="dark"] .student-auth-card .auth-back{color:#b9c7b5 !important}
+:root[data-theme="dark"] .student-auth-card .auth-privacy{color:#c3d0bd !important}
+:root[data-theme="dark"] .student-auth-card .student-auth-icon{background:#303e55 !important;color:#b8c9ff !important}
+:root[data-theme="dark"] .student-auth-card .auth-alert.auth-success{background:#293d2d !important;color:#d9ebcf !important;border-color:#49644b !important}
+:root[data-theme="dark"] .student-auth-card .auth-alert.auth-error{background:#472d2a !important;color:#ffd4ca !important;border-color:#74443d !important}
+:root[data-theme="dark"] .student-auth-card .auth-setup-note{background:#403923 !important;color:#f1dca3 !important}
+@media(max-width:700px){.hero-stats-two>div>b{font-size:46px}}
+
+/* Dark-mode world cards: stronger icon, label and orbit contrast. */
+:root[data-theme="dark"] .world-card{background:#273129 !important;border:1px solid #435044 !important;color:#f0f3ea !important}
+:root[data-theme="dark"] .world-4,:root[data-theme="dark"] .world-5,:root[data-theme="dark"] .world-6,:root[data-theme="dark"] .world-7,:root[data-theme="dark"] .world-8,:root[data-theme="dark"] .world-9,:root[data-theme="dark"] .world-10{background:#273129 !important}
+:root[data-theme="dark"] .world-top,:root[data-theme="dark"] .world-foot{color:#c0cdbb !important;border-color:#455347 !important}
+:root[data-theme="dark"] .world-icon,:root[data-theme="dark"] .visual-symbol{color:#e1ebd8 !important}
+:root[data-theme="dark"] .world-info h3{color:#f3f5ed !important}
+:root[data-theme="dark"] .world-info p{color:#c2cebd !important}
+:root[data-theme="dark"] .visual-orb{opacity:.72;filter:blur(5px) saturate(1.25)}
+:root[data-theme="dark"] .visual-lines{border-color:color-mix(in srgb,var(--world),#e8f0df 28%) !important}
+:root[data-theme="dark"] .round-arrow{border-color:#71806e;color:#edf3e7}
+:root[data-theme="dark"] .round-arrow:hover{background:#d7e7a0;color:#182019;border-color:#d7e7a0}

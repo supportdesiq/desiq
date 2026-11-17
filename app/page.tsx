@@ -14,7 +14,7 @@ export default function Home(){return <>
  <section className="hero hero-light">
   <div className="hero-noise" aria-hidden="true" />
   <div className="hero-copy">
-   <div className="hero-kicker"><span className="hero-kicker-mark">✳</span><span className="hero-kicker-copy"><b>DESIGN + IQ</b><small>Learn a skill. Build something real. Grow with confidence.</small></span></div>
+   <div className="hero-kicker"><span className="hero-kicker-mark">✳</span><span className="hero-kicker-copy"><small>Learn a skill. Build something real. Grow with confidence.</small></span></div>
    <h1>Big ideas start<br/>with a little <em>imagination.</em></h1>
    <p className="hero-lede">Learn by building. Solve by creating. Explore ten worlds of practical, creative and professional learning. Build real skills you can use.</p>
    <div className="hero-buttons"><a className="button" href="#worlds">Explore the worlds <ArrowUpRight size={17}/></a><a className="button button-ghost" href="#pricing">Start your free class</a></div>

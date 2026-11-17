@@ -35,6 +35,7 @@ export default function AccountPage(){
    {mode==="signup"&&<label>Full name<input required value={name} onChange={e=>setName(e.target.value)} autoComplete="name" placeholder="Your name"/></label>}
    <label>Email address<input required type="email" value={email} onChange={e=>setEmail(e.target.value)} autoComplete="email" placeholder="you@example.com"/></label>
    <label>Password <span className="auth-password"><input required type={showPassword?"text":"password"} minLength={8} value={password} onChange={e=>setPassword(e.target.value)} autoComplete={mode==="signup"?"new-password":"current-password"} placeholder="At least 8 characters"/><button type="button" onClick={()=>setShowPassword(v=>!v)} aria-label={showPassword?"Hide password":"Show password"}>{showPassword?<EyeOff size={16}/>:<Eye size={16}/>}</button></span></label>
+   {mode==="signin"&&<div className="auth-forgot-row"><Link href="/account/reset-password">Forgot password?</Link></div>}
    {error&&<div className="auth-alert auth-error">{error}</div>}{message&&<div className="auth-alert auth-success">{message}</div>}
    <button className="auth-submit" disabled={busy}>{busy?"Please wait…":mode==="signup"?"Create my account":"Sign in"} <ArrowRight size={16}/></button>
   </form>
