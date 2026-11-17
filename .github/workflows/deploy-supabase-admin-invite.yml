@@ -37,4 +37,4 @@ jobs:
             exit 1
           fi
           supabase functions deploy admin-invite --project-ref "$SUPABASE_PROJECT_ID" --yes
-          supabase secrets set SITE_URL=https://desiq-kappa.vercel.app --project-ref "$SUPABASE_PROJECT_ID"
+          supabase secrets set SITE_URL=https://desiq-kappa.vercel.app --project-ref "$SUPABASE_PROJECT_ID" --yes
