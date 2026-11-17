@@ -8,6 +8,7 @@ export default function Header(){
  const [dark,setDark]=useState(false);
  const [userName,setUserName]=useState('');
  const [menuOpen,setMenuOpen]=useState(false);
+ const [hasAdminAccess,setHasAdminAccess]=useState(false);
  useEffect(()=>{
   const saved=localStorage.getItem('desiq-theme');
   const initial=saved==='dark';
@@ -15,10 +16,13 @@ export default function Header(){
   document.documentElement.dataset.theme=initial?'dark':'light';
   const db=getSupabase();
   if(!db)return;
-  db.auth.getSession().then(({data})=>setUserName(data.session?.user.user_metadata?.full_name || data.session?.user.email?.split('@')[0] || ''));
-  const {data:{subscription}}=db.auth.onAuthStateChange((_event,session)=>{
+  const syncUser=async(session:any)=>{
    setUserName(session?.user.user_metadata?.full_name || session?.user.email?.split('@')[0] || '');
-  });
+   if(session?.user){const {data}=await db.from('admin_profiles').select('user_id').eq('user_id',session.user.id).eq('status','active').maybeSingle();setHasAdminAccess(!!data);}
+   else setHasAdminAccess(false);
+  };
+  db.auth.getSession().then(({data})=>syncUser(data.session));
+  const {data:{subscription}}=db.auth.onAuthStateChange((_event,session)=>{void syncUser(session);});
   return ()=>subscription.unsubscribe();
  },[]);
  function toggleTheme(){
@@ -32,7 +36,8 @@ export default function Header(){
   <nav className="desktop-nav"><a href="/#worlds">Explore worlds</a><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="/#contact">Contact</a></nav>
   <div className="header-actions">
    <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label={dark?'Switch to light mode':'Switch to dark mode'} title={dark?'Light mode':'Dark mode'}>{dark?<Sun size={17}/>:<Moon size={17}/>}</button>
-   {userName?<div className="user-menu-wrap"><button type="button" className="user-menu-trigger" onClick={()=>setMenuOpen(v=>!v)}><span className="user-avatar"><UserRound size={15}/></span><span>{userName}</span><ChevronDown size={14}/></button>{menuOpen&&<div className="user-menu"><Link href="/dashboard" onClick={()=>setMenuOpen(false)}>My dashboard</Link><Link href="/account" onClick={()=>setMenuOpen(false)}>Account</Link><button type="button" onClick={signOut}>Sign out</button></div>}</div>:<Link className="login-link" href="/account">Sign in</Link>}
+   {userName&&hasAdminAccess&&<Link className="login-link admin-header-link" href="/admin">Admin Dashboard</Link>}
+   {userName?<div className="user-menu-wrap"><button type="button" className="user-menu-trigger" onClick={()=>setMenuOpen(v=>!v)}><span className="user-avatar"><UserRound size={15}/></span><span>{userName}</span><ChevronDown size={14}/></button>{menuOpen&&<div className="user-menu">{hasAdminAccess&&<Link href="/admin" onClick={()=>setMenuOpen(false)}>Admin Dashboard</Link>}<Link href="/dashboard" onClick={()=>setMenuOpen(false)}>My dashboard</Link><Link href="/account" onClick={()=>setMenuOpen(false)}>Account</Link><button type="button" onClick={signOut}>Sign out</button></div>}</div>:<Link className="login-link" href="/account">Sign in</Link>}
    {!userName&&<Link className="button button-small" href="/account">Get started <span>↗</span></Link>}
   </div>
  </header>;
