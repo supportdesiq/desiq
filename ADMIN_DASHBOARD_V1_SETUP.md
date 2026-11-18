@@ -43,3 +43,8 @@ If the workflow fails, open the failed run and share the error text with secrets
 - Student activity metrics count explicit `learning_activity_events`. The event-recording RPC is available, but existing pages are not yet instrumented, so those counts may remain zero until event tracking is added.
 - Existing IT Support owner access remains unchanged in this phase.
 - The migration does not add fake students, sample analytics or synthetic activity.
+
+
+## V2 follow-up
+
+For clickable analytics, student profile drill-down and editing accepted staff access, run `supabase/admin_dashboard_v2.sql` after V1. See `ADMIN_DASHBOARD_V2_SETUP.md` for the detailed deployment notes.
